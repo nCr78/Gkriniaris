@@ -44,11 +44,6 @@ public class Parathiro extends javax.swing.JFrame {
     public Parathiro() {
         initComponents();
         initComplex();
-        
-  //jPanel4.setSize(220, 220);
-//        jPanel22.revalidate();
-//        jPanel22.repaint();
-    //    pack();
     }
     private void initComplex()
     {
@@ -2245,6 +2240,12 @@ public class Parathiro extends javax.swing.JFrame {
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setText("Stop game");
+        jMenuItem2.setEnabled(false);
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
 
         jMenuItem3.setText("Exit");
@@ -2266,59 +2267,43 @@ public class Parathiro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-
-        JOptionPane OP = new JOptionPane();
-        
+        JOptionPane OP = new JOptionPane();        
         String host = null;
         String splitvar[];
-        ServerInterface SI = null;
+        
         GameSettings gms;
         int port;
         boolean connected=false;
         try
         {
-            host = OP.showInputDialog(p, "Hostname", "Hostname", JOptionPane.PLAIN_MESSAGE,null,null,"127.0.0.1:80").toString();
-            connected=true;
+            host = OP.showInputDialog(p, "Hostname (example: 127.0.0.1:80)", "Hostname", JOptionPane.PLAIN_MESSAGE,null,null,"127.0.0.1:80").toString();
             splitvar = host.split(":");
             port = Integer.parseInt(splitvar[1]);
             SI = new ServerInterface(splitvar[0], port);
+            connected=true;
         }
-        catch(java.lang.ArrayIndexOutOfBoundsException e)
-        {
-            System.out.println("Wrong details");
-        }
-        catch (IOException ex) 
-        {
-            System.out.println("Couldn't connect!");
-        } 
-        catch (ClassNotFoundException ex) 
-        {
-        }
-        catch (java.lang.NullPointerException e)
-        {
-        }
+        catch (java.lang.ArrayIndexOutOfBoundsException e){System.out.println("Wrong details");}
+        catch (IOException ex){System.out.println("Couldn't connect!");} 
+        catch (ClassNotFoundException ex){}
+        catch (java.lang.NullPointerException e){}
         if(connected)
         {
             System.out.println("Connected");
             String[]comboBoxContents={"Red Player","Blue Player","Yellow Player", "Green Player"};
             JComboBox comboBox = new JComboBox(comboBoxContents);
             JPanel panel = new JPanel(new GridBagLayout());
-            //panel.setBounds(10, 10, 500, 500);
             JLabel JL = new JLabel("Select:  ");
             JLabel JL2 = new JLabel("Name:");
             JPanel JP3 = new JPanel();
             JTextField TF = new JTextField();
             JP3.setPreferredSize(new Dimension(0, 10));
             TF.setPreferredSize(new Dimension(100, 25));
-            
+            comboBox.setRenderer(new ColorCellRenderer());
             GridBagConstraints gbc = new GridBagConstraints();
             gbc.gridx = 0;
             gbc.gridy = 0;
             gbc.fill = GridBagConstraints.HORIZONTAL;
             gbc.anchor = GridBagConstraints.CENTER;
-            
-            //panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 0, 0));
-            comboBox.setRenderer(new ColorCellRenderer());
             
             panel.add(JL, gbc);
             gbc.gridx++;
@@ -2337,57 +2322,47 @@ public class Parathiro extends javax.swing.JFrame {
             Player pl = new Player(name,player_num);
              
             boolean check = false;
-            try
-            {
-            check = SI.getGmFlag();
-            }
-            catch(java.lang.NullPointerException e)
-            {
-                
-            }
+            try {check = SI.getGmFlag();}
+            catch(java.lang.NullPointerException e){}
             if (check) 
             {
-                System.out.print("Enter number of players and pawns: ");
-//                userInfo = reader.nextLine().split(" ");
+                System.out.print("Sending.. ");
                 gms = new GameSettings(4, true, 4);
-                try 
-                {
-                    //Update server with plauyer and gameSetting info, new game
-                    SI.init(pl, gms);
-                } 
-                catch (IOException ex) 
-                {
-                    Logger.getLogger(Parathiro.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                try {SI.init(pl, gms);} 
+                catch (IOException ex) {Logger.getLogger(Parathiro.class.getName()).log(Level.SEVERE, null, ex);}
             } 
             else 
             {
-                try 
-                {
-                    //Updates the only with the player's info, game already exists
-                    SI.init(pl);
-                } 
-                catch (IOException ex) 
-                {
-                    Logger.getLogger(Parathiro.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                catch (java.lang.NullPointerException e)
-                {
-                    
-                }
+                try {SI.init(pl);} 
+                catch (IOException ex) {Logger.getLogger(Parathiro.class.getName()).log(Level.SEVERE, null, ex);}
+                catch (java.lang.NullPointerException e){}
             }
-             
-             System.out.println(player_num + "-" + name);
+            jMenuItem2.setEnabled(true);
+            jMenuItem1.setEnabled(false);
+            System.out.println(player_num + "-" + name);
         }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-  class ColorCellRenderer implements ListCellRenderer {
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        try 
+        {
+            SI.endGame();
+            jMenuItem2.setEnabled(false);
+            jMenuItem1.setEnabled(true);
+        }
+        catch (IOException ex) {System.out.println("Disconnected!");}
+        catch (java.lang.ClassNotFoundException ex) {System.out.println("...?!");}
+        catch (java.lang.NullPointerException e) {System.out.println("You were not connected anyway..");}
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+  class ColorCellRenderer implements ListCellRenderer 
+  {
     private DefaultListCellRenderer defaultRenderer = new DefaultListCellRenderer();
     private Dimension preferredSize = new Dimension(100, 20);
 
     @Override
-    public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+    public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) 
+    {
         JLabel renderer = (JLabel) defaultRenderer.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
         if (value.equals("Red Player")) 
         {
@@ -2410,21 +2385,16 @@ public class Parathiro extends javax.swing.JFrame {
             renderer.setForeground(Color.GREEN);
         }
         
-        if (cellHasFocus || isSelected) {
-            renderer.setBorder(new LineBorder(Color.BLACK));
-        } else {
-            renderer.setBorder(null);
-        }
+        if (cellHasFocus || isSelected) {renderer.setBorder(new LineBorder(Color.BLACK));}
+        else {renderer.setBorder(null);}
         
-        if(index<0)
-        {
-            renderer.setBorder(null);
-        }
+        if(index<0) {renderer.setBorder(null);}
         renderer.setPreferredSize(preferredSize);
         return renderer;
     }
 }
-    public static void main(String args[]) {
+    public static void main(String args[]) 
+    {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -2449,11 +2419,12 @@ public class Parathiro extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        java.awt.EventQueue.invokeLater(new Runnable() 
+        {
             @Override
-            public void run() {
-                 p = new Parathiro();
-                
+            public void run() 
+            {
+                p = new Parathiro();
                 p.pack();
                 p.setLocationRelativeTo(null);
                 p.setVisible(true);
@@ -2461,6 +2432,7 @@ public class Parathiro extends javax.swing.JFrame {
         });
     }
 //    private String name;
+    ServerInterface SI = null;
     private static Parathiro p;
     private RotatePanel kentrikoRGBY;
     private RotatePanel fouf;
