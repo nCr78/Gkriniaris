@@ -36,6 +36,7 @@ import javax.swing.DefaultListCellRenderer;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -59,7 +60,7 @@ public class Parathiro extends javax.swing.JFrame {
         initComplex();
         placePawns();
         addListeners();
-        System.out.println("Nikola: mesa sto placePawns() einai enas tropos gia na prostheteis Pawns se tetragona..Profanos kai einai manual giati einai swing, boreis na ftiakseis o kiklos (sto prasino pano koutaki) na vgainei sto kentro akrivos gia arxi? tropos: sto pawn.java dokimase me g2d.translate(x,y) allios dn ksero, google..");
+        System.out.println("Nikola: 1) ftiakse to server bug for now");
     }
     private void initComplex()
     {
@@ -417,6 +418,52 @@ public class Parathiro extends javax.swing.JFrame {
         );
     }
     
+    private void addComplex(RotatePanel fouf, JLayeredPane jlp, JPanel panel, JPanel pano, JPanel kato, JPanel deksia, JPanel aristera)
+    {
+        fouf = new RotatePanel();
+        fouf.setPreferredSize(new Dimension(239, 238));
+        
+        jlp.setBounds(0, 0, 240, 240);
+
+        pano.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
+        pano.setBackground(new Color(51,51,255));
+        pano.setBounds(99, 60, 40, 40);
+        pano.setOpaque(true);
+        
+        kato.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
+        kato.setBackground(new Color(51,51,255));
+        kato.setBounds(99, 138, 40, 40);
+        kato.setOpaque(true);
+        
+        aristera.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
+        aristera.setBackground(new Color(51,51,255));
+        aristera.setBounds(60, 99, 40, 40);
+        aristera.setOpaque(true);
+        
+        deksia.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
+        deksia.setBackground(new Color(51,51,255));
+        deksia.setBounds(138, 99, 40, 40);
+        deksia.setOpaque(true);
+        
+        jlp.add(pano, new Integer(0), 0);
+        jlp.add(kato, new Integer(0), 0);
+        jlp.add(aristera, new Integer(0), 0);
+        jlp.add(deksia, new Integer(0), 0);
+        
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(panel);
+        panel.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addComponent(fouf)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(fouf)
+        );
+    }
+    
     private void placePawns()
     {
         final Pawn Focused = new Pawn(Color.darkGray, "focus", 0);
@@ -497,253 +544,46 @@ public class Parathiro extends javax.swing.JFrame {
     
     private void addListeners()
     {
-        pawn_prasino.addMouseMotionListener(new MouseMotionListener() 
-        {
-            @Override
-            public void mouseMoved(MouseEvent e) 
-            {
-                final int x = e.getX();
-                final int y = e.getY();
-                final Rectangle cellBounds = pawn_prasino.getBounds();
-                if (cellBounds != null && cellBounds.contains(x, y)) {pawn_prasino.setCursor(new Cursor(Cursor.HAND_CURSOR));}
-                else {pawn_prasino.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));}
-            }
-
-            @Override
-            public void mouseDragged(MouseEvent e) {}
-        });
-        pawn_prasino2.addMouseMotionListener(new MouseMotionListener() 
-        {
-            @Override
-            public void mouseMoved(MouseEvent e) 
-            {
-                final int x = e.getX();
-                final int y = e.getY();
-                final Rectangle cellBounds = pawn_prasino2.getBounds();
-                if (cellBounds != null && cellBounds.contains(x, y)) {pawn_prasino2.setCursor(new Cursor(Cursor.HAND_CURSOR));}
-                else {pawn_prasino2.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));}
-            }
-
-            @Override
-            public void mouseDragged(MouseEvent e) {}
-        });
-        pawn_prasino3.addMouseMotionListener(new MouseMotionListener() 
-        {
-            @Override
-            public void mouseMoved(MouseEvent e) 
-            {
-                final int x = e.getX();
-                final int y = e.getY();
-                final Rectangle cellBounds = pawn_prasino3.getBounds();
-                if (cellBounds != null && cellBounds.contains(x, y)) {pawn_prasino3.setCursor(new Cursor(Cursor.HAND_CURSOR));}
-                else {pawn_prasino3.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));}
-            }
-
-            @Override
-            public void mouseDragged(MouseEvent e) {}
-        });
-        pawn_prasino4.addMouseMotionListener(new MouseMotionListener() 
-        {
-            @Override
-            public void mouseMoved(MouseEvent e) 
-            {
-                final int x = e.getX();
-                final int y = e.getY();
-                final Rectangle cellBounds = pawn_prasino4.getBounds();
-                if (cellBounds != null && cellBounds.contains(x, y)) {pawn_prasino4.setCursor(new Cursor(Cursor.HAND_CURSOR));}
-                else {pawn_prasino4.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));}
-            }
-
-            @Override
-            public void mouseDragged(MouseEvent e) {}
-        });
+        addMouseListener(pawn_prasino);
+        addMouseListener(pawn_prasino2);
+        addMouseListener(pawn_prasino3);
+        addMouseListener(pawn_prasino4);
         
-        pawn_kokino.addMouseMotionListener(new MouseMotionListener() 
-        {
-            @Override
-            public void mouseMoved(MouseEvent e) 
-            {
-                final int x = e.getX();
-                final int y = e.getY();
-                final Rectangle cellBounds = pawn_kokino.getBounds();
-                if (cellBounds != null && cellBounds.contains(x, y)) {pawn_kokino.setCursor(new Cursor(Cursor.HAND_CURSOR));}
-                else {pawn_kokino.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));}
-            }
-
-            @Override
-            public void mouseDragged(MouseEvent e) {}
-        });
-        pawn_kokino2.addMouseMotionListener(new MouseMotionListener() 
-        {
-            @Override
-            public void mouseMoved(MouseEvent e) 
-            {
-                final int x = e.getX();
-                final int y = e.getY();
-                final Rectangle cellBounds = pawn_kokino2.getBounds();
-                if (cellBounds != null && cellBounds.contains(x, y)) {pawn_kokino2.setCursor(new Cursor(Cursor.HAND_CURSOR));}
-                else {pawn_kokino2.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));}
-            }
-
-            @Override
-            public void mouseDragged(MouseEvent e) {}
-        });
-        pawn_kokino3.addMouseMotionListener(new MouseMotionListener() 
-        {
-            @Override
-            public void mouseMoved(MouseEvent e) 
-            {
-                final int x = e.getX();
-                final int y = e.getY();
-                final Rectangle cellBounds = pawn_kokino3.getBounds();
-                if (cellBounds != null && cellBounds.contains(x, y)) {pawn_kokino3.setCursor(new Cursor(Cursor.HAND_CURSOR));}
-                else {pawn_kokino3.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));}
-            }
-
-            @Override
-            public void mouseDragged(MouseEvent e) {}
-        });
-        pawn_kokino4.addMouseMotionListener(new MouseMotionListener() 
-        {
-            @Override
-            public void mouseMoved(MouseEvent e) 
-            {
-                final int x = e.getX();
-                final int y = e.getY();
-                final Rectangle cellBounds = pawn_kokino4.getBounds();
-                if (cellBounds != null && cellBounds.contains(x, y)) {pawn_kokino4.setCursor(new Cursor(Cursor.HAND_CURSOR));}
-                else {pawn_kokino4.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));}
-            }
-
-            @Override
-            public void mouseDragged(MouseEvent e) {}
-        });
+        addMouseListener(pawn_kokino);
+        addMouseListener(pawn_kokino2);
+        addMouseListener(pawn_kokino3);
+        addMouseListener(pawn_kokino4);
         
-        pawn_ble.addMouseMotionListener(new MouseMotionListener() 
-        {
-            @Override
-            public void mouseMoved(MouseEvent e) 
-            {
-                final int x = e.getX();
-                final int y = e.getY();
-                final Rectangle cellBounds = pawn_ble.getBounds();
-                if (cellBounds != null && cellBounds.contains(x, y)) {pawn_ble.setCursor(new Cursor(Cursor.HAND_CURSOR));}
-                else {pawn_ble.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));}
-            }
-
-            @Override
-            public void mouseDragged(MouseEvent e) {}
-        });
-        pawn_ble2.addMouseMotionListener(new MouseMotionListener() 
-        {
-            @Override
-            public void mouseMoved(MouseEvent e) 
-            {
-                final int x = e.getX();
-                final int y = e.getY();
-                final Rectangle cellBounds = pawn_ble2.getBounds();
-                if (cellBounds != null && cellBounds.contains(x, y)) {pawn_ble2.setCursor(new Cursor(Cursor.HAND_CURSOR));}
-                else {pawn_ble2.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));}
-            }
-
-            @Override
-            public void mouseDragged(MouseEvent e) {}
-        });
-        pawn_ble3.addMouseMotionListener(new MouseMotionListener() 
-        {
-            @Override
-            public void mouseMoved(MouseEvent e) 
-            {
-                final int x = e.getX();
-                final int y = e.getY();
-                final Rectangle cellBounds = pawn_ble3.getBounds();
-                if (cellBounds != null && cellBounds.contains(x, y)) {pawn_ble3.setCursor(new Cursor(Cursor.HAND_CURSOR));}
-                else {pawn_ble3.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));}
-            }
-
-            @Override
-            public void mouseDragged(MouseEvent e) {}
-        });
-        pawn_ble4.addMouseMotionListener(new MouseMotionListener() 
-        {
-            @Override
-            public void mouseMoved(MouseEvent e) 
-            {
-                final int x = e.getX();
-                final int y = e.getY();
-                final Rectangle cellBounds = pawn_ble4.getBounds();
-                if (cellBounds != null && cellBounds.contains(x, y)) {pawn_ble4.setCursor(new Cursor(Cursor.HAND_CURSOR));}
-                else {pawn_ble4.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));}
-            }
-
-            @Override
-            public void mouseDragged(MouseEvent e) {}
-        });
+        addMouseListener(pawn_ble);
+        addMouseListener(pawn_ble2);
+        addMouseListener(pawn_ble3);
+        addMouseListener(pawn_ble4);
         
-        
-        pawn_kitrino.addMouseMotionListener(new MouseMotionListener() 
-        {
-            @Override
-            public void mouseMoved(MouseEvent e) 
-            {
-                final int x = e.getX();
-                final int y = e.getY();
-                final Rectangle cellBounds = pawn_kitrino.getBounds();
-                if (cellBounds != null && cellBounds.contains(x, y)) {pawn_kitrino.setCursor(new Cursor(Cursor.HAND_CURSOR));}
-                else {pawn_kitrino.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));}
-            }
-
-            @Override
-            public void mouseDragged(MouseEvent e) {}
-        });
-        pawn_kitrino2.addMouseMotionListener(new MouseMotionListener() 
-        {
-            @Override
-            public void mouseMoved(MouseEvent e) 
-            {
-                final int x = e.getX();
-                final int y = e.getY();
-                final Rectangle cellBounds = pawn_kitrino2.getBounds();
-                if (cellBounds != null && cellBounds.contains(x, y)) {pawn_kitrino2.setCursor(new Cursor(Cursor.HAND_CURSOR));}
-                else {pawn_kitrino2.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));}
-            }
-
-            @Override
-            public void mouseDragged(MouseEvent e) {}
-        });
-        pawn_kitrino3.addMouseMotionListener(new MouseMotionListener() 
-        {
-            @Override
-            public void mouseMoved(MouseEvent e) 
-            {
-                final int x = e.getX();
-                final int y = e.getY();
-                final Rectangle cellBounds = pawn_kitrino3.getBounds();
-                if (cellBounds != null && cellBounds.contains(x, y)) {pawn_kitrino3.setCursor(new Cursor(Cursor.HAND_CURSOR));}
-                else {pawn_kitrino3.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));}
-            }
-
-            @Override
-            public void mouseDragged(MouseEvent e) {}
-        });
-        pawn_kitrino4.addMouseMotionListener(new MouseMotionListener() 
-        {
-            @Override
-            public void mouseMoved(MouseEvent e) 
-            {
-                final int x = e.getX();
-                final int y = e.getY();
-                final Rectangle cellBounds = pawn_kitrino4.getBounds();
-                if (cellBounds != null && cellBounds.contains(x, y)) {pawn_kitrino4.setCursor(new Cursor(Cursor.HAND_CURSOR));}
-                else {pawn_kitrino4.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));}
-            }
-
-            @Override
-            public void mouseDragged(MouseEvent e) {}
-        });
-        
-        
+        addMouseListener(pawn_kitrino);
+        addMouseListener(pawn_kitrino2);
+        addMouseListener(pawn_kitrino3);
+        addMouseListener(pawn_kitrino4);
     }
+    
+    private void addMouseListener(final Pawn p)
+    {
+        p.addMouseMotionListener(new MouseMotionListener() 
+        {
+            @Override
+            public void mouseMoved(MouseEvent e) 
+            {
+                final int x = e.getX();
+                final int y = e.getY();
+                final Rectangle cellBounds = p.getBounds();
+                if (cellBounds != null && cellBounds.contains(x, y)) {p.setCursor(new Cursor(Cursor.HAND_CURSOR));}
+                else {p.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));}
+            }
+
+            @Override
+            public void mouseDragged(MouseEvent e) {}
+        });
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
