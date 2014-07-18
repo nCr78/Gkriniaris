@@ -410,7 +410,7 @@ public class Parathiro extends javax.swing.JFrame {
     
     private void placePawns()
     {
-        //allos tropos: layered pane se kathe panel pou exo...same lines of code or what?...-.-
+        //allos tropos: layered pane se kathe panel pou exo...same lines of code or what?...-_-
         Pawn pawn_kokino = new Pawn();
         panoPrasino.add(pawn_kokino);
         
@@ -2284,7 +2284,7 @@ public class Parathiro extends javax.swing.JFrame {
         jMenuItem1.setText("Join game");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                JoinGame_Action(evt);
             }
         });
         jMenu1.add(jMenuItem1);
@@ -2293,7 +2293,7 @@ public class Parathiro extends javax.swing.JFrame {
         jMenuItem2.setEnabled(false);
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                StopGame_Action(evt);
             }
         });
         jMenu1.add(jMenuItem2);
@@ -2301,7 +2301,7 @@ public class Parathiro extends javax.swing.JFrame {
         jMenuItem3.setText("Exit");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                ExitGame_Action(evt);
             }
         });
         jMenu1.add(jMenuItem3);
@@ -2313,7 +2313,7 @@ public class Parathiro extends javax.swing.JFrame {
         jMenuItem4.setText("Help");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                Help_Action(evt);
             }
         });
         jMenu2.add(jMenuItem4);
@@ -2321,7 +2321,7 @@ public class Parathiro extends javax.swing.JFrame {
         jMenuItem5.setText("About \"Gkriniaris\"");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                About_Action(evt);
             }
         });
         jMenu2.add(jMenuItem5);
@@ -2331,7 +2331,7 @@ public class Parathiro extends javax.swing.JFrame {
         setJMenuBar(jMenuBar1);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void JoinGame_Action(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JoinGame_Action
         JOptionPane OP = new JOptionPane();        
         String host = null;
         String splitvar[];
@@ -2407,9 +2407,9 @@ public class Parathiro extends javax.swing.JFrame {
             System.out.println(player_num + "-" + name);
             Start();
         }
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_JoinGame_Action
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void StopGame_Action(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StopGame_Action
         try 
         {
             SI.endGame();//troei error: to bug mallon einai oti "waiting for other players" den diavazei an tou stileis "END", ara crasharei otan paei na kanei read
@@ -2419,13 +2419,13 @@ public class Parathiro extends javax.swing.JFrame {
         catch (IOException ex) {System.out.println("Disconnected!");}
         catch (java.lang.ClassNotFoundException ex) {System.out.println("...?!");}
         catch (java.lang.NullPointerException e) {System.out.println("You were not connected anyway..");}
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_StopGame_Action
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void ExitGame_Action(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitGame_Action
         this.dispose();
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_ExitGame_Action
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void Help_Action(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Help_Action
         final JOptionPane OP = new JOptionPane();
         final JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(600, 180));
@@ -2442,9 +2442,9 @@ public class Parathiro extends javax.swing.JFrame {
         
         panel.add(textArea);
         OP.showOptionDialog(p, panel, "How to play", JOptionPane.YES_OPTION, JOptionPane.PLAIN_MESSAGE, null, new Object[] { "Thanks!" }, null);
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_Help_Action
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+    private void About_Action(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_About_Action
         JOptionPane OP = new JOptionPane();
         JPanel panel = new JPanel(new BorderLayout());
         panel.setPreferredSize(new Dimension(300, 0));
@@ -2459,11 +2459,11 @@ public class Parathiro extends javax.swing.JFrame {
         panel.add(textArea, BorderLayout.CENTER);
         OP.showOptionDialog(p, panel, "About", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, new Object[] {}, null);
         
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    }//GEN-LAST:event_About_Action
 
     public void Start()
     {
-        
+        //todo logic here. (afou ksekinisei to game, dld sto joingame_action sto telos)
     }
   class ColorCellRenderer implements ListCellRenderer 
   {
