@@ -4,6 +4,7 @@ import commonEntities.Dice;
 import commonEntities.GameSettings;
 import commonEntities.Pawn;
 import commonEntities.Player;
+import java.awt.Color;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -65,7 +66,7 @@ public static void main(String[] args) throws IOException, ClassNotFoundExceptio
 		break;
 	    }else
 		//Updates the server with Dice and Pawn
-		srv.updatePawn(new Dice(2,5), new Pawn(1, "taz", 33));
+		srv.updatePawn(new Dice(2,5), new Pawn(new Color(0,0,0), "taz", 33));
 	else if(resp ==-1)
 	    //Server told the client that the game has ended
 	    System.out.println("Game Ended");

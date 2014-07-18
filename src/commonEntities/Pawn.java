@@ -1,6 +1,14 @@
 package commonEntities;
 
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.Shape;
+import java.awt.geom.Ellipse2D;
 import java.io.Serializable;
+import javax.swing.JPanel;
 
 /**
  * A Class the represents the a game piece, the pawn. It is Serializable to be
@@ -8,9 +16,10 @@ import java.io.Serializable;
  *
  * @author Nikolas
  */
-public class Pawn implements Serializable {
+public class Pawn extends JPanel implements Serializable 
+{
 
-private int color;
+private Color color = new Color(0, 0, 0); 
 private String playerName;
 private int position;
 
@@ -21,7 +30,7 @@ private int position;
  * @param playerName
  * @param position
  */
-public Pawn(int color, String playerName, int position) {
+public Pawn(Color color, String playerName, int position) {
     this.color = color;
     this.playerName = playerName;
     this.position = position;
@@ -32,7 +41,7 @@ public Pawn(int color, String playerName, int position) {
  *
  * @return
  */
-public int getColor() {
+public Color getColor() {
     return color;
 }
 
@@ -41,7 +50,7 @@ public int getColor() {
  *
  * @param color
  */
-public void setColor(int color) {
+public void setColor(Color color) {
     this.color = color;
 }
 
@@ -80,5 +89,20 @@ public int getPosition() {
 public void setPosition(int position) {
     this.position = position;
 }
+
+@Override
+    public void paintComponent(Graphics g) {
+          Graphics2D g2d = (Graphics2D)g;
+          g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+          g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+          g2d.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_PURE);
+          Shape theCircle = new Ellipse2D.Double(4, 4, 1.0 * 16, 1.0 * 16);
+          g2d.setColor(Color.black);
+          g2d.setStroke(new BasicStroke(2));
+          g2d.draw(theCircle);
+//          g2d.translate(20, 20);
+          g2d.setColor(color);
+          g2d.fill(theCircle);
+    }
 
 }

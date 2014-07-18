@@ -8,6 +8,7 @@ package gkriniaris;
 
 import clientInterface.ServerInterface;
 import commonEntities.GameSettings;
+import commonEntities.Pawn;
 import commonEntities.Player;
 import java.awt.BorderLayout;
 import java.awt.Button;
@@ -414,18 +415,18 @@ public class Parathiro extends javax.swing.JFrame {
     private void placePawns()
     {
         //allos tropos: layered pane se kathe panel pou exo...same lines of code or what?...-_-
-        Pawn pawn_kokino = new Pawn(new Color(0,204,51));
-        panoPrasino.add(pawn_kokino);
+        Pawn pawn_prasino = new Pawn(new Color(0,204,51), "Prasinos", 0);
+        panoPrasino.add(pawn_prasino);
         
         javax.swing.GroupLayout panoPrasinoLayout = new javax.swing.GroupLayout(panoPrasino);
         panoPrasino.setLayout(panoPrasinoLayout);
         panoPrasinoLayout.setHorizontalGroup(
             panoPrasinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-            .addComponent(pawn_kokino, javax.swing.GroupLayout.Alignment.CENTER)
+            .addComponent(pawn_prasino, javax.swing.GroupLayout.Alignment.CENTER)
         );
         panoPrasinoLayout.setVerticalGroup(
             panoPrasinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                .addComponent(pawn_kokino, javax.swing.GroupLayout.Alignment.CENTER)
+                .addComponent(pawn_prasino, javax.swing.GroupLayout.Alignment.CENTER)
         );
         
     }
