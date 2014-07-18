@@ -2569,12 +2569,11 @@ public class Parathiro extends javax.swing.JFrame {
     private void StopGame_Action(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StopGame_Action
         try 
         {
-            SI.endGame();//troei error: to bug mallon einai oti "waiting for other players" den diavazei an tou stileis "END", ara crasharei otan paei na kanei read
+            SI.terminate();//troei error: to bug mallon einai oti "waiting for other players" den diavazei an tou stileis "END", ara crasharei otan paei na kanei read
             jMenuItem2.setEnabled(false);
             jMenuItem1.setEnabled(true);
         }
         catch (IOException ex) {System.out.println("Disconnected!");}
-        catch (java.lang.ClassNotFoundException ex) {System.out.println("...?!");}
         catch (java.lang.NullPointerException e) {System.out.println("You were not connected anyway..");}
     }//GEN-LAST:event_StopGame_Action
 
