@@ -61,7 +61,7 @@ public class Parathiro extends javax.swing.JFrame {
         initComplex();
         placePawns();
         addListeners();
-        System.out.println("Status: Fixed parathiro bug, einai koble me 2 paixtes.\nNikola: <AMA> boreis koitakse ligo na min borei na valei o xristis to idio xroma, xoris na vgainei ksana apo tin arxi to parathiro, alla apla na min iparxei to sigkekrimeno xroma pou epelekse kapios allos xristis..ara tha prepei na pairnei tin lista available xromaton apo ton server k oxi locally..");
+        System.out.println("TODO: gameLogic(start sinartisi dld) + remove pawns/players if not exist (also add an xriastoun?rejoinable?) \nStatus: Fixed parathiro bug, einai koble me 2 paixtes.\nNikola: <AMA> boreis koitakse ligo na min borei na valei o xristis to idio xroma, xoris na vgainei ksana apo tin arxi to parathiro, alla apla na min iparxei to sigkekrimeno xroma pou epelekse kapios allos xristis..ara tha prepei na pairnei tin lista available xromaton apo ton server k oxi locally..");
     }
     private void initComplex()
     {
@@ -2513,24 +2513,16 @@ public class Parathiro extends javax.swing.JFrame {
         {
             System.out.println("Connected");
             String[]comboBoxContents={"Red Player","Blue Player","Yellow Player", "Green Player"};
-            
             JComboBox comboBox = new JComboBox(comboBoxContents);
-            
-            
             JPanel panel = new JPanel(new GridBagLayout());
             JTextField TF = new JTextField();
             JLabel JL = new JLabel("Select:  ");
             JLabel JL2 = new JLabel("Name:");
-            
             JPanel space1 = new JPanel();
             JPanel space2 = new JPanel();
-            
-            
-            
-            
+
             space1.setPreferredSize(new Dimension(0, 10));
             space2.setPreferredSize(new Dimension(0, 10));
-            
             TF.setPreferredSize(new Dimension(100, 25));
             TF.setText("Fouf");
             comboBox.setRenderer(new ColorCellRenderer());
@@ -2598,7 +2590,7 @@ public class Parathiro extends javax.swing.JFrame {
                 panel.add(JL5, gbc);//thesi 8,0
                 gbc.gridx++;
                 panel.add(checkbox, gbc);//thesi 8,1
-                System.out.print("Sending.. ");
+                System.out.print("Waiting.. ");
                 OP.showMessageDialog(p, panel, "Set game settings", JOptionPane.PLAIN_MESSAGE);
                 name = TF.getText();
                 player_num = comboBox.getSelectedIndex();
