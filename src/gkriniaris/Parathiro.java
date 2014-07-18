@@ -13,21 +13,27 @@ import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListCellRenderer;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ListCellRenderer;
 import javax.swing.border.LineBorder;
@@ -2249,6 +2255,11 @@ public class Parathiro extends javax.swing.JFrame {
         jMenu1.add(jMenuItem2);
 
         jMenuItem3.setText("Exit");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem3);
 
         jMenuBar1.add(jMenu1);
@@ -2256,9 +2267,19 @@ public class Parathiro extends javax.swing.JFrame {
         jMenu2.setText("Help");
 
         jMenuItem4.setText("Help");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem4);
 
         jMenuItem5.setText("About \"Gkriniaris\"");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem5);
 
         jMenuBar1.add(jMenu2);
@@ -2346,7 +2367,7 @@ public class Parathiro extends javax.swing.JFrame {
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         try 
         {
-            SI.endGame();
+            SI.endGame();//troei error: to bug mallon einai oti "waiting for other players" den diavazei an tou stileis "END", ara crasharei otan paei na kanei read
             jMenuItem2.setEnabled(false);
             jMenuItem1.setEnabled(true);
         }
@@ -2354,6 +2375,46 @@ public class Parathiro extends javax.swing.JFrame {
         catch (java.lang.ClassNotFoundException ex) {System.out.println("...?!");}
         catch (java.lang.NullPointerException e) {System.out.println("You were not connected anyway..");}
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        final JOptionPane OP = new JOptionPane();
+        final JPanel panel = new JPanel();
+        panel.setPreferredSize(new Dimension(600, 180));
+        JTextArea textArea = new JTextArea(
+                "Two, three, or four may play. At the beginning of the game, each player's tokens are out of play and staged in one of the large corner areas of the board in the player's color (called the player's yard  ). When able to, the players will enter their tokens one per time on their respective starting squares, and proceed to race them clockwise around the board along the game track (the path of squares not part of any player's home column). When reaching the square below the home column, a player continues by racing tokens up the column to the finish square. The rolls of a cube die control the swiftness of the tokens, and entry to the finish square requires a precise roll from the player. The first to bring all their tokens to the finish wins the game. The others often continue play to determine second-, third-, and fourth-place finishers.", 
+                6, 
+                20);
+        textArea.setPreferredSize(new Dimension(600, 180));
+        textArea.setFont(new Font("Dialog", Font.PLAIN, 14));
+        textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
+        textArea.setOpaque(false);
+        textArea.setEditable(false);
+        
+        panel.add(textArea);
+        OP.showOptionDialog(p, panel, "How to play", JOptionPane.YES_OPTION, JOptionPane.PLAIN_MESSAGE, null, new Object[] { "Thanks!" }, null);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        JOptionPane OP = new JOptionPane();
+        JPanel panel = new JPanel(new BorderLayout());
+        panel.setPreferredSize(new Dimension(300, 0));
+        JTextArea textArea = new JTextArea("Karamolegkos Eleftherios"+"      2024200900083\n\n"+"Andronopoulos Nikolas"+"          2024200900026", 6, 20);
+        textArea.setPreferredSize(new Dimension(300, 0));
+        textArea.setFont(new Font("Dialog", Font.PLAIN, 14));
+        textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
+        textArea.setOpaque(false);
+        textArea.setEditable(false);
+        
+        panel.add(textArea, BorderLayout.CENTER);
+        OP.showOptionDialog(p, panel, "About", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, new Object[] {}, null);
+        
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
   class ColorCellRenderer implements ListCellRenderer 
   {

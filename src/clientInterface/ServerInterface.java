@@ -65,7 +65,7 @@ public void updatePawn(Dice d, Pawn p) throws IOException{
 }
 
 public void endGame() throws IOException, ClassNotFoundException{
-    sendToServer("END");
+    sendToServer("END");//to bug mallon einai oti "waiting for other players" den diavazei an tou stileis "END", ara crasharei otan paei na kanei read
     readFromServer();
     terminate();
 }
