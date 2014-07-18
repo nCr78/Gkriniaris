@@ -34,6 +34,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ListCellRenderer;
@@ -51,9 +52,12 @@ public class Parathiro extends javax.swing.JFrame {
     public Parathiro() {
         initComponents();
         initComplex();
+        placePawns();
     }
     private void initComplex()
     {
+        jScrollPane1.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        jScrollPane1.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         PrintStream printStream = new PrintStream(new CustomOutput(jTextArea1));
         System.setOut(printStream);
         System.setErr(printStream);
@@ -403,6 +407,26 @@ public class Parathiro extends javax.swing.JFrame {
             .addComponent(fouf4)
         );
     }
+    
+    private void placePawns()
+    {
+        //allos tropos: layered pane se kathe panel pou exo...same lines of code or what?...-.-
+        Pawn pawn_kokino = new Pawn();
+        panoPrasino.add(pawn_kokino);
+        
+        javax.swing.GroupLayout panoPrasinoLayout = new javax.swing.GroupLayout(panoPrasino);
+        panoPrasino.setLayout(panoPrasinoLayout);
+        panoPrasinoLayout.setHorizontalGroup(
+            panoPrasinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+            .addComponent(pawn_kokino, javax.swing.GroupLayout.Alignment.CENTER)
+        );
+        panoPrasinoLayout.setVerticalGroup(
+            panoPrasinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                .addComponent(pawn_kokino, javax.swing.GroupLayout.Alignment.CENTER)
+        );
+        
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -512,8 +536,8 @@ public class Parathiro extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(609, 750));
-        setPreferredSize(new java.awt.Dimension(590, 750));
+        setMinimumSize(new java.awt.Dimension(609, 740));
+        setPreferredSize(new java.awt.Dimension(590, 740));
         setResizable(false);
 
         jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -2207,6 +2231,7 @@ public class Parathiro extends javax.swing.JFrame {
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
+        jTextArea1.setBorder(null);
         jScrollPane1.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -2214,8 +2239,9 @@ public class Parathiro extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 0, 0)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jPanel58, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -2246,9 +2272,9 @@ public class Parathiro extends javax.swing.JFrame {
                     .addComponent(jPanel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 242, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(0, 0, 0))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -2379,6 +2405,7 @@ public class Parathiro extends javax.swing.JFrame {
             jMenuItem2.setEnabled(true);
             jMenuItem1.setEnabled(false);
             System.out.println(player_num + "-" + name);
+            Start();
         }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
@@ -2434,6 +2461,10 @@ public class Parathiro extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
+    public void Start()
+    {
+        
+    }
   class ColorCellRenderer implements ListCellRenderer 
   {
     private DefaultListCellRenderer defaultRenderer = new DefaultListCellRenderer();

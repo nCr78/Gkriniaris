@@ -10,17 +10,16 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Polygon;
 import java.awt.RenderingHints;
 import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
-import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  *
  * @author nCr78
  */
-public class Pawn extends JLabel
+public class Pawn extends JPanel
 {
  public static final double halfPI = Math.PI / 2; 
     
@@ -34,6 +33,7 @@ public class Pawn extends JLabel
           g2d.setColor(Color.black);
           g2d.setStroke(new BasicStroke(2));
           g2d.draw(theCircle);
+//          g2d.translate(-5, 0);
 //          g2d.setColor(new Color(201, 60, 166));
 //          g2d.fill(theCircle);
   }
