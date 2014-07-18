@@ -96,7 +96,7 @@ public void setPosition(int position) {
           g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
           g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
           g2d.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_PURE);
-          Shape theCircle = new Ellipse2D.Double(4, 4, 1.0 * 16, 1.0 * 16);
+          Shape theCircle = new Ellipse2D.Double(11, 11, 1.0 * 16, 1.0 * 16);
           g2d.setColor(Color.black);
           g2d.setStroke(new BasicStroke(2));
           g2d.draw(theCircle);

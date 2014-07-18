@@ -416,19 +416,72 @@ public class Parathiro extends javax.swing.JFrame {
     {
         //allos tropos: layered pane se kathe panel pou exo...same lines of code or what?...-_-
         Pawn pawn_prasino = new Pawn(new Color(0,204,51), "Prasinos", 0);
-        panoPrasino.add(pawn_prasino);
-        
-        javax.swing.GroupLayout panoPrasinoLayout = new javax.swing.GroupLayout(panoPrasino);
+        Pawn pawn_prasino2 = new Pawn(new Color(0,204,51), "Prasinos2", 1);
+        Pawn pawn_prasino3 = new Pawn(new Color(0,204,51), "Prasinos3", 2);
+        Pawn pawn_prasino4 = new Pawn(new Color(0,204,51), "Prasinos4", 3);
+        BorderLayout panoPrasinoLayout = new BorderLayout();
+        BorderLayout katoPrasinoLayout = new BorderLayout();
+        BorderLayout deksiaPrasinoLayout = new BorderLayout();
+        BorderLayout aristeraPrasinoLayout = new BorderLayout();
         panoPrasino.setLayout(panoPrasinoLayout);
-        panoPrasinoLayout.setHorizontalGroup(
-            panoPrasinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-            .addComponent(pawn_prasino, javax.swing.GroupLayout.Alignment.CENTER)
-        );
-        panoPrasinoLayout.setVerticalGroup(
-            panoPrasinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                .addComponent(pawn_prasino, javax.swing.GroupLayout.Alignment.CENTER)
-        );
+        katoPrasino.setLayout(katoPrasinoLayout);
+        deksiaPrasino.setLayout(deksiaPrasinoLayout);
+        aristeraPrasino.setLayout(aristeraPrasinoLayout);
+        panoPrasino.add(pawn_prasino, BorderLayout.CENTER);
+        katoPrasino.add(pawn_prasino2, BorderLayout.CENTER);
+        deksiaPrasino.add(pawn_prasino3, BorderLayout.CENTER);
+        aristeraPrasino.add(pawn_prasino4, BorderLayout.CENTER);
         
+        Pawn pawn_kokino = new Pawn(Color.RED, "Kokinos", 0);
+        Pawn pawn_kokino2 = new Pawn(Color.RED, "Kokinos2", 1);
+        Pawn pawn_kokino3 = new Pawn(Color.RED, "Kokinos3", 2);
+        Pawn pawn_kokino4 = new Pawn(Color.RED, "Kokinos4", 3);
+        BorderLayout panoKokinoLayout = new BorderLayout();
+        BorderLayout katoKokinoLayout = new BorderLayout();
+        BorderLayout deksiaKokinoLayout = new BorderLayout();
+        BorderLayout aristeraKokinoLayout = new BorderLayout();
+        panoKokino.setLayout(panoKokinoLayout);
+        katoKokino.setLayout(katoKokinoLayout);
+        deksiaKokino.setLayout(deksiaKokinoLayout);
+        aristeraKokino.setLayout(aristeraKokinoLayout);
+        panoKokino.add(pawn_kokino, BorderLayout.CENTER);
+        katoKokino.add(pawn_kokino2, BorderLayout.CENTER);
+        deksiaKokino.add(pawn_kokino3, BorderLayout.CENTER);
+        aristeraKokino.add(pawn_kokino4, BorderLayout.CENTER);
+        
+        Pawn pawn_ble = new Pawn(new Color(51,51,255), "Ble", 0);
+        Pawn pawn_ble2 = new Pawn(new Color(51,51,255), "Ble2", 1);
+        Pawn pawn_ble3 = new Pawn(new Color(51,51,255), "Ble3", 2);
+        Pawn pawn_ble4 = new Pawn(new Color(51,51,255), "Ble4", 3);
+        BorderLayout panoBleLayout = new BorderLayout();
+        BorderLayout katoBleLayout = new BorderLayout();
+        BorderLayout deksiaBleLayout = new BorderLayout();
+        BorderLayout aristeraBleLayout = new BorderLayout();
+        panoBle.setLayout(panoBleLayout);
+        katoBle.setLayout(katoBleLayout);
+        deksiaBle.setLayout(deksiaBleLayout);
+        aristeraBle.setLayout(aristeraBleLayout);
+        panoBle.add(pawn_ble, BorderLayout.CENTER);
+        katoBle.add(pawn_ble2, BorderLayout.CENTER);
+        deksiaBle.add(pawn_ble3, BorderLayout.CENTER);
+        aristeraBle.add(pawn_ble4, BorderLayout.CENTER);
+        
+        Pawn pawn_kitrino = new Pawn(new Color(255,255,51), "Kitrinos", 0);
+        Pawn pawn_kitrino2 = new Pawn(new Color(255,255,51), "Kitrinos2", 1);
+        Pawn pawn_kitrino3 = new Pawn(new Color(255,255,51), "Kitrinos3", 2);
+        Pawn pawn_kitrino4 = new Pawn(new Color(255,255,51), "Kitrinos4", 3);
+        BorderLayout panoKitrinoLayout = new BorderLayout();
+        BorderLayout katoKitrinoLayout = new BorderLayout();
+        BorderLayout deksiaKitrinoLayout = new BorderLayout();
+        BorderLayout aristeraKitrinoLayout = new BorderLayout();
+        panoKitrino.setLayout(panoKitrinoLayout);
+        katoKitrino.setLayout(katoKitrinoLayout);
+        deksiaKitrino.setLayout(deksiaKitrinoLayout);
+        aristeraKitrino.setLayout(aristeraKitrinoLayout);
+        panoKitrino.add(pawn_kitrino, BorderLayout.CENTER);
+        katoKitrino.add(pawn_kitrino2, BorderLayout.CENTER);
+        deksiaKitrino.add(pawn_kitrino3, BorderLayout.CENTER);
+        aristeraKitrino.add(pawn_kitrino4, BorderLayout.CENTER);
     }
     
     /**
