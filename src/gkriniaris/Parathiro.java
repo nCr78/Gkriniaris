@@ -53,9 +53,12 @@ public class Parathiro extends javax.swing.JFrame {
         initComponents();
         initComplex();
         placePawns();
+        System.out.println("Nikola: mesa sto placePawns() einai enas tropos gia na prostheteis Pawns se tetragona..Profanos kai einai manual giati einai swing, boreis na ftiakseis o kiklos (sto prasino pano koutaki) na vgainei sto kentro akrivos gia arxi? tropos: sto pawn.java dokimase me g2d.translate(x,y) allios dn ksero, google..");
     }
     private void initComplex()
     {
+        jTextArea1.setLineWrap(true);
+        jTextArea1.setWrapStyleWord(true);
         jScrollPane1.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         jScrollPane1.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         PrintStream printStream = new PrintStream(new CustomOutput(jTextArea1));
@@ -411,7 +414,7 @@ public class Parathiro extends javax.swing.JFrame {
     private void placePawns()
     {
         //allos tropos: layered pane se kathe panel pou exo...same lines of code or what?...-_-
-        Pawn pawn_kokino = new Pawn();
+        Pawn pawn_kokino = new Pawn(new Color(0,204,51));
         panoPrasino.add(pawn_kokino);
         
         javax.swing.GroupLayout panoPrasinoLayout = new javax.swing.GroupLayout(panoPrasino);
