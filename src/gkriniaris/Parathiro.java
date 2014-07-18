@@ -34,6 +34,7 @@ import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
@@ -60,7 +61,7 @@ public class Parathiro extends javax.swing.JFrame {
         initComplex();
         placePawns();
         addListeners();
-        System.out.println("Nikola: 1) ftiakse to server bug for now");
+        System.out.println("Nikola: 1) otan anoigeis 2o parathiro gia na kanei join o 2os paixtis (afou anoikse o protos kai edose game settings), o server den borei na dosei ta game settings ara ksanavgainei to idio parathiro...");
     }
     private void initComplex()
     {
@@ -2512,14 +2513,32 @@ public class Parathiro extends javax.swing.JFrame {
         {
             System.out.println("Connected");
             String[]comboBoxContents={"Red Player","Blue Player","Yellow Player", "Green Player"};
+            String[]numberOfPlayers={"1","2","3","4"};
             JComboBox comboBox = new JComboBox(comboBoxContents);
+            JComboBox comboBox2 = new JComboBox(numberOfPlayers);
+            JComboBox comboBox3 = new JComboBox(numberOfPlayers);
+            JCheckBox checkbox = new JCheckBox();
             JPanel panel = new JPanel(new GridBagLayout());
+            JTextField TF = new JTextField();
             JLabel JL = new JLabel("Select:  ");
             JLabel JL2 = new JLabel("Name:");
-            JPanel JP3 = new JPanel();
-            JTextField TF = new JTextField();
-            JP3.setPreferredSize(new Dimension(0, 10));
+            JLabel JL3 = new JLabel("Number of players:  ");
+            JLabel JL4 = new JLabel("Number of pawns:  ");
+            JLabel JL5 = new JLabel("Rejoinable:  ");
+            JPanel space1 = new JPanel();
+            JPanel space2 = new JPanel();
+            JPanel space3 = new JPanel();
+            JPanel space4 = new JPanel();
+            
+            comboBox3.setSelectedIndex(3);
+            checkbox.setEnabled(false);
+            checkbox.setSelected(false);
+            
+            space1.setPreferredSize(new Dimension(0, 10));
+            space2.setPreferredSize(new Dimension(0, 10));
+            space3.setPreferredSize(new Dimension(0, 10));
             TF.setPreferredSize(new Dimension(100, 25));
+            TF.setText("Fouf");
             comboBox.setRenderer(new ColorCellRenderer());
             GridBagConstraints gbc = new GridBagConstraints();
             gbc.gridx = 0;
@@ -2531,37 +2550,73 @@ public class Parathiro extends javax.swing.JFrame {
             gbc.gridx++;
             panel.add(comboBox, gbc);//thesi 0,1
             gbc.gridy++;
-            panel.add(JP3, gbc);//thesi 1,1
+            panel.add(space1, gbc);//thesi 1,1
             gbc.gridx--;
             gbc.gridy++;
             panel.add(JL2, gbc);//thesi 2,0
             gbc.gridx++;
             panel.add(TF, gbc);//thesi 2,1
-            
-            OP.showMessageDialog(p, panel, "Choose a nickname", JOptionPane.PLAIN_MESSAGE);
-            String name = TF.getText();
-            int player_num = comboBox.getSelectedIndex();
-            Player pl = new Player(name,player_num);
-             
+            gbc.gridx--;
+            gbc.gridy++;
+            panel.add(space2, gbc);//thesi 3,0
+            gbc.gridy++;
+            panel.add(JL3, gbc);//thesi 4,0
+            gbc.gridx++;
+            panel.add(comboBox2, gbc);//thesi 4,1
+            gbc.gridx--;
+            gbc.gridy++;
+            panel.add(space3, gbc);//thesi 5,0
+            gbc.gridy++;
+            panel.add(JL4, gbc);//thesi 6,0
+            gbc.gridx++;
+            panel.add(comboBox3, gbc);//thesi 6,1
+            gbc.gridx--;
+            gbc.gridy++;
+            panel.add(space4, gbc);//thesi 7,0
+            gbc.gridy++;
+            panel.add(JL5, gbc);//thesi 8,0
+            gbc.gridx++;
+            panel.add(checkbox, gbc);//thesi 8,1
+            Player pl = null;
+            int player_num = 0;
+            int pawns = 0;
+            int players = 0;
+            boolean checkbox_value = false;
+            String name = null;
             boolean check = false;
             try {check = SI.getGmFlag();}
-            catch(java.lang.NullPointerException e){}
+            catch(java.lang.NullPointerException e){System.out.println("Couldn't get game settings..");}
             if (check) 
             {
                 System.out.print("Sending.. ");
-                gms = new GameSettings(4, true, 4);
+                OP.showMessageDialog(p, panel, "Set game settings", JOptionPane.PLAIN_MESSAGE);
+                name = TF.getText();
+                player_num = comboBox.getSelectedIndex();
+                pl = new Player(name,player_num);
+                players = comboBox2.getSelectedIndex()+1;
+                pawns = comboBox3.getSelectedIndex()+1;
+                checkbox_value = checkbox.isSelected();
+                
+                gms = new GameSettings(players, checkbox_value, pawns);
                 try {SI.init(pl, gms);} 
                 catch (IOException ex) {Logger.getLogger(Parathiro.class.getName()).log(Level.SEVERE, null, ex);}
             } 
             else 
             {
+                OP.showMessageDialog(p, panel, "Choose a nickname", JOptionPane.PLAIN_MESSAGE);
+                name = TF.getText();
+                player_num = comboBox.getSelectedIndex();
+                pl = new Player(name,player_num);
                 try {SI.init(pl);} 
-                catch (IOException ex) {Logger.getLogger(Parathiro.class.getName()).log(Level.SEVERE, null, ex);}
+                catch (IOException ex) {}
                 catch (java.lang.NullPointerException e){}
             }
             jMenuItem2.setEnabled(true);
             jMenuItem1.setEnabled(false);
             System.out.println(player_num + "-" + name);
+            try {SI.sync();} 
+            catch (IOException ex) {} 
+            catch (ClassNotFoundException ex) {}
             Start();
         }
     }//GEN-LAST:event_JoinGame_Action

@@ -39,6 +39,7 @@ public void init(Player p) throws IOException {
 }
 
 public void init(Player p, GameSettings gm) throws IOException {
+    this.gms = gm;
     sendToServer(p);
     sendToServer(gm);
 }
