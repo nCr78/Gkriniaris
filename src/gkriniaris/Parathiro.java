@@ -15,13 +15,17 @@ import java.awt.Button;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.ComponentOrientation;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Arrays;
@@ -54,6 +58,7 @@ public class Parathiro extends javax.swing.JFrame {
         initComponents();
         initComplex();
         placePawns();
+        addListeners();
         System.out.println("Nikola: mesa sto placePawns() einai enas tropos gia na prostheteis Pawns se tetragona..Profanos kai einai manual giati einai swing, boreis na ftiakseis o kiklos (sto prasino pano koutaki) na vgainei sto kentro akrivos gia arxi? tropos: sto pawn.java dokimase me g2d.translate(x,y) allios dn ksero, google..");
     }
     private void initComplex()
@@ -414,11 +419,17 @@ public class Parathiro extends javax.swing.JFrame {
     
     private void placePawns()
     {
+        final Pawn Focused = new Pawn(Color.darkGray, "focus", 0);
+ 
+        
+        
         //allos tropos: layered pane se kathe panel pou exo...same lines of code or what?...-_-
-        Pawn pawn_prasino = new Pawn(new Color(0,204,51), "Prasinos", 0);
-        Pawn pawn_prasino2 = new Pawn(new Color(0,204,51), "Prasinos2", 1);
-        Pawn pawn_prasino3 = new Pawn(new Color(0,204,51), "Prasinos3", 2);
-        Pawn pawn_prasino4 = new Pawn(new Color(0,204,51), "Prasinos4", 3);
+        pawn_prasino = new Pawn(new Color(0,204,51), "Prasinos", 0);
+               
+
+        pawn_prasino2 = new Pawn(new Color(0,204,51), "Prasinos2", 1);
+        pawn_prasino3 = new Pawn(new Color(0,204,51), "Prasinos3", 2);
+        pawn_prasino4 = new Pawn(new Color(0,204,51), "Prasinos4", 3);
         BorderLayout panoPrasinoLayout = new BorderLayout();
         BorderLayout katoPrasinoLayout = new BorderLayout();
         BorderLayout deksiaPrasinoLayout = new BorderLayout();
@@ -432,10 +443,10 @@ public class Parathiro extends javax.swing.JFrame {
         deksiaPrasino.add(pawn_prasino3, BorderLayout.CENTER);
         aristeraPrasino.add(pawn_prasino4, BorderLayout.CENTER);
         
-        Pawn pawn_kokino = new Pawn(Color.RED, "Kokinos", 0);
-        Pawn pawn_kokino2 = new Pawn(Color.RED, "Kokinos2", 1);
-        Pawn pawn_kokino3 = new Pawn(Color.RED, "Kokinos3", 2);
-        Pawn pawn_kokino4 = new Pawn(Color.RED, "Kokinos4", 3);
+        pawn_kokino = new Pawn(Color.RED, "Kokinos", 0);
+        pawn_kokino2 = new Pawn(Color.RED, "Kokinos2", 1);
+        pawn_kokino3 = new Pawn(Color.RED, "Kokinos3", 2);
+        pawn_kokino4 = new Pawn(Color.RED, "Kokinos4", 3);
         BorderLayout panoKokinoLayout = new BorderLayout();
         BorderLayout katoKokinoLayout = new BorderLayout();
         BorderLayout deksiaKokinoLayout = new BorderLayout();
@@ -449,10 +460,10 @@ public class Parathiro extends javax.swing.JFrame {
         deksiaKokino.add(pawn_kokino3, BorderLayout.CENTER);
         aristeraKokino.add(pawn_kokino4, BorderLayout.CENTER);
         
-        Pawn pawn_ble = new Pawn(new Color(51,51,255), "Ble", 0);
-        Pawn pawn_ble2 = new Pawn(new Color(51,51,255), "Ble2", 1);
-        Pawn pawn_ble3 = new Pawn(new Color(51,51,255), "Ble3", 2);
-        Pawn pawn_ble4 = new Pawn(new Color(51,51,255), "Ble4", 3);
+        pawn_ble = new Pawn(new Color(51,51,255), "Ble", 0);
+        pawn_ble2 = new Pawn(new Color(51,51,255), "Ble2", 1);
+        pawn_ble3 = new Pawn(new Color(51,51,255), "Ble3", 2);
+        pawn_ble4 = new Pawn(new Color(51,51,255), "Ble4", 3);
         BorderLayout panoBleLayout = new BorderLayout();
         BorderLayout katoBleLayout = new BorderLayout();
         BorderLayout deksiaBleLayout = new BorderLayout();
@@ -466,10 +477,10 @@ public class Parathiro extends javax.swing.JFrame {
         deksiaBle.add(pawn_ble3, BorderLayout.CENTER);
         aristeraBle.add(pawn_ble4, BorderLayout.CENTER);
         
-        Pawn pawn_kitrino = new Pawn(new Color(255,255,51), "Kitrinos", 0);
-        Pawn pawn_kitrino2 = new Pawn(new Color(255,255,51), "Kitrinos2", 1);
-        Pawn pawn_kitrino3 = new Pawn(new Color(255,255,51), "Kitrinos3", 2);
-        Pawn pawn_kitrino4 = new Pawn(new Color(255,255,51), "Kitrinos4", 3);
+        pawn_kitrino = new Pawn(new Color(255,255,51), "Kitrinos", 0);
+        pawn_kitrino2 = new Pawn(new Color(255,255,51), "Kitrinos2", 1);
+        pawn_kitrino3 = new Pawn(new Color(255,255,51), "Kitrinos3", 2);
+        pawn_kitrino4 = new Pawn(new Color(255,255,51), "Kitrinos4", 3);
         BorderLayout panoKitrinoLayout = new BorderLayout();
         BorderLayout katoKitrinoLayout = new BorderLayout();
         BorderLayout deksiaKitrinoLayout = new BorderLayout();
@@ -484,6 +495,255 @@ public class Parathiro extends javax.swing.JFrame {
         aristeraKitrino.add(pawn_kitrino4, BorderLayout.CENTER);
     }
     
+    private void addListeners()
+    {
+        pawn_prasino.addMouseMotionListener(new MouseMotionListener() 
+        {
+            @Override
+            public void mouseMoved(MouseEvent e) 
+            {
+                final int x = e.getX();
+                final int y = e.getY();
+                final Rectangle cellBounds = pawn_prasino.getBounds();
+                if (cellBounds != null && cellBounds.contains(x, y)) {pawn_prasino.setCursor(new Cursor(Cursor.HAND_CURSOR));}
+                else {pawn_prasino.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));}
+            }
+
+            @Override
+            public void mouseDragged(MouseEvent e) {}
+        });
+        pawn_prasino2.addMouseMotionListener(new MouseMotionListener() 
+        {
+            @Override
+            public void mouseMoved(MouseEvent e) 
+            {
+                final int x = e.getX();
+                final int y = e.getY();
+                final Rectangle cellBounds = pawn_prasino2.getBounds();
+                if (cellBounds != null && cellBounds.contains(x, y)) {pawn_prasino2.setCursor(new Cursor(Cursor.HAND_CURSOR));}
+                else {pawn_prasino2.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));}
+            }
+
+            @Override
+            public void mouseDragged(MouseEvent e) {}
+        });
+        pawn_prasino3.addMouseMotionListener(new MouseMotionListener() 
+        {
+            @Override
+            public void mouseMoved(MouseEvent e) 
+            {
+                final int x = e.getX();
+                final int y = e.getY();
+                final Rectangle cellBounds = pawn_prasino3.getBounds();
+                if (cellBounds != null && cellBounds.contains(x, y)) {pawn_prasino3.setCursor(new Cursor(Cursor.HAND_CURSOR));}
+                else {pawn_prasino3.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));}
+            }
+
+            @Override
+            public void mouseDragged(MouseEvent e) {}
+        });
+        pawn_prasino4.addMouseMotionListener(new MouseMotionListener() 
+        {
+            @Override
+            public void mouseMoved(MouseEvent e) 
+            {
+                final int x = e.getX();
+                final int y = e.getY();
+                final Rectangle cellBounds = pawn_prasino4.getBounds();
+                if (cellBounds != null && cellBounds.contains(x, y)) {pawn_prasino4.setCursor(new Cursor(Cursor.HAND_CURSOR));}
+                else {pawn_prasino4.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));}
+            }
+
+            @Override
+            public void mouseDragged(MouseEvent e) {}
+        });
+        
+        pawn_kokino.addMouseMotionListener(new MouseMotionListener() 
+        {
+            @Override
+            public void mouseMoved(MouseEvent e) 
+            {
+                final int x = e.getX();
+                final int y = e.getY();
+                final Rectangle cellBounds = pawn_kokino.getBounds();
+                if (cellBounds != null && cellBounds.contains(x, y)) {pawn_kokino.setCursor(new Cursor(Cursor.HAND_CURSOR));}
+                else {pawn_kokino.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));}
+            }
+
+            @Override
+            public void mouseDragged(MouseEvent e) {}
+        });
+        pawn_kokino2.addMouseMotionListener(new MouseMotionListener() 
+        {
+            @Override
+            public void mouseMoved(MouseEvent e) 
+            {
+                final int x = e.getX();
+                final int y = e.getY();
+                final Rectangle cellBounds = pawn_kokino2.getBounds();
+                if (cellBounds != null && cellBounds.contains(x, y)) {pawn_kokino2.setCursor(new Cursor(Cursor.HAND_CURSOR));}
+                else {pawn_kokino2.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));}
+            }
+
+            @Override
+            public void mouseDragged(MouseEvent e) {}
+        });
+        pawn_kokino3.addMouseMotionListener(new MouseMotionListener() 
+        {
+            @Override
+            public void mouseMoved(MouseEvent e) 
+            {
+                final int x = e.getX();
+                final int y = e.getY();
+                final Rectangle cellBounds = pawn_kokino3.getBounds();
+                if (cellBounds != null && cellBounds.contains(x, y)) {pawn_kokino3.setCursor(new Cursor(Cursor.HAND_CURSOR));}
+                else {pawn_kokino3.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));}
+            }
+
+            @Override
+            public void mouseDragged(MouseEvent e) {}
+        });
+        pawn_kokino4.addMouseMotionListener(new MouseMotionListener() 
+        {
+            @Override
+            public void mouseMoved(MouseEvent e) 
+            {
+                final int x = e.getX();
+                final int y = e.getY();
+                final Rectangle cellBounds = pawn_kokino4.getBounds();
+                if (cellBounds != null && cellBounds.contains(x, y)) {pawn_kokino4.setCursor(new Cursor(Cursor.HAND_CURSOR));}
+                else {pawn_kokino4.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));}
+            }
+
+            @Override
+            public void mouseDragged(MouseEvent e) {}
+        });
+        
+        pawn_ble.addMouseMotionListener(new MouseMotionListener() 
+        {
+            @Override
+            public void mouseMoved(MouseEvent e) 
+            {
+                final int x = e.getX();
+                final int y = e.getY();
+                final Rectangle cellBounds = pawn_ble.getBounds();
+                if (cellBounds != null && cellBounds.contains(x, y)) {pawn_ble.setCursor(new Cursor(Cursor.HAND_CURSOR));}
+                else {pawn_ble.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));}
+            }
+
+            @Override
+            public void mouseDragged(MouseEvent e) {}
+        });
+        pawn_ble2.addMouseMotionListener(new MouseMotionListener() 
+        {
+            @Override
+            public void mouseMoved(MouseEvent e) 
+            {
+                final int x = e.getX();
+                final int y = e.getY();
+                final Rectangle cellBounds = pawn_ble2.getBounds();
+                if (cellBounds != null && cellBounds.contains(x, y)) {pawn_ble2.setCursor(new Cursor(Cursor.HAND_CURSOR));}
+                else {pawn_ble2.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));}
+            }
+
+            @Override
+            public void mouseDragged(MouseEvent e) {}
+        });
+        pawn_ble3.addMouseMotionListener(new MouseMotionListener() 
+        {
+            @Override
+            public void mouseMoved(MouseEvent e) 
+            {
+                final int x = e.getX();
+                final int y = e.getY();
+                final Rectangle cellBounds = pawn_ble3.getBounds();
+                if (cellBounds != null && cellBounds.contains(x, y)) {pawn_ble3.setCursor(new Cursor(Cursor.HAND_CURSOR));}
+                else {pawn_ble3.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));}
+            }
+
+            @Override
+            public void mouseDragged(MouseEvent e) {}
+        });
+        pawn_ble4.addMouseMotionListener(new MouseMotionListener() 
+        {
+            @Override
+            public void mouseMoved(MouseEvent e) 
+            {
+                final int x = e.getX();
+                final int y = e.getY();
+                final Rectangle cellBounds = pawn_ble4.getBounds();
+                if (cellBounds != null && cellBounds.contains(x, y)) {pawn_ble4.setCursor(new Cursor(Cursor.HAND_CURSOR));}
+                else {pawn_ble4.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));}
+            }
+
+            @Override
+            public void mouseDragged(MouseEvent e) {}
+        });
+        
+        
+        pawn_kitrino.addMouseMotionListener(new MouseMotionListener() 
+        {
+            @Override
+            public void mouseMoved(MouseEvent e) 
+            {
+                final int x = e.getX();
+                final int y = e.getY();
+                final Rectangle cellBounds = pawn_kitrino.getBounds();
+                if (cellBounds != null && cellBounds.contains(x, y)) {pawn_kitrino.setCursor(new Cursor(Cursor.HAND_CURSOR));}
+                else {pawn_kitrino.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));}
+            }
+
+            @Override
+            public void mouseDragged(MouseEvent e) {}
+        });
+        pawn_kitrino2.addMouseMotionListener(new MouseMotionListener() 
+        {
+            @Override
+            public void mouseMoved(MouseEvent e) 
+            {
+                final int x = e.getX();
+                final int y = e.getY();
+                final Rectangle cellBounds = pawn_kitrino2.getBounds();
+                if (cellBounds != null && cellBounds.contains(x, y)) {pawn_kitrino2.setCursor(new Cursor(Cursor.HAND_CURSOR));}
+                else {pawn_kitrino2.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));}
+            }
+
+            @Override
+            public void mouseDragged(MouseEvent e) {}
+        });
+        pawn_kitrino3.addMouseMotionListener(new MouseMotionListener() 
+        {
+            @Override
+            public void mouseMoved(MouseEvent e) 
+            {
+                final int x = e.getX();
+                final int y = e.getY();
+                final Rectangle cellBounds = pawn_kitrino3.getBounds();
+                if (cellBounds != null && cellBounds.contains(x, y)) {pawn_kitrino3.setCursor(new Cursor(Cursor.HAND_CURSOR));}
+                else {pawn_kitrino3.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));}
+            }
+
+            @Override
+            public void mouseDragged(MouseEvent e) {}
+        });
+        pawn_kitrino4.addMouseMotionListener(new MouseMotionListener() 
+        {
+            @Override
+            public void mouseMoved(MouseEvent e) 
+            {
+                final int x = e.getX();
+                final int y = e.getY();
+                final Rectangle cellBounds = pawn_kitrino4.getBounds();
+                if (cellBounds != null && cellBounds.contains(x, y)) {pawn_kitrino4.setCursor(new Cursor(Cursor.HAND_CURSOR));}
+                else {pawn_kitrino4.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));}
+            }
+
+            @Override
+            public void mouseDragged(MouseEvent e) {}
+        });
+        
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -2601,6 +2861,22 @@ public class Parathiro extends javax.swing.JFrame {
 //    private String name;
     ServerInterface SI = null;
     private static Parathiro p;
+    private Pawn pawn_prasino;
+    private Pawn pawn_prasino2;
+    private Pawn pawn_prasino3;
+    private Pawn pawn_prasino4;
+    private Pawn pawn_kokino;
+    private Pawn pawn_kokino2;
+    private Pawn pawn_kokino3;
+    private Pawn pawn_kokino4;
+    private Pawn pawn_ble;
+    private Pawn pawn_ble2;
+    private Pawn pawn_ble3;
+    private Pawn pawn_ble4;
+    private Pawn pawn_kitrino;
+    private Pawn pawn_kitrino2;
+    private Pawn pawn_kitrino3;
+    private Pawn pawn_kitrino4;
     private RotatePanel kentrikoRGBY;
     private RotatePanel fouf;
     private RotatePanel fouf2;
