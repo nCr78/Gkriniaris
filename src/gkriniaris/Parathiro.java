@@ -1,12 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package gkriniaris;
 
 import clientInterface.ServerInterface;
+import commonEntities.Dice;
 import commonEntities.GameSettings;
 import commonEntities.Pawn;
 import commonEntities.Player;
@@ -47,12 +42,12 @@ import javax.swing.border.LineBorder;
 public class Parathiro extends javax.swing.JFrame {
 
     /**
-     * Creates new form Parathiro
+     * Creates new form Window
      */
     public Parathiro() {
         initComponents();
         initComplex();
-        placePawns();
+	placePawns();
         addListeners();
         System.out.println("TODO: gameLogic(start sinartisi dld) + remove pawns/players if not exist (also add an xriastoun?rejoinable?) \nStatus: Fixed parathiro bug, einai koble me 2 paixtes.\nNikola: <AMA> boreis koitakse ligo na min borei na valei o xristis to idio xroma, xoris na vgainei ksana apo tin arxi to parathiro, alla apla na min iparxei to sigkekrimeno xroma pou epelekse kapios allos xristis..ara tha prepei na pairnei tin lista available xromaton apo ton server k oxi locally..");
     }
@@ -65,13 +60,11 @@ public class Parathiro extends javax.swing.JFrame {
         PrintStream printStream = new PrintStream(new CustomOutput(jTextArea1));
         System.setOut(printStream);
         System.setErr(printStream);
-        
-        
+       
         Circle kiklos_prasino = new Circle();
         jPanel70.add(kiklos_prasino);
         jPanel70.setPreferredSize(new Dimension(40, 40));
        
-        
         javax.swing.GroupLayout jPanel70Layout = new javax.swing.GroupLayout(jPanel70);
         jPanel70.setLayout(jPanel70Layout);
         jPanel70Layout.setHorizontalGroup(
@@ -460,14 +453,10 @@ public class Parathiro extends javax.swing.JFrame {
     
     private void placePawns()
     {
-        final Pawn Focused = new Pawn(Color.darkGray, "focus", 0);
- 
-        
-        
+        //final Pawn Focused = new Pawn(Color.darkGray, "focus", 0);
+  
         //allos tropos: layered pane se kathe panel pou exo...same lines of code or what?...-_-
         pawn_prasino = new Pawn(new Color(0,204,51), "Prasinos", 0);
-               
-
         pawn_prasino2 = new Pawn(new Color(0,204,51), "Prasinos2", 1);
         pawn_prasino3 = new Pawn(new Color(0,204,51), "Prasinos3", 2);
         pawn_prasino4 = new Pawn(new Color(0,204,51), "Prasinos4", 3);
@@ -568,9 +557,16 @@ public class Parathiro extends javax.swing.JFrame {
             {
                 final int x = e.getX();
                 final int y = e.getY();
+		int prevPosition=-1 , position=-1;
                 final Rectangle cellBounds = p.getBounds();
                 if (cellBounds != null && cellBounds.contains(x, y)) {p.setCursor(new Cursor(Cursor.HAND_CURSOR));}
                 else {p.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));}
+		//Edo prepei na ftiaxnei ena new Pawn me tin allagi
+		//kai telos prepei na allazei tin playingFlag se false gia na sinexisei to programma
+		if(myTurn && gameStartedFlag){
+		    //pawnMoved = new Pawn(me.getColour(), me.getName(), prevPosition,position);
+		    playingFlag = false;		    
+		}
             }
 
             @Override
@@ -2486,8 +2482,6 @@ public class Parathiro extends javax.swing.JFrame {
         JOptionPane OP = new JOptionPane();        
         String host = null;
         String splitvar[];
-        
-        GameSettings gms;
         int port;
         boolean connected=false;
         try
@@ -2535,8 +2529,6 @@ public class Parathiro extends javax.swing.JFrame {
             panel.add(JL2, gbc);//thesi 2,0
             gbc.gridx++;
             panel.add(TF, gbc);//thesi 2,1
-            
-            Player pl = null;
             int player_num = 0;
             int pawns = 0;
             int players = 0;
@@ -2587,22 +2579,22 @@ public class Parathiro extends javax.swing.JFrame {
                 OP.showMessageDialog(p, panel, "Set game settings", JOptionPane.PLAIN_MESSAGE);
                 name = TF.getText();
                 player_num = comboBox.getSelectedIndex();
-                pl = new Player(name,player_num);
+                me = new Player(name,player_num);
                 players = comboBox2.getSelectedIndex()+1;
                 pawns = comboBox3.getSelectedIndex()+1;
                 checkbox_value = checkbox.isSelected();
                 
                 gms = new GameSettings(players, checkbox_value, pawns);
-                try {SI.init(pl, gms);} 
+                try {SI.init(me, gms);} 
                 catch (IOException ex) {Logger.getLogger(Parathiro.class.getName()).log(Level.SEVERE, null, ex);}
             }
 	    else{              
                 OP.showMessageDialog(p, panel, "Choose a nickname", JOptionPane.PLAIN_MESSAGE);
                 name = TF.getText();
                 player_num = comboBox.getSelectedIndex();
-                pl = new Player(name,player_num);
+                me = new Player(name,player_num);
                 try {
-		    SI.init(pl);
+		    SI.init(me);
 		}catch (IOException | java.lang.NullPointerException ex) {
 		    System.out.println("Something went wrong in the server comunication");
 		}
@@ -2697,9 +2689,43 @@ public class Parathiro extends javax.swing.JFrame {
 	}
     }
     
-    public void Start()
-    {
-        //todo logic here. (afou ksekinisei to game, dld sto joingame_action sto telos)
+    public void Start(){
+	gameStartedFlag = true;
+	try{
+	    int resp = 0;
+	    while(resp != 1){
+		resp = SI.waitForTurn();
+		if(resp==0){
+		    System.out.println(SI.getDice()+"\n"+SI.getPawn());
+		    updateBoard(SI.getPawn());
+		}else if(resp==1){
+		    myTurn = true;
+		    playingFlag = true;
+		    System.out.println("=> THIS YOUR TURN! <=");
+		    diceRolled = new Dice((int)Math.random()*6+1);
+		    System.out.println("You rolled a: "+diceRolled.getDie1());
+		    //Waits for listener
+		    while(playingFlag){ }
+		    SI.updatePawn(diceRolled, pawnMoved);
+		    myTurn = false;
+		}else if(resp ==-1)
+		    System.out.println("Game Ended");
+	    }
+	} catch (IOException | ClassNotFoundException ex) {
+	    System.out.println("Something went worng... Game ended!");
+	}
+	gameStartedFlag = false;
+    }
+
+    private void updateBoard(Pawn pawn) {
+	System.out.println("Player "+
+		pawn.getPlayerName()+
+		" moved a pawn from"+
+		pawn.getPrevPosition()+
+		" to  "+
+		pawn.getPosition());
+	//Edo kaneis ta dika sou gia na kanei update to board me to kainourgio move
+	//somehow...
     }
   class ColorCellRenderer implements ListCellRenderer 
   {
@@ -2778,7 +2804,14 @@ public class Parathiro extends javax.swing.JFrame {
         });
     }
 //    private String name;
-    ServerInterface SI = null;
+    private ServerInterface SI = null;
+    private boolean playingFlag;
+    private boolean gameStartedFlag;
+    private boolean myTurn;
+    private GameSettings gms;
+    private Player me;
+    private Dice diceRolled;
+    private Pawn pawnMoved;
     private static Parathiro p;
     private Pawn pawn_prasino;
     private Pawn pawn_prasino2;

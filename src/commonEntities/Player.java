@@ -16,16 +16,16 @@ public String name;
 /**
  *
  */
-public int colour;
+public int color;
 
 /**
  *
  * @param name
- * @param colour
+ * @param color
  */
-public Player(String name, int colour) {
+public Player(String name, int color) {
     this.name = name;
-    this.colour = colour;
+    this.color = color;
 }
 
 /**
@@ -48,16 +48,16 @@ public void setName(String name) {
  *
  * @return
  */
-public int getColour() {
-    return colour;
+public int getColor() {
+    return color;
 }
 
 /**
  *
- * @param colour
+ * @param color
  */
-public void setColour(int colour) {
-    this.colour = colour;
+public void setColor(int color) {
+    this.color = color;
 }
 
 /**
@@ -66,7 +66,7 @@ public void setColour(int colour) {
  */
 @Override
 public String toString() {
-    return name + ':' + colour;
+    return name + ':' + color;
 }
 
 }

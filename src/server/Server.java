@@ -48,7 +48,7 @@ Server(int port) {
 	System.out.println("Game Master Connected: " + 
 		currentPlayer.getName()+
 		" with color: "+
-		currentPlayer.getColour());
+		currentPlayer.getColor());
 	gms = (GameSettings) readData(sock);
 	System.out.println("Game settings: "+gms.toString());
 	//Adding new players
@@ -65,7 +65,7 @@ Server(int port) {
 	    System.out.println("Game Master Connected: " + 
 		    currentPlayer.getName()+
 		    " with color: "+
-		    currentPlayer.getColour());
+		    currentPlayer.getColor());
 	    addPlayer(sock, currentPlayer);
 	}
 	playerData = new String[gms.getPlayers()];
@@ -100,9 +100,7 @@ private void StartGame() throws IOException, ClassNotFoundException {
 		System.out.println("=> "+
 			pname+
 			" rolled a "+
-			dc.getDie1()+
-			" and a "+
-			dc.getDie2());
+			dc.getDie1());
 		updateDice(s,dc);
 		pwn = (Pawn) readData(s);
 		System.out.println("=> "+
