@@ -18,6 +18,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.HashMap;
+import java.util.PriorityQueue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
@@ -47,8 +49,8 @@ public class Parathiro extends javax.swing.JFrame {
     public Parathiro() {
         initComponents();
         initComplex();
-	placePawns();
-        addListeners();
+//	placePawns();
+//      addListeners();
         System.out.println("TODO: gameLogic(start sinartisi dld) + remove pawns/players if not exist (also add an xriastoun?rejoinable?) \nStatus: Fixed parathiro bug, einai koble me 2 paixtes.\nNikola: <AMA> boreis koitakse ligo na min borei na valei o xristis to idio xroma, xoris na vgainei ksana apo tin arxi to parathiro, alla apla na min iparxei to sigkekrimeno xroma pou epelekse kapios allos xristis..ara tha prepei na pairnei tin lista available xromaton apo ton server k oxi locally..");
     }
     private void initComplex()
@@ -456,10 +458,10 @@ public class Parathiro extends javax.swing.JFrame {
         //final Pawn Focused = new Pawn(Color.darkGray, "focus", 0);
   
         //allos tropos: layered pane se kathe panel pou exo...same lines of code or what?...-_-
-        pawn_prasino = new Pawn(new Color(0,204,51), "Prasinos", 0);
-        pawn_prasino2 = new Pawn(new Color(0,204,51), "Prasinos2", 1);
-        pawn_prasino3 = new Pawn(new Color(0,204,51), "Prasinos3", 2);
-        pawn_prasino4 = new Pawn(new Color(0,204,51), "Prasinos4", 3);
+        pawn_prasino = new Pawn(0, "Prasinos", 0);
+        pawn_prasino2 = new Pawn(0, "Prasinos2", 1);
+        pawn_prasino3 = new Pawn(0, "Prasinos3", 2);
+        pawn_prasino4 = new Pawn(0, "Prasinos4", 3);
         BorderLayout panoPrasinoLayout = new BorderLayout();
         BorderLayout katoPrasinoLayout = new BorderLayout();
         BorderLayout deksiaPrasinoLayout = new BorderLayout();
@@ -473,10 +475,10 @@ public class Parathiro extends javax.swing.JFrame {
         deksiaPrasino.add(pawn_prasino3, BorderLayout.CENTER);
         aristeraPrasino.add(pawn_prasino4, BorderLayout.CENTER);
         
-        pawn_kokino = new Pawn(Color.RED, "Kokinos", 0);
-        pawn_kokino2 = new Pawn(Color.RED, "Kokinos2", 1);
-        pawn_kokino3 = new Pawn(Color.RED, "Kokinos3", 2);
-        pawn_kokino4 = new Pawn(Color.RED, "Kokinos4", 3);
+        pawn_kokino = new Pawn(1, "Kokinos", 0);
+        pawn_kokino2 = new Pawn(1, "Kokinos2", 1);
+        pawn_kokino3 = new Pawn(1, "Kokinos3", 2);
+        pawn_kokino4 = new Pawn(1, "Kokinos4", 3);
         BorderLayout panoKokinoLayout = new BorderLayout();
         BorderLayout katoKokinoLayout = new BorderLayout();
         BorderLayout deksiaKokinoLayout = new BorderLayout();
@@ -490,10 +492,10 @@ public class Parathiro extends javax.swing.JFrame {
         deksiaKokino.add(pawn_kokino3, BorderLayout.CENTER);
         aristeraKokino.add(pawn_kokino4, BorderLayout.CENTER);
         
-        pawn_ble = new Pawn(new Color(51,51,255), "Ble", 0);
-        pawn_ble2 = new Pawn(new Color(51,51,255), "Ble2", 1);
-        pawn_ble3 = new Pawn(new Color(51,51,255), "Ble3", 2);
-        pawn_ble4 = new Pawn(new Color(51,51,255), "Ble4", 3);
+        pawn_ble = new Pawn(2, "Ble", 0);
+        pawn_ble2 = new Pawn(2, "Ble2", 1);
+        pawn_ble3 = new Pawn(2, "Ble3", 2);
+        pawn_ble4 = new Pawn(2, "Ble4", 3);
         BorderLayout panoBleLayout = new BorderLayout();
         BorderLayout katoBleLayout = new BorderLayout();
         BorderLayout deksiaBleLayout = new BorderLayout();
@@ -507,10 +509,10 @@ public class Parathiro extends javax.swing.JFrame {
         deksiaBle.add(pawn_ble3, BorderLayout.CENTER);
         aristeraBle.add(pawn_ble4, BorderLayout.CENTER);
         
-        pawn_kitrino = new Pawn(new Color(255,255,51), "Kitrinos", 0);
-        pawn_kitrino2 = new Pawn(new Color(255,255,51), "Kitrinos2", 1);
-        pawn_kitrino3 = new Pawn(new Color(255,255,51), "Kitrinos3", 2);
-        pawn_kitrino4 = new Pawn(new Color(255,255,51), "Kitrinos4", 3);
+        pawn_kitrino = new Pawn(3, "Kitrinos", 0);
+        pawn_kitrino2 = new Pawn(3, "Kitrinos2", 1);
+        pawn_kitrino3 = new Pawn(3, "Kitrinos3", 2);
+        pawn_kitrino4 = new Pawn(3, "Kitrinos4", 3);
         BorderLayout panoKitrinoLayout = new BorderLayout();
         BorderLayout katoKitrinoLayout = new BorderLayout();
         BorderLayout deksiaKitrinoLayout = new BorderLayout();
@@ -546,6 +548,11 @@ public class Parathiro extends javax.swing.JFrame {
         addMouseListener(pawn_kitrino2);
         addMouseListener(pawn_kitrino3);
         addMouseListener(pawn_kitrino4);
+    }
+    
+    public void paint (HashMap<Integer,PriorityQueue<Pawn>> kati)
+    {
+        
     }
     
     private void addMouseListener(final Pawn p)
@@ -2670,7 +2677,7 @@ public class Parathiro extends javax.swing.JFrame {
 	System.out.println("Player Connected in game: ");
 	for (Player p : SI.getPlayers()){
 	    System.out.print("\t"+p.getName()+" : ");
-	    switch(p.getColour()){
+	    switch(p.getColor()){
 		case 0:
 		    System.out.println("red");
 		    break;
