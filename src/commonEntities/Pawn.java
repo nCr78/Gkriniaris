@@ -17,7 +17,8 @@ import javax.swing.JPanel;
  * @author Nikolas
  */
 public class Pawn extends JPanel implements Serializable {
-
+    
+    private int Start;
     private int color;
     private String playerName;
     private int position;
@@ -34,18 +35,32 @@ public class Pawn extends JPanel implements Serializable {
     public Pawn(int color, String playerName, int position, int prevPosition) {
 	this.color = color;
 	this.playerName = playerName;
+        this.Start = Start;
 	this.position = position;
 	this.prevPosition = prevPosition;
     }
     public Pawn(int color, String playerName, int position) {
 	this.color = color;
 	this.playerName = playerName;
+        this.Start = Start;
 	this.position = position;
+	this.prevPosition = prevPosition;
+    }
+    
+    public Pawn(int color, int Start, String playerName) {
+	this.color = color;
+	this.playerName = playerName;
+	this.Start = Start;
+        this.position = position;
 	this.prevPosition = prevPosition;
     }
 
     public int getPrevPosition() {
 	return prevPosition;
+    }
+    
+    public int getStart() {
+	return Start;
     }
 
     public void setPrevPosition(int prevPosition) {

@@ -442,10 +442,10 @@ public class Parathiro extends javax.swing.JFrame {
         //final Pawn Focused = new Pawn(Color.darkGray, "focus", 0);
 
 	//allos tropos: layered pane se kathe panel pou exo...same lines of code or what?...-_-
-	pawn_prasino = new Pawn(0, "Prasinos", 0);
-	pawn_prasino2 = new Pawn(0, "Prasinos2", 1);
-	pawn_prasino3 = new Pawn(0, "Prasinos3", 2);
-	pawn_prasino4 = new Pawn(0, "Prasinos4", 3);
+	pawn_prasino = new Pawn(0, 0, "Prasinos");
+	pawn_prasino2 = new Pawn(0, 1, "Prasinos2");
+        pawn_prasino3 = new Pawn(0, 2, "Prasinos3");
+        pawn_prasino4 = new Pawn(0, 3, "Prasinos4");
 	BorderLayout panoPrasinoLayout = new BorderLayout();
 	BorderLayout katoPrasinoLayout = new BorderLayout();
 	BorderLayout deksiaPrasinoLayout = new BorderLayout();
@@ -459,10 +459,10 @@ public class Parathiro extends javax.swing.JFrame {
 	deksiaPrasino.add(pawn_prasino3, BorderLayout.CENTER);
 	aristeraPrasino.add(pawn_prasino4, BorderLayout.CENTER);
 
-	pawn_kokino = new Pawn(1, "Kokinos", 0);
-	pawn_kokino2 = new Pawn(1, "Kokinos2", 1);
-	pawn_kokino3 = new Pawn(1, "Kokinos3", 2);
-	pawn_kokino4 = new Pawn(1, "Kokinos4", 3);
+	pawn_kokino = new Pawn(1, 0, "Kokinos");
+	pawn_kokino2 = new Pawn(1, 1, "Kokinos2");
+	pawn_kokino3 = new Pawn(1, 2, "Kokinos3");
+	pawn_kokino4 = new Pawn(1, 3, "Kokinos4");
 	BorderLayout panoKokinoLayout = new BorderLayout();
 	BorderLayout katoKokinoLayout = new BorderLayout();
 	BorderLayout deksiaKokinoLayout = new BorderLayout();
@@ -476,10 +476,10 @@ public class Parathiro extends javax.swing.JFrame {
 	deksiaKokino.add(pawn_kokino3, BorderLayout.CENTER);
 	aristeraKokino.add(pawn_kokino4, BorderLayout.CENTER);
 
-	pawn_ble = new Pawn(2, "Ble", 0);
-	pawn_ble2 = new Pawn(2, "Ble2", 1);
-	pawn_ble3 = new Pawn(2, "Ble3", 2);
-	pawn_ble4 = new Pawn(2, "Ble4", 3);
+	pawn_ble = new Pawn(2, 0, "Ble");
+	pawn_ble2 = new Pawn(2, 1, "Ble2");
+	pawn_ble3 = new Pawn(2, 2, "Ble3");
+	pawn_ble4 = new Pawn(2, 3, "Ble4");
 	BorderLayout panoBleLayout = new BorderLayout();
 	BorderLayout katoBleLayout = new BorderLayout();
 	BorderLayout deksiaBleLayout = new BorderLayout();
@@ -493,10 +493,10 @@ public class Parathiro extends javax.swing.JFrame {
 	deksiaBle.add(pawn_ble3, BorderLayout.CENTER);
 	aristeraBle.add(pawn_ble4, BorderLayout.CENTER);
 
-	pawn_kitrino = new Pawn(3, "Kitrinos", 0);
-	pawn_kitrino2 = new Pawn(3, "Kitrinos2", 1);
-	pawn_kitrino3 = new Pawn(3, "Kitrinos3", 2);
-	pawn_kitrino4 = new Pawn(3, "Kitrinos4", 3);
+	pawn_kitrino = new Pawn(3, 0, "Kitrino");
+	pawn_kitrino2 = new Pawn(3, 1, "Kitrino2");
+	pawn_kitrino3 = new Pawn(3, 2, "Kitrino3");
+	pawn_kitrino4 = new Pawn(3, 3, "Kitrino4");
 	BorderLayout panoKitrinoLayout = new BorderLayout();
 	BorderLayout katoKitrinoLayout = new BorderLayout();
 	BorderLayout deksiaKitrinoLayout = new BorderLayout();
@@ -585,47 +585,206 @@ public class Parathiro extends javax.swing.JFrame {
 	    @Override
 	    public void mouseClicked(java.awt.event.MouseEvent evt) {
 //                 System.out.println("lala");
-                diceRolled = new Dice((int) (Math.random() * 6 + 1));
+                Star temp = null;
+                Circle temp2 = null;
+                boolean removed_s = false;
+                boolean removed_c = false;
+                boolean moved = true;
+                diceRolled = new Dice((int) (Math.random() * 1 + 1));
+                int compCount = Tablo.get(p.getPosition()+diceRolled.getDie1()).getComponentCount();
                 System.out.println("Dice: "+diceRolled.getDie1());
-                if((!SL.contains(p))&&diceRolled.getDie1()==5)
+                for(int y=0; y<compCount;y++)
                 {
-                    if(p.getColor()==0){AL.get(0).add(p);}
+                    if(Tablo.get(p.getPosition()+diceRolled.getDie1()).getComponent(y) instanceof Star)
+                        {
+                            temp = (Star) Tablo.get(p.getPosition()+diceRolled.getDie1()).getComponent(y);
+                            Tablo.get(p.getPosition()+diceRolled.getDie1()).remove(y);
+                            removed_s = true;
+                            compCount--;
+                        }
+                    else if(Tablo.get(p.getPosition()+diceRolled.getDie1()).getComponent(y) instanceof Circle)
+                        {
+                            temp2 = (Circle) Tablo.get(p.getPosition()+diceRolled.getDie1()).getComponent(y);
+                            Tablo.get(p.getPosition()+diceRolled.getDie1()).remove(y);
+                            removed_c = true;
+                            compCount--;
+                        }
+                }
+                if((!Started_Pawns.contains(p))&&diceRolled.getDie1()==1)
+                {
+                    if(p.getColor()==0)
+                    {
+                        p.setPosition(0);
+                        Tablo.get(0).add(p);
+                    }
                     else if(p.getColor()==1)
                     {
                         p.setPosition(13);
-                        AL.get(13).add(p);
+                        Tablo.get(13).add(p);
                     }
                     else if(p.getColor()==2)
                     {
                         p.setPosition(26);
-                        AL.get(26).add(p);
+                        Tablo.get(26).add(p);
                     }
                     else if(p.getColor()==3)
                     {
                         p.setPosition(39);
-                        AL.get(39).add(p);
+                        Tablo.get(39).add(p);
                     }
-                    SL.add(p);
-                    try 
-                    {
-                        SI.updatePawn(diceRolled, p);
-                        SI.waitForTurn();
-                    } 
-                    catch (IOException ex) {} 
-                    catch (ClassNotFoundException ex) {}
+                    Started_Pawns.add(p);
+//                    try 
+//                    {
+//                        SI.updatePawn(diceRolled, p);
+//                        SI.waitForTurn();
+//                    } 
+//                    catch (IOException ex) {} 
+//                    catch (ClassNotFoundException ex) {}
                 }
-                else if(SL.contains(p))
+                else if(Started_Pawns.contains(p)&&compCount<1)
                 {
-                    AL.get(p.getPosition()+diceRolled.getDie1()).add(p);
-                    p.setPosition(p.getPosition()+diceRolled.getDie1());
-                    try 
+                    int compCount2 = 0;
+                    int countPawns = 0;
+                    int newPosition = p.getPosition()+diceRolled.getDie1();
+                    boolean pass = true;
+                    Pawn p4 = null;
+                    for(int i=p.getPosition()+1; i<newPosition; i++)
                     {
-                        SI.updatePawn(diceRolled, p);
-                        SI.waitForTurn();
-                    } 
-                    catch (IOException ex) {} 
-                    catch (ClassNotFoundException ex) {}
+                        System.out.println("Posi: "+i);
+                        compCount2 = Tablo.get(i).getComponentCount();
+                        System.out.println(compCount2);
+                        if(compCount2>0)
+                        {
+                            countPawns=0;
+                            for(int x=0; x<compCount2; x++)
+                            {
+                                if(Tablo.get(i).getComponent(x) instanceof Pawn)
+                                {
+                                    countPawns++;
+                                }
+                            }
+                            if(countPawns>1)
+                            {
+                                pass=false;
+                            }
+                        }
+                    }
+                    System.out.println("Pawns: "+countPawns);
+                    if(pass)
+                    {
+                        Tablo.get(newPosition).add(p);
+                        p.setPosition(newPosition);
+                    }
+                    else
+                    {
+                        System.out.println("You can't cross that!");
+                    }
+//                    try 
+//                    {
+//                        SI.updatePawn(diceRolled, p);
+//                        SI.waitForTurn();
+//                    } 
+//                    catch (IOException ex) {} 
+//                    catch (ClassNotFoundException ex) {}
                 }
+                else if(Started_Pawns.contains(p)&&compCount==1)
+                {
+                    Pawn p2 = null;
+                    boolean same_color = true;
+                    for(int i=0; i<compCount; i++)
+                    {
+                        
+                        if(Tablo.get(p.getPosition()+diceRolled.getDie1()).getComponent(i) instanceof Pawn)
+                        {
+                            p2 = (Pawn) Tablo.get(p.getPosition()+diceRolled.getDie1()).getComponent(i);
+                            if(p2.getColor()!=p.getColor())
+                            {
+                                same_color = false;
+                            }
+                        }
+                    }
+                    if(!same_color)
+                    {
+                        if(p2.getColor()==0)
+                        {
+                            p2.setPosition(p2.getStart());
+                            Start_End_Prasina.get(p2.getStart()).add(p2);
+                        }
+                        else if(p2.getColor()==1)
+                        {
+                            p2.setPosition(p2.getStart());
+                            Start_End_Kokina.get(p2.getStart()).add(p2);
+                        }
+                        else if(p2.getColor()==2)
+                        {
+                            p2.setPosition(p2.getStart());
+                            Start_End_Ble.get(p2.getStart()).add(p2);
+                        }
+                        else if(p2.getColor()==3)
+                        {
+                            p2.setPosition(p2.getStart());
+                            Start_End_Kitrina.get(p2.getStart()).add(p2);
+                        }
+                        Started_Pawns.remove(p2);
+                    }
+                    Tablo.get(p.getPosition()+diceRolled.getDie1()).add(p);
+                    p.setPosition(p.getPosition()+diceRolled.getDie1());
+                }
+                else if (Started_Pawns.contains(p)&&compCount>1)
+                {
+                    Pawn p4 = null;
+                    
+                    boolean same_color = true;
+                    int compCount2 = 0;
+                    for(int i=0; i<compCount; i++)
+                    {
+                        if(Tablo.get(p.getPosition()+diceRolled.getDie1()).getComponent(i) instanceof Pawn)
+                            {
+                                p4 = (Pawn) Tablo.get(p.getPosition()+diceRolled.getDie1()).getComponent(i);
+                                if(p4.getColor()!=p.getColor())
+                                {
+                                    same_color = false;
+                                }
+                                compCount2++;
+                            }
+                    }
+                    
+                    if(same_color)
+                    {
+                        Tablo.get(p.getPosition()+diceRolled.getDie1()).add(p);
+                        p.setPosition(p.getPosition()+diceRolled.getDie1());
+                    }
+                    else if(compCount2==1)
+                    {
+                        Tablo.get(p.getPosition()+diceRolled.getDie1()).add(p);
+                        p.setPosition(p.getPosition()+diceRolled.getDie1());
+                        if(p4.getColor()==0)
+                        {
+                            Start_End_Prasina.get(p4.getStart()).add(p4);
+                        }
+                        else if(p4.getColor()==1)
+                        {
+                            Start_End_Kokina.get(p4.getStart()).add(p4);
+                        }
+                        else if(p4.getColor()==2)
+                        {
+                            Start_End_Ble.get(p4.getStart()).add(p4);
+                        }
+                        else if(p4.getColor()==3)
+                        {
+                            Start_End_Kitrina.get(p4.getStart()).add(p4);
+                        }
+                        p4.setPosition(p4.getStart());
+                        Started_Pawns.remove(p4);
+                    }
+                    else
+                    {
+                        moved = false;
+                        System.out.println("You can't go there!");
+                    }
+                }
+                if(moved&&removed_s){Tablo.get(p.getPosition()+diceRolled.getDie1()-1).add(temp);}
+                else if(moved&&removed_c){Tablo.get(p.getPosition()+diceRolled.getDie1()-1).add(temp2);}
                 repaint();
                 revalidate();
 	    }
@@ -634,89 +793,109 @@ public class Parathiro extends javax.swing.JFrame {
 
     private void initList() {
 	//ARXI prasinou
-	AL.add(jPanel59);
-	AL.add(jPanel60);
-	AL.add(jPanel62);
-	AL.add(jPanel63);
-	AL.add(jPanel64);
-	AL.add(jPanel23);
-	AL.add(jPanel19);
-	AL.add(jPanel16);
-	AL.add(jPanel13);
-	AL.add(jPanel10);
-	AL.add(jPanel7);
-	AL.add(jPanel8);//TELOS kokinou
-	AL.add(jPanel9);
+	Tablo.add(jPanel59);
+	Tablo.add(jPanel60);
+	Tablo.add(jPanel62);
+	Tablo.add(jPanel63);
+	Tablo.add(jPanel64);
+	Tablo.add(jPanel23);
+	Tablo.add(jPanel19);
+	Tablo.add(jPanel16);
+	Tablo.add(jPanel13);
+	Tablo.add(jPanel10);
+	Tablo.add(jPanel7);
+	Tablo.add(jPanel8);//TELOS kokinou
+	Tablo.add(jPanel9);
 	//ARXI kokinou
-	AL.add(jPanel12);
-	AL.add(jPanel15);
-	AL.add(jPanel18);
-	AL.add(jPanel21);
-	AL.add(jPanel25);
-	AL.add(jPanel77);
-	AL.add(jPanel75);
-	AL.add(jPanel78);
-	AL.add(jPanel79);
-	AL.add(jPanel80);
-	AL.add(jPanel82);
-	AL.add(jPanel81);//TELOS ble
-	AL.add(jPanel94);
+	Tablo.add(jPanel12);
+	Tablo.add(jPanel15);
+	Tablo.add(jPanel18);
+	Tablo.add(jPanel21);
+	Tablo.add(jPanel25);
+	Tablo.add(jPanel77);
+	Tablo.add(jPanel75);
+	Tablo.add(jPanel78);
+	Tablo.add(jPanel79);
+	Tablo.add(jPanel80);
+	Tablo.add(jPanel82);
+	Tablo.add(jPanel81);//TELOS ble
+	Tablo.add(jPanel94);
 	//ARXI ble
-	AL.add(jPanel93);
-	AL.add(jPanel92);
-	AL.add(jPanel91);
-	AL.add(jPanel89);
-	AL.add(jPanel43);
-	AL.add(jPanel29);
-	AL.add(jPanel32);
-	AL.add(jPanel35);
-	AL.add(jPanel50);
-	AL.add(jPanel53);
-	AL.add(jPanel56);
-	AL.add(jPanel55);//TELOS kitrinou
-	AL.add(jPanel54);
+	Tablo.add(jPanel93);
+	Tablo.add(jPanel92);
+	Tablo.add(jPanel91);
+	Tablo.add(jPanel89);
+	Tablo.add(jPanel43);
+	Tablo.add(jPanel29);
+	Tablo.add(jPanel32);
+	Tablo.add(jPanel35);
+	Tablo.add(jPanel50);
+	Tablo.add(jPanel53);
+	Tablo.add(jPanel56);
+	Tablo.add(jPanel55);//TELOS kitrinou
+	Tablo.add(jPanel54);
 	//ARXI kitrinou
-	AL.add(jPanel51);
-	AL.add(jPanel36);
-	AL.add(jPanel33);
-	AL.add(jPanel30);
-	AL.add(jPanel27);
-	AL.add(jPanel72);
-	AL.add(jPanel71);
-	AL.add(jPanel70);
-	AL.add(jPanel69);
-	AL.add(jPanel68);
-	AL.add(jPanel37);
-	AL.add(jPanel67);//TELOS prasinou
-	AL.add(jPanel61);
+	Tablo.add(jPanel51);
+	Tablo.add(jPanel36);
+	Tablo.add(jPanel33);
+	Tablo.add(jPanel30);
+	Tablo.add(jPanel27);
+	Tablo.add(jPanel72);
+	Tablo.add(jPanel71);
+	Tablo.add(jPanel70);
+	Tablo.add(jPanel69);
+	Tablo.add(jPanel68);
+	Tablo.add(jPanel37);
+	Tablo.add(jPanel67);//TELOS prasinou
+	Tablo.add(jPanel61);
 
-	//Bike prasina
-	AL.add(jPanel38);
-	AL.add(jPanel39);
-	AL.add(jPanel40);
-	AL.add(jPanel41);
-	AL.add(jPanel42);
+	//Start prasina
+        Start_End_Prasina.add(panoPrasino);
+        Start_End_Prasina.add(katoPrasino);
+        Start_End_Prasina.add(deksiaPrasino);
+        Start_End_Prasina.add(aristeraPrasino);
+        //END
+	Start_End_Prasina.add(jPanel38);
+	Start_End_Prasina.add(jPanel39);
+	Start_End_Prasina.add(jPanel40);
+	Start_End_Prasina.add(jPanel41);
+	Start_End_Prasina.add(jPanel42);
 
-	//Bike kokina
-	AL.add(jPanel11);
-	AL.add(jPanel14);
-	AL.add(jPanel17);
-	AL.add(jPanel20);
-	AL.add(jPanel24);
+	//Start kokina
+        Start_End_Kokina.add(panoKokino);
+        Start_End_Kokina.add(katoKokino);
+        Start_End_Kokina.add(deksiaKokino);
+        Start_End_Kokina.add(aristeraKokino);
+        //END
+	Start_End_Kokina.add(jPanel11);
+	Start_End_Kokina.add(jPanel14);
+	Start_End_Kokina.add(jPanel17);
+	Start_End_Kokina.add(jPanel20);
+	Start_End_Kokina.add(jPanel24);
 
-	//Bike ble
-	AL.add(jPanel87);
-	AL.add(jPanel86);
-	AL.add(jPanel85);
-	AL.add(jPanel83);
-	AL.add(jPanel88);
+	//Start ble
+        Start_End_Ble.add(panoBle);
+        Start_End_Ble.add(katoBle);
+        Start_End_Ble.add(deksiaBle);
+        Start_End_Ble.add(aristeraBle);
+        //END
+	Start_End_Ble.add(jPanel87);
+	Start_End_Ble.add(jPanel86);
+	Start_End_Ble.add(jPanel85);
+	Start_End_Ble.add(jPanel83);
+	Start_End_Ble.add(jPanel88);
 
-	//Bike kitrina
-	AL.add(jPanel52);
-	AL.add(jPanel44);
-	AL.add(jPanel34);
-	AL.add(jPanel31);
-	AL.add(jPanel28);
+	//Start kitrina
+        Start_End_Kitrina.add(panoKitrino);
+        Start_End_Kitrina.add(katoKitrino);
+        Start_End_Kitrina.add(deksiaKitrino);
+        Start_End_Kitrina.add(aristeraKitrino);
+        //END
+	Start_End_Kitrina.add(jPanel52);
+	Start_End_Kitrina.add(jPanel44);
+	Start_End_Kitrina.add(jPanel34);
+	Start_End_Kitrina.add(jPanel31);
+	Start_End_Kitrina.add(jPanel28);
     }
 
     /**
@@ -2926,8 +3105,12 @@ public class Parathiro extends javax.swing.JFrame {
 	});
     }
 //    private String name;
-    private ArrayList<JPanel> AL = new ArrayList<JPanel>();
-    private ArrayList<Pawn> SL = new ArrayList<Pawn>();
+    private ArrayList<JPanel> Tablo = new ArrayList<JPanel>();
+    private ArrayList<JPanel> Start_End_Prasina = new ArrayList<JPanel>();
+    private ArrayList<JPanel> Start_End_Kokina = new ArrayList<JPanel>();
+    private ArrayList<JPanel> Start_End_Ble = new ArrayList<JPanel>();
+    private ArrayList<JPanel> Start_End_Kitrina = new ArrayList<JPanel>();
+    private ArrayList<Pawn> Started_Pawns = new ArrayList<Pawn>();
     private ServerInterface SI = null;
     private GameKeeper gk;
     private boolean playingFlag;
