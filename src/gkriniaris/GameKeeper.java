@@ -42,16 +42,33 @@ public class GameKeeper {
     
     public boolean playMove(Pawn p , Dice d){
 	if(d.getDie1()==5 && p.getPosition()==-1){
-	    p.setPrevPosition(p.getPosition());
+	    p.setPrevPosition(-1);
 	    switch(p.getColor()){
 		case 0:
+		    p.setPosition(0);
 		    break;
 		case 1:
+		    p.setPosition(13);
+		    break;
+		case 2:
+		    p.setPosition(26);
+		    break;
+		default :
+		    p.setPosition(39);
 		    break;
 	    }
 	    movePawn(p);
 	    return true;
-	}else
+	}else if(d.getDie1()!=5 && p.getPosition()==-1)
 	    return false;
+	else{
+	    p.setPrevPosition(p.getPosition());
+	    p.setPosition(p.getPosition()+d.getDie1());
+	    movePawn(p);
+	    return true;
+	}
+  
     }
+    
 }
+
