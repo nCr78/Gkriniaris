@@ -11,29 +11,22 @@ import commonEntities.GameSettings;
 import commonEntities.Pawn;
 import commonEntities.Player;
 import java.awt.BorderLayout;
-import java.awt.Button;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.ComponentOrientation;
 import java.awt.Cursor;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Rectangle;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListCellRenderer;
-import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -2602,41 +2595,47 @@ public class Parathiro extends javax.swing.JFrame {
                 gms = new GameSettings(players, checkbox_value, pawns);
                 try {SI.init(pl, gms);} 
                 catch (IOException ex) {Logger.getLogger(Parathiro.class.getName()).log(Level.SEVERE, null, ex);}
-            } 
-            else 
-            {
-                
+            }
+	    else{              
                 OP.showMessageDialog(p, panel, "Choose a nickname", JOptionPane.PLAIN_MESSAGE);
                 name = TF.getText();
                 player_num = comboBox.getSelectedIndex();
                 pl = new Player(name,player_num);
-                try {SI.init(pl);} 
-                catch (IOException ex) {}
-                catch (java.lang.NullPointerException e){}
+                try {
+		    SI.init(pl);
+		}catch (IOException | java.lang.NullPointerException ex) {
+		    System.out.println("Something went wrong in the server comunication");
+		}
             }
             jMenuItem2.setEnabled(true);
             jMenuItem1.setEnabled(false);
-            System.out.println(player_num + "-" + name);
-            try {SI.sync();} 
-            catch (IOException ex) {} 
-            catch (ClassNotFoundException ex) {}
+            try {
+		SI.sync();
+	    }catch (IOException | ClassNotFoundException ex) {
+		System.out.println("Something went wrong in the server comunication");
+	    }
+	    PrintPlayers();
             Start();
         }
     }//GEN-LAST:event_JoinGame_Action
 
     private void StopGame_Action(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StopGame_Action
-        try 
-        {
-            SI.terminate();//troei error: to bug mallon einai oti "waiting for other players" den diavazei an tou stileis "END", ara crasharei otan paei na kanei read
+        try{
+            SI.endGame();
             jMenuItem2.setEnabled(false);
             jMenuItem1.setEnabled(true);
-        }
-        catch (IOException ex) {System.out.println("Disconnected!");}
-        catch (java.lang.NullPointerException e) {System.out.println("You were not connected anyway..");}
+        }catch (IOException ex) {
+	    System.out.println("Disconnected!");
+	}catch (java.lang.NullPointerException e) {
+	    System.out.println("You were not connected anyway..");
+	}catch (ClassNotFoundException ex) {
+	    System.out.println("Error in comunication with the server");
+	}
     }//GEN-LAST:event_StopGame_Action
 
     private void ExitGame_Action(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitGame_Action
-        this.dispose();
+        StopGame_Action(evt);
+	this.dispose();
     }//GEN-LAST:event_ExitGame_Action
 
     private void Help_Action(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Help_Action
@@ -2675,6 +2674,29 @@ public class Parathiro extends javax.swing.JFrame {
         
     }//GEN-LAST:event_About_Action
 
+    public void PrintPlayers(){
+	System.out.println("Player Connected in game: ");
+	for (Player p : SI.getPlayers()){
+	    System.out.print("\t"+p.getName()+" : ");
+	    switch(p.getColour()){
+		case 0:
+		    System.out.println("red");
+		    break;
+		case 1:
+		    System.out.println("blue");
+		    break;
+		case 2:
+		    System.out.println("yellow");
+		    break;
+		case 3:
+		    System.out.println("green");
+		    break;
+		default:
+		    break;
+	    }
+	}
+    }
+    
     public void Start()
     {
         //todo logic here. (afou ksekinisei to game, dld sto joingame_action sto telos)
