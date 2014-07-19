@@ -533,21 +533,37 @@ public class Parathiro extends javax.swing.JFrame {
         addMouseListener(pawn_prasino2);
         addMouseListener(pawn_prasino3);
         addMouseListener(pawn_prasino4);
+        addClickListener(pawn_prasino);
+        addClickListener(pawn_prasino2);
+        addClickListener(pawn_prasino3);
+        addClickListener(pawn_prasino4);
         
         addMouseListener(pawn_kokino);
         addMouseListener(pawn_kokino2);
         addMouseListener(pawn_kokino3);
         addMouseListener(pawn_kokino4);
+        addClickListener(pawn_kokino);
+        addClickListener(pawn_kokino2);
+        addClickListener(pawn_kokino3);
+        addClickListener(pawn_kokino4);
         
         addMouseListener(pawn_ble);
         addMouseListener(pawn_ble2);
         addMouseListener(pawn_ble3);
         addMouseListener(pawn_ble4);
+        addClickListener(pawn_ble);
+        addClickListener(pawn_ble2);
+        addClickListener(pawn_ble3);
+        addClickListener(pawn_ble4);
         
         addMouseListener(pawn_kitrino);
         addMouseListener(pawn_kitrino2);
         addMouseListener(pawn_kitrino3);
         addMouseListener(pawn_kitrino4);
+        addClickListener(pawn_kitrino);
+        addClickListener(pawn_kitrino2);
+        addClickListener(pawn_kitrino3);
+        addClickListener(pawn_kitrino4);
     }
     
     public void paint (HashMap<Integer,PriorityQueue<Pawn>> kati)
@@ -578,6 +594,19 @@ public class Parathiro extends javax.swing.JFrame {
 
             @Override
             public void mouseDragged(MouseEvent e) {}
+        });
+    }
+    
+    private void addClickListener(final Pawn p)
+    {
+        p.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) 
+            {
+                System.out.println("lala");
+                jPanel61.add(p);
+                repaint();
+            }
         });
     }
     
