@@ -584,23 +584,50 @@ public class Parathiro extends javax.swing.JFrame {
 	p.addMouseListener(new java.awt.event.MouseAdapter() {
 	    @Override
 	    public void mouseClicked(java.awt.event.MouseEvent evt) {
-//                System.out.println("lala");
-//		AL.get(50).add(p);
-//		repaint();
-//		revalidate();
-		if(myTurn && gameStartedFlag){
-		    if(gk.playMove(p, diceRolled)){
-			try {
-			    SI.updatePawn(diceRolled, gk.getMovedPawn());
-			    System.out.println("Ok! Move sent to players.");
-			    myTurn = false;
-			    Start();
-			} catch (IOException ex) {
-			    System.out.println("Something when wrong.");
-			}
-		    }
-		}else
-		    System.out.println("Not your turn yet!");
+//                 System.out.println("lala");
+                diceRolled = new Dice((int) (Math.random() * 6 + 1));
+                System.out.println("Dice: "+diceRolled.getDie1());
+                if((!SL.contains(p))&&diceRolled.getDie1()==5)
+                {
+                    if(p.getColor()==0){AL.get(0).add(p);}
+                    else if(p.getColor()==1)
+                    {
+                        p.setPosition(13);
+                        AL.get(13).add(p);
+                    }
+                    else if(p.getColor()==2)
+                    {
+                        p.setPosition(26);
+                        AL.get(26).add(p);
+                    }
+                    else if(p.getColor()==3)
+                    {
+                        p.setPosition(39);
+                        AL.get(39).add(p);
+                    }
+                    SL.add(p);
+                    try 
+                    {
+                        SI.updatePawn(diceRolled, p);
+                        SI.waitForTurn();
+                    } 
+                    catch (IOException ex) {} 
+                    catch (ClassNotFoundException ex) {}
+                }
+                else if(SL.contains(p))
+                {
+                    AL.get(p.getPosition()+diceRolled.getDie1()).add(p);
+                    p.setPosition(p.getPosition()+diceRolled.getDie1());
+                    try 
+                    {
+                        SI.updatePawn(diceRolled, p);
+                        SI.waitForTurn();
+                    } 
+                    catch (IOException ex) {} 
+                    catch (ClassNotFoundException ex) {}
+                }
+                repaint();
+                revalidate();
 	    }
 	});
     }
@@ -2710,28 +2737,32 @@ public class Parathiro extends javax.swing.JFrame {
 		} catch (IOException ex) {
 		    Logger.getLogger(Parathiro.class.getName()).log(Level.SEVERE, null, ex);
 		}
-	    } else {
+	    } 
+            else 
+            {
 		OP.showMessageDialog(p, panel, "Choose a nickname", JOptionPane.PLAIN_MESSAGE);
 		name = TF.getText();
 		player_num = comboBox.getSelectedIndex();
 		me = new Player(name, player_num);
-		try {
+		try 
+                {
 		    SI.init(me);
-		} catch (IOException | java.lang.NullPointerException ex) {
-		    System.out.println("Something went wrong in the server comunication");
+                    SI.sync();
+                    SI.waitForTurn();
 		}
+                catch (IOException | java.lang.NullPointerException ex) 
+                {
+		    System.out.println("Something went wrong in the server comunication");
+		} 
+                catch (ClassNotFoundException ex) {}
 	    }
 	    jMenuItem2.setEnabled(true);
 	    jMenuItem1.setEnabled(false);
-	    try {
-		SI.sync();
-	    } catch (IOException | ClassNotFoundException ex) {
-		System.out.println("Something went wrong in the server comunication");
-	    }
+	    
 	    PrintPlayers();
 	    //Init GameKeeper™
-	    gk = new GameKeeper(me, SI.getPlayers(), gms);
-	    Start();
+//	    gk = new GameKeeper(me, SI.getPlayers(), gms);
+//	    Start();
 	}
     }//GEN-LAST:event_JoinGame_Action
 
@@ -2815,21 +2846,28 @@ public class Parathiro extends javax.swing.JFrame {
 
     public void Start() {
 	gameStartedFlag = true;
-	try {
+	try 
+        {
 	    int resp = 0;
-	    while (resp != 1 && resp ==1) {
+	    while (resp != 1 && resp ==1) 
+            {
 		resp = SI.waitForTurn();
-		if (resp == 0) {
+		if (resp == 0) 
+                {
 		    System.out.println(SI.getDice() + "\n" + SI.getPawn());
 		    updateBoard(SI.getPawn());
-		} else if (resp == 1) {
+		} 
+                else if (resp == 1) 
+                {
 		    myTurn = true;
 		    playingFlag = true;
 		    System.out.println("=> THIS YOUR TURN! <=");
 		    diceRolled = new Dice((int) (Math.random() * 6 + 1));
 		    System.out.println("You rolled a: " + diceRolled.getDie1());
 		    //Waits for listener
-		} else if (resp == -1) {
+		} 
+                else if (resp == -1) 
+                {
 		    System.out.println("Game Ended");
 		    gameStartedFlag = false;
 		}
@@ -2889,6 +2927,7 @@ public class Parathiro extends javax.swing.JFrame {
     }
 //    private String name;
     private ArrayList<JPanel> AL = new ArrayList<JPanel>();
+    private ArrayList<Pawn> SL = new ArrayList<Pawn>();
     private ServerInterface SI = null;
     private GameKeeper gk;
     private boolean playingFlag;
