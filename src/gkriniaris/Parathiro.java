@@ -1,6 +1,5 @@
 package gkriniaris;
-//4
-
+//u suck
 import clientInterface.ServerInterface;
 import commonEntities.Dice;
 import commonEntities.GameSettings;
