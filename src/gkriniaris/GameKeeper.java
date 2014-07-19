@@ -32,7 +32,7 @@ public class GameKeeper {
 			ppl.get(x).getName(),
 			-1 ));
 	    }
-	}	
+	}
     }
     
     public void movePawn(Pawn p){
