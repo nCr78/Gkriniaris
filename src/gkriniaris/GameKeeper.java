@@ -17,6 +17,7 @@ public class GameKeeper {
     private ArrayList<Player> ppl;
     private Player me;
     private Pawn pwn;
+    private Pawn movedPawn;
     private HashMap<Integer,PriorityQueue<Pawn>> squares;
     
     public GameKeeper(Player me, ArrayList<Player> ppl,GameSettings gms){
@@ -32,26 +33,47 @@ public class GameKeeper {
 			ppl.get(x).getName(),
 			-1 ));
 	    }
-	}	
+	}
     }
     
     public void movePawn(Pawn p){
+	this.movedPawn = p;
 	squares.get(p.getPrevPosition()).remove();
 	squares.get(p.getPosition()).add(p);
     }
     
     public boolean playMove(Pawn p , Dice d){
 	if(d.getDie1()==5 && p.getPosition()==-1){
-	    p.setPrevPosition(p.getPosition());
+	    p.setPrevPosition(-1);
 	    switch(p.getColor()){
 		case 0:
+		    p.setPosition(0);
 		    break;
 		case 1:
+		    p.setPosition(13);
+		    break;
+		case 2:
+		    p.setPosition(26);
+		    break;
+		default :
+		    p.setPosition(39);
 		    break;
 	    }
 	    movePawn(p);
 	    return true;
-	}else
+	}else if(d.getDie1()!=5 && p.getPosition()==-1)
 	    return false;
+	else{
+	    p.setPrevPosition(p.getPosition());
+	    p.setPosition(p.getPosition()+d.getDie1());
+	    movePawn(p);
+	    return true;
+	}
+  
+    }
+
+    public Pawn getMovedPawn() {
+	return movedPawn;
     }
 }
+
