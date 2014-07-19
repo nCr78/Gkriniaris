@@ -1,5 +1,6 @@
 package gkriniaris;
 //4
+
 import clientInterface.ServerInterface;
 import commonEntities.Dice;
 import commonEntities.GameSettings;
@@ -47,661 +48,638 @@ public class Parathiro extends javax.swing.JFrame {
     /**
      * Creates new form Window
      */
-    public Parathiro() 
-    {
-        
-        initComponents();
-        initComplex();
+    public Parathiro() {
+
+	initComponents();
+	initComplex();
 	placePawns();
-        initList();
-        addListeners();
-        System.out.println("TODO: gameLogic(start sinartisi dld) + remove pawns/players if not exist (also add an xriastoun?rejoinable?) \nStatus: Fixed parathiro bug, einai koble me 2 paixtes.\nNikola: <AMA> boreis koitakse ligo na min borei na valei o xristis to idio xroma, xoris na vgainei ksana apo tin arxi to parathiro, alla apla na min iparxei to sigkekrimeno xroma pou epelekse kapios allos xristis..ara tha prepei na pairnei tin lista available xromaton apo ton server k oxi locally..");
+	initList();
+	addListeners();
+	System.out.println("TODO: gameLogic(start sinartisi dld) + remove pawns/players if not exist (also add an xriastoun?rejoinable?) \nStatus: Fixed parathiro bug, einai koble me 2 paixtes.\nNikola: <AMA> boreis koitakse ligo na min borei na valei o xristis to idio xroma, xoris na vgainei ksana apo tin arxi to parathiro, alla apla na min iparxei to sigkekrimeno xroma pou epelekse kapios allos xristis..ara tha prepei na pairnei tin lista available xromaton apo ton server k oxi locally..");
     }
-    private void initComplex()
-    {
-        jTextArea1.setLineWrap(true);
-        jTextArea1.setWrapStyleWord(true);
-        jScrollPane1.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        jScrollPane1.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        PrintStream printStream = new PrintStream(new CustomOutput(jTextArea1));
-        System.setOut(printStream);
-        System.setErr(printStream);
-       
-        Circle kiklos_prasino = new Circle();
-        jPanel70.add(kiklos_prasino);
-        jPanel70.setPreferredSize(new Dimension(40, 40));
-       
-        javax.swing.GroupLayout jPanel70Layout = new javax.swing.GroupLayout(jPanel70);
-        jPanel70.setLayout(jPanel70Layout);
-        jPanel70Layout.setHorizontalGroup(
-            jPanel70Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(kiklos_prasino, javax.swing.GroupLayout.Alignment.TRAILING)
-        );
-        jPanel70Layout.setVerticalGroup(
-            jPanel70Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel70Layout.createSequentialGroup()
-                .addComponent(kiklos_prasino)
-                .addGap(0, 0, 0))
-        );
-        
-        
-        Circle kiklos_kokino = new Circle();
-        jPanel16.add(kiklos_kokino);
-        jPanel16.setPreferredSize(new Dimension(40, 40));
-       
-        
-        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
-        jPanel16.setLayout(jPanel16Layout);
-        jPanel16Layout.setHorizontalGroup(
-            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(kiklos_kokino, javax.swing.GroupLayout.Alignment.TRAILING)
-        );
-        jPanel16Layout.setVerticalGroup(
-            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel16Layout.createSequentialGroup()
-                .addComponent(kiklos_kokino)
-                .addGap(0, 0, 0))
-        );
-        
-        Circle kiklos_ble = new Circle();
-        jPanel78.add(kiklos_ble);
-        jPanel78.setPreferredSize(new Dimension(40, 40));
-       
-        
-        javax.swing.GroupLayout jPanel78Layout = new javax.swing.GroupLayout(jPanel78);
-        jPanel78.setLayout(jPanel78Layout);
-        jPanel78Layout.setHorizontalGroup(
-            jPanel78Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(kiklos_ble, javax.swing.GroupLayout.Alignment.TRAILING)
-        );
-        jPanel78Layout.setVerticalGroup(
-            jPanel78Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel78Layout.createSequentialGroup()
-                .addComponent(kiklos_ble)
-                .addGap(0, 0, 0))
-        );
-        
-        Circle kiklos_kitrino = new Circle();
-        jPanel35.add(kiklos_kitrino);
-        jPanel35.setPreferredSize(new Dimension(40, 40));
-       
-        
-        javax.swing.GroupLayout jPanel35Layout = new javax.swing.GroupLayout(jPanel35);
-        jPanel35.setLayout(jPanel35Layout);
-        jPanel35Layout.setHorizontalGroup(
-            jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(kiklos_kitrino, javax.swing.GroupLayout.Alignment.TRAILING)
-        );
-        jPanel35Layout.setVerticalGroup(
-            jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel35Layout.createSequentialGroup()
-                .addComponent(kiklos_kitrino)
-                .addGap(0, 0, 0))
-        );
-        
-        
-        
-        Star star_prasino = new Star();
-        jPanel63.add(star_prasino);
-        jPanel63.setPreferredSize(new Dimension(40, 40));
-       
-        
-        javax.swing.GroupLayout jPanel63Layout = new javax.swing.GroupLayout(jPanel63);
-        jPanel63.setLayout(jPanel63Layout);
-        jPanel63Layout.setHorizontalGroup(
-            jPanel63Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(star_prasino, javax.swing.GroupLayout.Alignment.TRAILING)
-        );
-        jPanel63Layout.setVerticalGroup(
-            jPanel63Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel63Layout.createSequentialGroup()
-                .addComponent(star_prasino)
-                .addGap(0, 0, 0))
-        );
-        
-        Star star_kokino = new Star();
-        jPanel21.add(star_kokino);
-        jPanel21.setPreferredSize(new Dimension(40, 40));
-        
-        javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
-        jPanel21.setLayout(jPanel21Layout);
-        jPanel21Layout.setHorizontalGroup(
-            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(star_kokino, javax.swing.GroupLayout.Alignment.TRAILING)
-        );
-        jPanel21Layout.setVerticalGroup(
-            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel21Layout.createSequentialGroup()
-                .addComponent(star_kokino)
-                .addGap(0, 0, 0))
-        );
-        
-        Star star_ble = new Star();
-        jPanel89.add(star_ble);
-        jPanel89.setPreferredSize(new Dimension(40, 40));
-        
-        javax.swing.GroupLayout jPanel89Layout = new javax.swing.GroupLayout(jPanel89);
-        jPanel89.setLayout(jPanel89Layout);
-        jPanel89Layout.setHorizontalGroup(
-            jPanel89Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(star_ble, javax.swing.GroupLayout.Alignment.TRAILING)
-        );
-        jPanel89Layout.setVerticalGroup(
-            jPanel89Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel89Layout.createSequentialGroup()
-                .addComponent(star_ble)
-                .addGap(0, 0, 0))
-        );
-        
-        Star star_kitrino = new Star();
-        jPanel30.add(star_kitrino);
-        jPanel30.setPreferredSize(new Dimension(40, 40));
-        
-        javax.swing.GroupLayout jPanel30Layout = new javax.swing.GroupLayout(jPanel30);
-        jPanel30.setLayout(jPanel30Layout);
-        jPanel30Layout.setHorizontalGroup(
-            jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(star_kitrino, javax.swing.GroupLayout.Alignment.TRAILING)
-        );
-        jPanel30Layout.setVerticalGroup(
-            jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel30Layout.createSequentialGroup()
-                .addComponent(star_kitrino)
-                .addGap(0, 0, 0))
-        );
-        
-        kentrikoRGBY = new RotatePanel(4);
-        kentrikoRGBY.setPreferredSize(new Dimension(120, 120));
-        
-        javax.swing.GroupLayout KentrikoLayout = new javax.swing.GroupLayout(Kentriko);
-        Kentriko.setLayout(KentrikoLayout);
-        KentrikoLayout.setHorizontalGroup(
-            KentrikoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(kentrikoRGBY, javax.swing.GroupLayout.Alignment.TRAILING)
-        );
-        KentrikoLayout.setVerticalGroup(
-            KentrikoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(KentrikoLayout.createSequentialGroup()
-                .addComponent(kentrikoRGBY)
-                .addGap(0, 0, 0))
-        );
-        
-        
-        fouf = new RotatePanel();
-        fouf.setColor(new Color(0,204,51));
-        //rithmisi gia to rotated panel
-        fouf.setPreferredSize(new Dimension(239, 238));
-       
-        jLayeredPane1.setBounds(0, 0, 240, 240);
-        
-        panoPrasino.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
-        panoPrasino.setBackground(new Color(0,204,51));
-        panoPrasino.setBounds(99, 60, 40, 40);
-        panoPrasino.setOpaque(true);
-        
-        katoPrasino.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
-        katoPrasino.setBackground(new Color(0,204,51));
-        katoPrasino.setBounds(99, 138, 40, 40);
-        katoPrasino.setOpaque(true);
-        
-        aristeraPrasino.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
-        aristeraPrasino.setBackground(new Color(0,204,51));
-        aristeraPrasino.setBounds(60, 99, 40, 40);
-        aristeraPrasino.setOpaque(true);
-        
-        deksiaPrasino.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
-        deksiaPrasino.setBackground(new Color(0,204,51));
-        deksiaPrasino.setBounds(138, 99, 40, 40);
-        deksiaPrasino.setOpaque(true);
-        
-        jLayeredPane1.add(panoPrasino, new Integer(0), 0);
-        jLayeredPane1.add(katoPrasino, new Integer(0), 0);
-        jLayeredPane1.add(aristeraPrasino, new Integer(0), 0);
-        jLayeredPane1.add(deksiaPrasino, new Integer(0), 0);
-        
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(fouf)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(fouf)
-        );
-        
-        
-        
-        
-        fouf2 = new RotatePanel();
-        fouf2.setPreferredSize(new Dimension(239, 238));
 
-        jLayeredPane2.setBounds(0, 0, 240, 240);
+    private void initComplex() {
+	jTextArea1.setLineWrap(true);
+	jTextArea1.setWrapStyleWord(true);
+	jScrollPane1.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+	jScrollPane1.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+	PrintStream printStream = new PrintStream(new CustomOutput(jTextArea1));
+	System.setOut(printStream);
+	System.setErr(printStream);
 
-        panoKokino.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
-        panoKokino.setBackground(Color.red);
-        panoKokino.setBounds(99, 60, 40, 40);
-        panoKokino.setOpaque(true);
-        
-        katoKokino.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
-        katoKokino.setBackground(Color.red);
-        katoKokino.setBounds(99, 138, 40, 40);
-        katoKokino.setOpaque(true);
-        
-        aristeraKokino.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
-        aristeraKokino.setBackground(Color.red);
-        aristeraKokino.setBounds(60, 99, 40, 40);
-        aristeraKokino.setOpaque(true);
-        
-        deksiaKokino.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
-        deksiaKokino.setBackground(Color.red);
-        deksiaKokino.setBounds(138, 99, 40, 40);
-        deksiaKokino.setOpaque(true);
-        
-        jLayeredPane2.add(panoKokino, new Integer(0), 0);
-        jLayeredPane2.add(katoKokino, new Integer(0), 0);
-        jLayeredPane2.add(aristeraKokino, new Integer(0), 0);
-        jLayeredPane2.add(deksiaKokino, new Integer(0), 0);
-        
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(fouf2)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(fouf2)
-        );
-        
-        
-        
-        
-        fouf3 = new RotatePanel();
-        fouf3.setPreferredSize(new Dimension(239, 238));
-        
-        jLayeredPane3.setBounds(0, 0, 240, 240);
+	Circle kiklos_prasino = new Circle();
+	jPanel70.add(kiklos_prasino);
+	jPanel70.setPreferredSize(new Dimension(40, 40));
 
-        panoKitrino.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
-        panoKitrino.setBackground(new Color(255,255,51));
-        panoKitrino.setBounds(99, 60, 40, 40);
-        panoKitrino.setOpaque(true);
-        
-        katoKitrino.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
-        katoKitrino.setBackground(new Color(255,255,51));
-        katoKitrino.setBounds(99, 138, 40, 40);
-        katoKitrino.setOpaque(true);
-        
-        aristeraKitrino.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
-        aristeraKitrino.setBackground(new Color(255,255,51));
-        aristeraKitrino.setBounds(60, 99, 40, 40);
-        aristeraKitrino.setOpaque(true);
-        
-        deksiaKitrino.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
-        deksiaKitrino.setBackground(new Color(255,255,51));
-        deksiaKitrino.setBounds(138, 99, 40, 40);
-        deksiaKitrino.setOpaque(true);
-        
-        jLayeredPane3.add(panoKitrino, new Integer(0), 0);
-        jLayeredPane3.add(katoKitrino, new Integer(0), 0);
-        jLayeredPane3.add(aristeraKitrino, new Integer(0), 0);
-        jLayeredPane3.add(deksiaKitrino, new Integer(0), 0);
-        
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(fouf3)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(fouf3)
-        );
-        
-        
-        
-        
-        fouf4 = new RotatePanel();
-        fouf4.setPreferredSize(new Dimension(239, 238));
-        
-        jLayeredPane4.setBounds(0, 0, 240, 240);
+	javax.swing.GroupLayout jPanel70Layout = new javax.swing.GroupLayout(jPanel70);
+	jPanel70.setLayout(jPanel70Layout);
+	jPanel70Layout.setHorizontalGroup(
+		jPanel70Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		.addComponent(kiklos_prasino, javax.swing.GroupLayout.Alignment.TRAILING)
+	);
+	jPanel70Layout.setVerticalGroup(
+		jPanel70Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		.addGroup(jPanel70Layout.createSequentialGroup()
+			.addComponent(kiklos_prasino)
+			.addGap(0, 0, 0))
+	);
 
-        panoBle.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
-        panoBle.setBackground(new Color(51,51,255));
-        panoBle.setBounds(99, 60, 40, 40);
-        panoBle.setOpaque(true);
-        
-        katoBle.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
-        katoBle.setBackground(new Color(51,51,255));
-        katoBle.setBounds(99, 138, 40, 40);
-        katoBle.setOpaque(true);
-        
-        aristeraBle.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
-        aristeraBle.setBackground(new Color(51,51,255));
-        aristeraBle.setBounds(60, 99, 40, 40);
-        aristeraBle.setOpaque(true);
-        
-        deksiaBle.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
-        deksiaBle.setBackground(new Color(51,51,255));
-        deksiaBle.setBounds(138, 99, 40, 40);
-        deksiaBle.setOpaque(true);
-        
-        jLayeredPane4.add(panoBle, new Integer(0), 0);
-        jLayeredPane4.add(katoBle, new Integer(0), 0);
-        jLayeredPane4.add(aristeraBle, new Integer(0), 0);
-        jLayeredPane4.add(deksiaBle, new Integer(0), 0);
-        
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(fouf4)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(fouf4)
-        );
+	Circle kiklos_kokino = new Circle();
+	jPanel16.add(kiklos_kokino);
+	jPanel16.setPreferredSize(new Dimension(40, 40));
+
+	javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
+	jPanel16.setLayout(jPanel16Layout);
+	jPanel16Layout.setHorizontalGroup(
+		jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		.addComponent(kiklos_kokino, javax.swing.GroupLayout.Alignment.TRAILING)
+	);
+	jPanel16Layout.setVerticalGroup(
+		jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		.addGroup(jPanel16Layout.createSequentialGroup()
+			.addComponent(kiklos_kokino)
+			.addGap(0, 0, 0))
+	);
+
+	Circle kiklos_ble = new Circle();
+	jPanel78.add(kiklos_ble);
+	jPanel78.setPreferredSize(new Dimension(40, 40));
+
+	javax.swing.GroupLayout jPanel78Layout = new javax.swing.GroupLayout(jPanel78);
+	jPanel78.setLayout(jPanel78Layout);
+	jPanel78Layout.setHorizontalGroup(
+		jPanel78Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		.addComponent(kiklos_ble, javax.swing.GroupLayout.Alignment.TRAILING)
+	);
+	jPanel78Layout.setVerticalGroup(
+		jPanel78Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		.addGroup(jPanel78Layout.createSequentialGroup()
+			.addComponent(kiklos_ble)
+			.addGap(0, 0, 0))
+	);
+
+	Circle kiklos_kitrino = new Circle();
+	jPanel35.add(kiklos_kitrino);
+	jPanel35.setPreferredSize(new Dimension(40, 40));
+
+	javax.swing.GroupLayout jPanel35Layout = new javax.swing.GroupLayout(jPanel35);
+	jPanel35.setLayout(jPanel35Layout);
+	jPanel35Layout.setHorizontalGroup(
+		jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		.addComponent(kiklos_kitrino, javax.swing.GroupLayout.Alignment.TRAILING)
+	);
+	jPanel35Layout.setVerticalGroup(
+		jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		.addGroup(jPanel35Layout.createSequentialGroup()
+			.addComponent(kiklos_kitrino)
+			.addGap(0, 0, 0))
+	);
+
+	Star star_prasino = new Star();
+	jPanel63.add(star_prasino);
+	jPanel63.setPreferredSize(new Dimension(40, 40));
+
+	javax.swing.GroupLayout jPanel63Layout = new javax.swing.GroupLayout(jPanel63);
+	jPanel63.setLayout(jPanel63Layout);
+	jPanel63Layout.setHorizontalGroup(
+		jPanel63Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		.addComponent(star_prasino, javax.swing.GroupLayout.Alignment.TRAILING)
+	);
+	jPanel63Layout.setVerticalGroup(
+		jPanel63Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		.addGroup(jPanel63Layout.createSequentialGroup()
+			.addComponent(star_prasino)
+			.addGap(0, 0, 0))
+	);
+
+	Star star_kokino = new Star();
+	jPanel21.add(star_kokino);
+	jPanel21.setPreferredSize(new Dimension(40, 40));
+
+	javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
+	jPanel21.setLayout(jPanel21Layout);
+	jPanel21Layout.setHorizontalGroup(
+		jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		.addComponent(star_kokino, javax.swing.GroupLayout.Alignment.TRAILING)
+	);
+	jPanel21Layout.setVerticalGroup(
+		jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		.addGroup(jPanel21Layout.createSequentialGroup()
+			.addComponent(star_kokino)
+			.addGap(0, 0, 0))
+	);
+
+	Star star_ble = new Star();
+	jPanel89.add(star_ble);
+	jPanel89.setPreferredSize(new Dimension(40, 40));
+
+	javax.swing.GroupLayout jPanel89Layout = new javax.swing.GroupLayout(jPanel89);
+	jPanel89.setLayout(jPanel89Layout);
+	jPanel89Layout.setHorizontalGroup(
+		jPanel89Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		.addComponent(star_ble, javax.swing.GroupLayout.Alignment.TRAILING)
+	);
+	jPanel89Layout.setVerticalGroup(
+		jPanel89Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		.addGroup(jPanel89Layout.createSequentialGroup()
+			.addComponent(star_ble)
+			.addGap(0, 0, 0))
+	);
+
+	Star star_kitrino = new Star();
+	jPanel30.add(star_kitrino);
+	jPanel30.setPreferredSize(new Dimension(40, 40));
+
+	javax.swing.GroupLayout jPanel30Layout = new javax.swing.GroupLayout(jPanel30);
+	jPanel30.setLayout(jPanel30Layout);
+	jPanel30Layout.setHorizontalGroup(
+		jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		.addComponent(star_kitrino, javax.swing.GroupLayout.Alignment.TRAILING)
+	);
+	jPanel30Layout.setVerticalGroup(
+		jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		.addGroup(jPanel30Layout.createSequentialGroup()
+			.addComponent(star_kitrino)
+			.addGap(0, 0, 0))
+	);
+
+	kentrikoRGBY = new RotatePanel(4);
+	kentrikoRGBY.setPreferredSize(new Dimension(120, 120));
+
+	javax.swing.GroupLayout KentrikoLayout = new javax.swing.GroupLayout(Kentriko);
+	Kentriko.setLayout(KentrikoLayout);
+	KentrikoLayout.setHorizontalGroup(
+		KentrikoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		.addComponent(kentrikoRGBY, javax.swing.GroupLayout.Alignment.TRAILING)
+	);
+	KentrikoLayout.setVerticalGroup(
+		KentrikoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		.addGroup(KentrikoLayout.createSequentialGroup()
+			.addComponent(kentrikoRGBY)
+			.addGap(0, 0, 0))
+	);
+
+	fouf = new RotatePanel();
+	fouf.setColor(new Color(0, 204, 51));
+	//rithmisi gia to rotated panel
+	fouf.setPreferredSize(new Dimension(239, 238));
+
+	jLayeredPane1.setBounds(0, 0, 240, 240);
+
+	panoPrasino.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
+	panoPrasino.setBackground(new Color(0, 204, 51));
+	panoPrasino.setBounds(99, 60, 40, 40);
+	panoPrasino.setOpaque(true);
+
+	katoPrasino.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
+	katoPrasino.setBackground(new Color(0, 204, 51));
+	katoPrasino.setBounds(99, 138, 40, 40);
+	katoPrasino.setOpaque(true);
+
+	aristeraPrasino.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
+	aristeraPrasino.setBackground(new Color(0, 204, 51));
+	aristeraPrasino.setBounds(60, 99, 40, 40);
+	aristeraPrasino.setOpaque(true);
+
+	deksiaPrasino.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
+	deksiaPrasino.setBackground(new Color(0, 204, 51));
+	deksiaPrasino.setBounds(138, 99, 40, 40);
+	deksiaPrasino.setOpaque(true);
+
+	jLayeredPane1.add(panoPrasino, new Integer(0), 0);
+	jLayeredPane1.add(katoPrasino, new Integer(0), 0);
+	jLayeredPane1.add(aristeraPrasino, new Integer(0), 0);
+	jLayeredPane1.add(deksiaPrasino, new Integer(0), 0);
+
+	javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+	jPanel4.setLayout(jPanel4Layout);
+	jPanel4Layout.setHorizontalGroup(
+		jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		.addGroup(jPanel4Layout.createSequentialGroup()
+			.addComponent(fouf)
+			.addGap(0, 0, Short.MAX_VALUE))
+	);
+	jPanel4Layout.setVerticalGroup(
+		jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		.addComponent(fouf)
+	);
+
+	fouf2 = new RotatePanel();
+	fouf2.setPreferredSize(new Dimension(239, 238));
+
+	jLayeredPane2.setBounds(0, 0, 240, 240);
+
+	panoKokino.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
+	panoKokino.setBackground(Color.red);
+	panoKokino.setBounds(99, 60, 40, 40);
+	panoKokino.setOpaque(true);
+
+	katoKokino.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
+	katoKokino.setBackground(Color.red);
+	katoKokino.setBounds(99, 138, 40, 40);
+	katoKokino.setOpaque(true);
+
+	aristeraKokino.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
+	aristeraKokino.setBackground(Color.red);
+	aristeraKokino.setBounds(60, 99, 40, 40);
+	aristeraKokino.setOpaque(true);
+
+	deksiaKokino.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
+	deksiaKokino.setBackground(Color.red);
+	deksiaKokino.setBounds(138, 99, 40, 40);
+	deksiaKokino.setOpaque(true);
+
+	jLayeredPane2.add(panoKokino, new Integer(0), 0);
+	jLayeredPane2.add(katoKokino, new Integer(0), 0);
+	jLayeredPane2.add(aristeraKokino, new Integer(0), 0);
+	jLayeredPane2.add(deksiaKokino, new Integer(0), 0);
+
+	javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+	jPanel2.setLayout(jPanel2Layout);
+	jPanel2Layout.setHorizontalGroup(
+		jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		.addGroup(jPanel2Layout.createSequentialGroup()
+			.addComponent(fouf2)
+			.addGap(0, 0, Short.MAX_VALUE))
+	);
+	jPanel2Layout.setVerticalGroup(
+		jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		.addComponent(fouf2)
+	);
+
+	fouf3 = new RotatePanel();
+	fouf3.setPreferredSize(new Dimension(239, 238));
+
+	jLayeredPane3.setBounds(0, 0, 240, 240);
+
+	panoKitrino.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
+	panoKitrino.setBackground(new Color(255, 255, 51));
+	panoKitrino.setBounds(99, 60, 40, 40);
+	panoKitrino.setOpaque(true);
+
+	katoKitrino.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
+	katoKitrino.setBackground(new Color(255, 255, 51));
+	katoKitrino.setBounds(99, 138, 40, 40);
+	katoKitrino.setOpaque(true);
+
+	aristeraKitrino.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
+	aristeraKitrino.setBackground(new Color(255, 255, 51));
+	aristeraKitrino.setBounds(60, 99, 40, 40);
+	aristeraKitrino.setOpaque(true);
+
+	deksiaKitrino.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
+	deksiaKitrino.setBackground(new Color(255, 255, 51));
+	deksiaKitrino.setBounds(138, 99, 40, 40);
+	deksiaKitrino.setOpaque(true);
+
+	jLayeredPane3.add(panoKitrino, new Integer(0), 0);
+	jLayeredPane3.add(katoKitrino, new Integer(0), 0);
+	jLayeredPane3.add(aristeraKitrino, new Integer(0), 0);
+	jLayeredPane3.add(deksiaKitrino, new Integer(0), 0);
+
+	javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+	jPanel3.setLayout(jPanel3Layout);
+	jPanel3Layout.setHorizontalGroup(
+		jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		.addGroup(jPanel3Layout.createSequentialGroup()
+			.addComponent(fouf3)
+			.addGap(0, 0, Short.MAX_VALUE))
+	);
+	jPanel3Layout.setVerticalGroup(
+		jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		.addComponent(fouf3)
+	);
+
+	fouf4 = new RotatePanel();
+	fouf4.setPreferredSize(new Dimension(239, 238));
+
+	jLayeredPane4.setBounds(0, 0, 240, 240);
+
+	panoBle.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
+	panoBle.setBackground(new Color(51, 51, 255));
+	panoBle.setBounds(99, 60, 40, 40);
+	panoBle.setOpaque(true);
+
+	katoBle.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
+	katoBle.setBackground(new Color(51, 51, 255));
+	katoBle.setBounds(99, 138, 40, 40);
+	katoBle.setOpaque(true);
+
+	aristeraBle.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
+	aristeraBle.setBackground(new Color(51, 51, 255));
+	aristeraBle.setBounds(60, 99, 40, 40);
+	aristeraBle.setOpaque(true);
+
+	deksiaBle.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
+	deksiaBle.setBackground(new Color(51, 51, 255));
+	deksiaBle.setBounds(138, 99, 40, 40);
+	deksiaBle.setOpaque(true);
+
+	jLayeredPane4.add(panoBle, new Integer(0), 0);
+	jLayeredPane4.add(katoBle, new Integer(0), 0);
+	jLayeredPane4.add(aristeraBle, new Integer(0), 0);
+	jLayeredPane4.add(deksiaBle, new Integer(0), 0);
+
+	javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+	jPanel5.setLayout(jPanel5Layout);
+	jPanel5Layout.setHorizontalGroup(
+		jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		.addGroup(jPanel5Layout.createSequentialGroup()
+			.addComponent(fouf4)
+			.addGap(0, 0, Short.MAX_VALUE))
+	);
+	jPanel5Layout.setVerticalGroup(
+		jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		.addComponent(fouf4)
+	);
     }
-    
-    private void addComplex(RotatePanel fouf, JLayeredPane jlp, JPanel panel, JPanel pano, JPanel kato, JPanel deksia, JPanel aristera)
-    {
-        fouf = new RotatePanel();
-        fouf.setPreferredSize(new Dimension(239, 238));
-        
-        jlp.setBounds(0, 0, 240, 240);
 
-        pano.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
-        pano.setBackground(new Color(51,51,255));
-        pano.setBounds(99, 60, 40, 40);
-        pano.setOpaque(true);
-        
-        kato.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
-        kato.setBackground(new Color(51,51,255));
-        kato.setBounds(99, 138, 40, 40);
-        kato.setOpaque(true);
-        
-        aristera.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
-        aristera.setBackground(new Color(51,51,255));
-        aristera.setBounds(60, 99, 40, 40);
-        aristera.setOpaque(true);
-        
-        deksia.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
-        deksia.setBackground(new Color(51,51,255));
-        deksia.setBounds(138, 99, 40, 40);
-        deksia.setOpaque(true);
-        
-        jlp.add(pano, new Integer(0), 0);
-        jlp.add(kato, new Integer(0), 0);
-        jlp.add(aristera, new Integer(0), 0);
-        jlp.add(deksia, new Integer(0), 0);
-        
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(panel);
-        panel.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(fouf)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(fouf)
-        );
+    private void addComplex(RotatePanel fouf, JLayeredPane jlp, JPanel panel, JPanel pano, JPanel kato, JPanel deksia, JPanel aristera) {
+	fouf = new RotatePanel();
+	fouf.setPreferredSize(new Dimension(239, 238));
+
+	jlp.setBounds(0, 0, 240, 240);
+
+	pano.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
+	pano.setBackground(new Color(51, 51, 255));
+	pano.setBounds(99, 60, 40, 40);
+	pano.setOpaque(true);
+
+	kato.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
+	kato.setBackground(new Color(51, 51, 255));
+	kato.setBounds(99, 138, 40, 40);
+	kato.setOpaque(true);
+
+	aristera.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
+	aristera.setBackground(new Color(51, 51, 255));
+	aristera.setBounds(60, 99, 40, 40);
+	aristera.setOpaque(true);
+
+	deksia.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
+	deksia.setBackground(new Color(51, 51, 255));
+	deksia.setBounds(138, 99, 40, 40);
+	deksia.setOpaque(true);
+
+	jlp.add(pano, new Integer(0), 0);
+	jlp.add(kato, new Integer(0), 0);
+	jlp.add(aristera, new Integer(0), 0);
+	jlp.add(deksia, new Integer(0), 0);
+
+	javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(panel);
+	panel.setLayout(jPanel5Layout);
+	jPanel5Layout.setHorizontalGroup(
+		jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		.addGroup(jPanel5Layout.createSequentialGroup()
+			.addComponent(fouf)
+			.addGap(0, 0, Short.MAX_VALUE))
+	);
+	jPanel5Layout.setVerticalGroup(
+		jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		.addComponent(fouf)
+	);
     }
-    
-    private void placePawns()
-    {
+
+    private void placePawns() {
         //final Pawn Focused = new Pawn(Color.darkGray, "focus", 0);
-  
-        //allos tropos: layered pane se kathe panel pou exo...same lines of code or what?...-_-
-        pawn_prasino = new Pawn(0, "Prasinos", 0);
-        pawn_prasino2 = new Pawn(0, "Prasinos2", 1);
-        pawn_prasino3 = new Pawn(0, "Prasinos3", 2);
-        pawn_prasino4 = new Pawn(0, "Prasinos4", 3);
-        BorderLayout panoPrasinoLayout = new BorderLayout();
-        BorderLayout katoPrasinoLayout = new BorderLayout();
-        BorderLayout deksiaPrasinoLayout = new BorderLayout();
-        BorderLayout aristeraPrasinoLayout = new BorderLayout();
-        panoPrasino.setLayout(panoPrasinoLayout);
-        katoPrasino.setLayout(katoPrasinoLayout);
-        deksiaPrasino.setLayout(deksiaPrasinoLayout);
-        aristeraPrasino.setLayout(aristeraPrasinoLayout);
-        panoPrasino.add(pawn_prasino, BorderLayout.CENTER);
-        katoPrasino.add(pawn_prasino2, BorderLayout.CENTER);
-        deksiaPrasino.add(pawn_prasino3, BorderLayout.CENTER);
-        aristeraPrasino.add(pawn_prasino4, BorderLayout.CENTER);
-        
-        pawn_kokino = new Pawn(1, "Kokinos", 0);
-        pawn_kokino2 = new Pawn(1, "Kokinos2", 1);
-        pawn_kokino3 = new Pawn(1, "Kokinos3", 2);
-        pawn_kokino4 = new Pawn(1, "Kokinos4", 3);
-        BorderLayout panoKokinoLayout = new BorderLayout();
-        BorderLayout katoKokinoLayout = new BorderLayout();
-        BorderLayout deksiaKokinoLayout = new BorderLayout();
-        BorderLayout aristeraKokinoLayout = new BorderLayout();
-        panoKokino.setLayout(panoKokinoLayout);
-        katoKokino.setLayout(katoKokinoLayout);
-        deksiaKokino.setLayout(deksiaKokinoLayout);
-        aristeraKokino.setLayout(aristeraKokinoLayout);
-        panoKokino.add(pawn_kokino, BorderLayout.CENTER);
-        katoKokino.add(pawn_kokino2, BorderLayout.CENTER);
-        deksiaKokino.add(pawn_kokino3, BorderLayout.CENTER);
-        aristeraKokino.add(pawn_kokino4, BorderLayout.CENTER);
-        
-        pawn_ble = new Pawn(2, "Ble", 0);
-        pawn_ble2 = new Pawn(2, "Ble2", 1);
-        pawn_ble3 = new Pawn(2, "Ble3", 2);
-        pawn_ble4 = new Pawn(2, "Ble4", 3);
-        BorderLayout panoBleLayout = new BorderLayout();
-        BorderLayout katoBleLayout = new BorderLayout();
-        BorderLayout deksiaBleLayout = new BorderLayout();
-        BorderLayout aristeraBleLayout = new BorderLayout();
-        panoBle.setLayout(panoBleLayout);
-        katoBle.setLayout(katoBleLayout);
-        deksiaBle.setLayout(deksiaBleLayout);
-        aristeraBle.setLayout(aristeraBleLayout);
-        panoBle.add(pawn_ble, BorderLayout.CENTER);
-        katoBle.add(pawn_ble2, BorderLayout.CENTER);
-        deksiaBle.add(pawn_ble3, BorderLayout.CENTER);
-        aristeraBle.add(pawn_ble4, BorderLayout.CENTER);
-        
-        pawn_kitrino = new Pawn(3, "Kitrinos", 0);
-        pawn_kitrino2 = new Pawn(3, "Kitrinos2", 1);
-        pawn_kitrino3 = new Pawn(3, "Kitrinos3", 2);
-        pawn_kitrino4 = new Pawn(3, "Kitrinos4", 3);
-        BorderLayout panoKitrinoLayout = new BorderLayout();
-        BorderLayout katoKitrinoLayout = new BorderLayout();
-        BorderLayout deksiaKitrinoLayout = new BorderLayout();
-        BorderLayout aristeraKitrinoLayout = new BorderLayout();
-        panoKitrino.setLayout(panoKitrinoLayout);
-        katoKitrino.setLayout(katoKitrinoLayout);
-        deksiaKitrino.setLayout(deksiaKitrinoLayout);
-        aristeraKitrino.setLayout(aristeraKitrinoLayout);
-        panoKitrino.add(pawn_kitrino, BorderLayout.CENTER);
-        katoKitrino.add(pawn_kitrino2, BorderLayout.CENTER);
-        deksiaKitrino.add(pawn_kitrino3, BorderLayout.CENTER);
-        aristeraKitrino.add(pawn_kitrino4, BorderLayout.CENTER);
+
+	//allos tropos: layered pane se kathe panel pou exo...same lines of code or what?...-_-
+	pawn_prasino = new Pawn(0, "Prasinos", 0);
+	pawn_prasino2 = new Pawn(0, "Prasinos2", 1);
+	pawn_prasino3 = new Pawn(0, "Prasinos3", 2);
+	pawn_prasino4 = new Pawn(0, "Prasinos4", 3);
+	BorderLayout panoPrasinoLayout = new BorderLayout();
+	BorderLayout katoPrasinoLayout = new BorderLayout();
+	BorderLayout deksiaPrasinoLayout = new BorderLayout();
+	BorderLayout aristeraPrasinoLayout = new BorderLayout();
+	panoPrasino.setLayout(panoPrasinoLayout);
+	katoPrasino.setLayout(katoPrasinoLayout);
+	deksiaPrasino.setLayout(deksiaPrasinoLayout);
+	aristeraPrasino.setLayout(aristeraPrasinoLayout);
+	panoPrasino.add(pawn_prasino, BorderLayout.CENTER);
+	katoPrasino.add(pawn_prasino2, BorderLayout.CENTER);
+	deksiaPrasino.add(pawn_prasino3, BorderLayout.CENTER);
+	aristeraPrasino.add(pawn_prasino4, BorderLayout.CENTER);
+
+	pawn_kokino = new Pawn(1, "Kokinos", 0);
+	pawn_kokino2 = new Pawn(1, "Kokinos2", 1);
+	pawn_kokino3 = new Pawn(1, "Kokinos3", 2);
+	pawn_kokino4 = new Pawn(1, "Kokinos4", 3);
+	BorderLayout panoKokinoLayout = new BorderLayout();
+	BorderLayout katoKokinoLayout = new BorderLayout();
+	BorderLayout deksiaKokinoLayout = new BorderLayout();
+	BorderLayout aristeraKokinoLayout = new BorderLayout();
+	panoKokino.setLayout(panoKokinoLayout);
+	katoKokino.setLayout(katoKokinoLayout);
+	deksiaKokino.setLayout(deksiaKokinoLayout);
+	aristeraKokino.setLayout(aristeraKokinoLayout);
+	panoKokino.add(pawn_kokino, BorderLayout.CENTER);
+	katoKokino.add(pawn_kokino2, BorderLayout.CENTER);
+	deksiaKokino.add(pawn_kokino3, BorderLayout.CENTER);
+	aristeraKokino.add(pawn_kokino4, BorderLayout.CENTER);
+
+	pawn_ble = new Pawn(2, "Ble", 0);
+	pawn_ble2 = new Pawn(2, "Ble2", 1);
+	pawn_ble3 = new Pawn(2, "Ble3", 2);
+	pawn_ble4 = new Pawn(2, "Ble4", 3);
+	BorderLayout panoBleLayout = new BorderLayout();
+	BorderLayout katoBleLayout = new BorderLayout();
+	BorderLayout deksiaBleLayout = new BorderLayout();
+	BorderLayout aristeraBleLayout = new BorderLayout();
+	panoBle.setLayout(panoBleLayout);
+	katoBle.setLayout(katoBleLayout);
+	deksiaBle.setLayout(deksiaBleLayout);
+	aristeraBle.setLayout(aristeraBleLayout);
+	panoBle.add(pawn_ble, BorderLayout.CENTER);
+	katoBle.add(pawn_ble2, BorderLayout.CENTER);
+	deksiaBle.add(pawn_ble3, BorderLayout.CENTER);
+	aristeraBle.add(pawn_ble4, BorderLayout.CENTER);
+
+	pawn_kitrino = new Pawn(3, "Kitrinos", 0);
+	pawn_kitrino2 = new Pawn(3, "Kitrinos2", 1);
+	pawn_kitrino3 = new Pawn(3, "Kitrinos3", 2);
+	pawn_kitrino4 = new Pawn(3, "Kitrinos4", 3);
+	BorderLayout panoKitrinoLayout = new BorderLayout();
+	BorderLayout katoKitrinoLayout = new BorderLayout();
+	BorderLayout deksiaKitrinoLayout = new BorderLayout();
+	BorderLayout aristeraKitrinoLayout = new BorderLayout();
+	panoKitrino.setLayout(panoKitrinoLayout);
+	katoKitrino.setLayout(katoKitrinoLayout);
+	deksiaKitrino.setLayout(deksiaKitrinoLayout);
+	aristeraKitrino.setLayout(aristeraKitrinoLayout);
+	panoKitrino.add(pawn_kitrino, BorderLayout.CENTER);
+	katoKitrino.add(pawn_kitrino2, BorderLayout.CENTER);
+	deksiaKitrino.add(pawn_kitrino3, BorderLayout.CENTER);
+	aristeraKitrino.add(pawn_kitrino4, BorderLayout.CENTER);
     }
-    
-    private void addListeners()
-    {
-        addMouseListener(pawn_prasino);
-        addMouseListener(pawn_prasino2);
-        addMouseListener(pawn_prasino3);
-        addMouseListener(pawn_prasino4);
-        addClickListener(pawn_prasino);
-        addClickListener(pawn_prasino2);
-        addClickListener(pawn_prasino3);
-        addClickListener(pawn_prasino4);
-        
-        addMouseListener(pawn_kokino);
-        addMouseListener(pawn_kokino2);
-        addMouseListener(pawn_kokino3);
-        addMouseListener(pawn_kokino4);
-        addClickListener(pawn_kokino);
-        addClickListener(pawn_kokino2);
-        addClickListener(pawn_kokino3);
-        addClickListener(pawn_kokino4);
-        
-        addMouseListener(pawn_ble);
-        addMouseListener(pawn_ble2);
-        addMouseListener(pawn_ble3);
-        addMouseListener(pawn_ble4);
-        addClickListener(pawn_ble);
-        addClickListener(pawn_ble2);
-        addClickListener(pawn_ble3);
-        addClickListener(pawn_ble4);
-        
-        addMouseListener(pawn_kitrino);
-        addMouseListener(pawn_kitrino2);
-        addMouseListener(pawn_kitrino3);
-        addMouseListener(pawn_kitrino4);
-        addClickListener(pawn_kitrino);
-        addClickListener(pawn_kitrino2);
-        addClickListener(pawn_kitrino3);
-        addClickListener(pawn_kitrino4);
+
+    private void addListeners() {
+	addMouseListener(pawn_prasino);
+	addMouseListener(pawn_prasino2);
+	addMouseListener(pawn_prasino3);
+	addMouseListener(pawn_prasino4);
+	addClickListener(pawn_prasino);
+	addClickListener(pawn_prasino2);
+	addClickListener(pawn_prasino3);
+	addClickListener(pawn_prasino4);
+
+	addMouseListener(pawn_kokino);
+	addMouseListener(pawn_kokino2);
+	addMouseListener(pawn_kokino3);
+	addMouseListener(pawn_kokino4);
+	addClickListener(pawn_kokino);
+	addClickListener(pawn_kokino2);
+	addClickListener(pawn_kokino3);
+	addClickListener(pawn_kokino4);
+
+	addMouseListener(pawn_ble);
+	addMouseListener(pawn_ble2);
+	addMouseListener(pawn_ble3);
+	addMouseListener(pawn_ble4);
+	addClickListener(pawn_ble);
+	addClickListener(pawn_ble2);
+	addClickListener(pawn_ble3);
+	addClickListener(pawn_ble4);
+
+	addMouseListener(pawn_kitrino);
+	addMouseListener(pawn_kitrino2);
+	addMouseListener(pawn_kitrino3);
+	addMouseListener(pawn_kitrino4);
+	addClickListener(pawn_kitrino);
+	addClickListener(pawn_kitrino2);
+	addClickListener(pawn_kitrino3);
+	addClickListener(pawn_kitrino4);
     }
-    
-    public void paint (HashMap<Integer,PriorityQueue<Pawn>> kati)
-    {
-        
+
+    public void paint(HashMap<Integer, PriorityQueue<Pawn>> kati) {
+
     }
-    
-    private void addMouseListener(final Pawn p)
-    {
-        p.addMouseMotionListener(new MouseMotionListener() 
-        {
-            @Override
-            public void mouseMoved(MouseEvent e) 
-            {
-                final int x = e.getX();
-                final int y = e.getY();
-		int prevPosition=-1 , position=-1;
-                final Rectangle cellBounds = p.getBounds();
-                if (cellBounds != null && cellBounds.contains(x, y)) {p.setCursor(new Cursor(Cursor.HAND_CURSOR));}
-                else {p.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));}
+
+    private void addMouseListener(final Pawn p) {
+	p.addMouseMotionListener(new MouseMotionListener() {
+	    @Override
+	    public void mouseMoved(MouseEvent e) {
+		final int x = e.getX();
+		final int y = e.getY();
+		int prevPosition = -1, position = -1;
+		final Rectangle cellBounds = p.getBounds();
+		if (cellBounds != null && cellBounds.contains(x, y)) {
+		    p.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		} else {
+		    p.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+		}
 		//Edo prepei na ftiaxnei ena new Pawn me tin allagi
 		//kai telos prepei na allazei tin playingFlag se false gia na sinexisei to programma
-		if(myTurn && gameStartedFlag){
+		if (myTurn && gameStartedFlag) {
 		    //pawnMoved = new Pawn(me.getColour(), me.getName(), prevPosition,position);
-		    playingFlag = false;		    
+		    playingFlag = false;
 		}
-            }
+	    }
 
-            @Override
-            public void mouseDragged(MouseEvent e) {}
-        });
+	    @Override
+	    public void mouseDragged(MouseEvent e) {
+	    }
+	});
     }
-    
-    private void addClickListener(final Pawn p)
-    {
-        p.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) 
-            {
+
+    private void addClickListener(final Pawn p) {
+	p.addMouseListener(new java.awt.event.MouseAdapter() {
+	    @Override
+	    public void mouseClicked(java.awt.event.MouseEvent evt) {
 //                System.out.println("lala");
-                AL.get(50).add(p);
-                repaint();
-                revalidate();
-            }
-        });
+		AL.get(50).add(p);
+		repaint();
+		revalidate();
+	    }
+	});
     }
-    
-    private void initList()
-    {
-        //ARXI prasinou
-        AL.add(jPanel59);
-        AL.add(jPanel60);
-        AL.add(jPanel62);
-        AL.add(jPanel63);
-        AL.add(jPanel64);
-        AL.add(jPanel23);
-        AL.add(jPanel19);
-        AL.add(jPanel16);
-        AL.add(jPanel13);
-        AL.add(jPanel10);
-        AL.add(jPanel7);
-        AL.add(jPanel8);//TELOS kokinou
-        AL.add(jPanel9);
-        //ARXI kokinou
-        AL.add(jPanel12);
-        AL.add(jPanel15);
-        AL.add(jPanel18);
-        AL.add(jPanel21);
-        AL.add(jPanel25);
-        AL.add(jPanel77);
-        AL.add(jPanel75);
-        AL.add(jPanel78);
-        AL.add(jPanel79);
-        AL.add(jPanel80);
-        AL.add(jPanel82);
-        AL.add(jPanel81);//TELOS ble
-        AL.add(jPanel94);
-        //ARXI ble
-        AL.add(jPanel93);
-        AL.add(jPanel92);
-        AL.add(jPanel91);
-        AL.add(jPanel89);
-        AL.add(jPanel43);
-        AL.add(jPanel29);
-        AL.add(jPanel32);
-        AL.add(jPanel35);
-        AL.add(jPanel50);
-        AL.add(jPanel53);
-        AL.add(jPanel56);
-        AL.add(jPanel55);//TELOS kitrinou
-        AL.add(jPanel54);
-        //ARXI kitrinou
-        AL.add(jPanel51);
-        AL.add(jPanel36);
-        AL.add(jPanel33);
-        AL.add(jPanel30);
-        AL.add(jPanel27);
-        AL.add(jPanel72);
-        AL.add(jPanel71);
-        AL.add(jPanel70);
-        AL.add(jPanel69);
-        AL.add(jPanel68);
-        AL.add(jPanel37);
-        AL.add(jPanel67);//TELOS prasinou
-        AL.add(jPanel61);
-        
-        //Bike prasina
-        AL.add(jPanel38);
-        AL.add(jPanel39);
-        AL.add(jPanel40);
-        AL.add(jPanel41);
-        AL.add(jPanel42);
-        
-        //Bike kokina
-        AL.add(jPanel11);
-        AL.add(jPanel14);
-        AL.add(jPanel17);
-        AL.add(jPanel20);
-        AL.add(jPanel24);
-        
-        //Bike ble
-        AL.add(jPanel87);
-        AL.add(jPanel86);
-        AL.add(jPanel85);
-        AL.add(jPanel83);
-        AL.add(jPanel88);
-        
-        //Bike kitrina
-        AL.add(jPanel52);
-        AL.add(jPanel44);
-        AL.add(jPanel34);
-        AL.add(jPanel31);
-        AL.add(jPanel28);
+
+    private void initList() {
+	//ARXI prasinou
+	AL.add(jPanel59);
+	AL.add(jPanel60);
+	AL.add(jPanel62);
+	AL.add(jPanel63);
+	AL.add(jPanel64);
+	AL.add(jPanel23);
+	AL.add(jPanel19);
+	AL.add(jPanel16);
+	AL.add(jPanel13);
+	AL.add(jPanel10);
+	AL.add(jPanel7);
+	AL.add(jPanel8);//TELOS kokinou
+	AL.add(jPanel9);
+	//ARXI kokinou
+	AL.add(jPanel12);
+	AL.add(jPanel15);
+	AL.add(jPanel18);
+	AL.add(jPanel21);
+	AL.add(jPanel25);
+	AL.add(jPanel77);
+	AL.add(jPanel75);
+	AL.add(jPanel78);
+	AL.add(jPanel79);
+	AL.add(jPanel80);
+	AL.add(jPanel82);
+	AL.add(jPanel81);//TELOS ble
+	AL.add(jPanel94);
+	//ARXI ble
+	AL.add(jPanel93);
+	AL.add(jPanel92);
+	AL.add(jPanel91);
+	AL.add(jPanel89);
+	AL.add(jPanel43);
+	AL.add(jPanel29);
+	AL.add(jPanel32);
+	AL.add(jPanel35);
+	AL.add(jPanel50);
+	AL.add(jPanel53);
+	AL.add(jPanel56);
+	AL.add(jPanel55);//TELOS kitrinou
+	AL.add(jPanel54);
+	//ARXI kitrinou
+	AL.add(jPanel51);
+	AL.add(jPanel36);
+	AL.add(jPanel33);
+	AL.add(jPanel30);
+	AL.add(jPanel27);
+	AL.add(jPanel72);
+	AL.add(jPanel71);
+	AL.add(jPanel70);
+	AL.add(jPanel69);
+	AL.add(jPanel68);
+	AL.add(jPanel37);
+	AL.add(jPanel67);//TELOS prasinou
+	AL.add(jPanel61);
+
+	//Bike prasina
+	AL.add(jPanel38);
+	AL.add(jPanel39);
+	AL.add(jPanel40);
+	AL.add(jPanel41);
+	AL.add(jPanel42);
+
+	//Bike kokina
+	AL.add(jPanel11);
+	AL.add(jPanel14);
+	AL.add(jPanel17);
+	AL.add(jPanel20);
+	AL.add(jPanel24);
+
+	//Bike ble
+	AL.add(jPanel87);
+	AL.add(jPanel86);
+	AL.add(jPanel85);
+	AL.add(jPanel83);
+	AL.add(jPanel88);
+
+	//Bike kitrina
+	AL.add(jPanel52);
+	AL.add(jPanel44);
+	AL.add(jPanel34);
+	AL.add(jPanel31);
+	AL.add(jPanel28);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -2607,198 +2585,204 @@ public class Parathiro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JoinGame_Action(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JoinGame_Action
-        JOptionPane OP = new JOptionPane();        
-        String host = null;
-        String splitvar[];
-        int port;
-        boolean connected=false;
-        try
-        {
-            host = OP.showInputDialog(p, "Hostname (example: 127.0.0.1:80)", "Hostname", JOptionPane.PLAIN_MESSAGE,null,null,"127.0.0.1:80").toString();
-            splitvar = host.split(":");
-            port = Integer.parseInt(splitvar[1]);
-            SI = new ServerInterface(splitvar[0], port);
-            connected=true;
-        }
-        catch (java.lang.ArrayIndexOutOfBoundsException e){System.out.println("Wrong details");}
-        catch (IOException ex){System.out.println("Couldn't connect!");} 
-        catch (ClassNotFoundException ex){}
-        catch (java.lang.NullPointerException e){}
-        if(connected)
-        {
-            System.out.println("Connected");
-            String[]comboBoxContents={"Green Player","Red Player","Blue Player", "Yellow Player"};
-            JComboBox comboBox = new JComboBox(comboBoxContents);
-            JPanel panel = new JPanel(new GridBagLayout());
-            JTextField TF = new JTextField();
-            JLabel JL = new JLabel("Select:  ");
-            JLabel JL2 = new JLabel("Name:");
-            JPanel space1 = new JPanel();
-            JPanel space2 = new JPanel();
+	JOptionPane OP = new JOptionPane();
+	String host = null;
+	String splitvar[];
+	int port;
+	boolean connected = false;
+	try {
+	    host = OP.showInputDialog(p, "Hostname (example: 127.0.0.1:80)", "Hostname", JOptionPane.PLAIN_MESSAGE, null, null, "127.0.0.1:80").toString();
+	    splitvar = host.split(":");
+	    port = Integer.parseInt(splitvar[1]);
+	    SI = new ServerInterface(splitvar[0], port);
+	    connected = true;
+	} catch (java.lang.ArrayIndexOutOfBoundsException e) {
+	    System.out.println("Wrong details");
+	} catch (IOException ex) {
+	    System.out.println("Couldn't connect!");
+	} catch (ClassNotFoundException ex) {
+	} catch (java.lang.NullPointerException e) {
+	}
+	if (connected) {
+	    System.out.println("Connected");
+	    String[] comboBoxContents = {"Green Player", "Red Player", "Blue Player", "Yellow Player"};
+	    JComboBox comboBox = new JComboBox(comboBoxContents);
+	    JPanel panel = new JPanel(new GridBagLayout());
+	    JTextField TF = new JTextField();
+	    JLabel JL = new JLabel("Select:  ");
+	    JLabel JL2 = new JLabel("Name:");
+	    JPanel space1 = new JPanel();
+	    JPanel space2 = new JPanel();
 
-            space1.setPreferredSize(new Dimension(0, 10));
-            space2.setPreferredSize(new Dimension(0, 10));
-            TF.setPreferredSize(new Dimension(100, 25));
-            TF.setText("Fouf");
-            comboBox.setRenderer(new ColorCellRenderer());
-            GridBagConstraints gbc = new GridBagConstraints();
-            gbc.gridx = 0;
-            gbc.gridy = 0;
-            gbc.fill = GridBagConstraints.HORIZONTAL;
-            gbc.anchor = GridBagConstraints.CENTER;
-            
-            panel.add(JL, gbc);
-            gbc.gridx++;
-            panel.add(comboBox, gbc);//thesi 0,1
-            gbc.gridy++;
-            panel.add(space1, gbc);//thesi 1,1
-            gbc.gridx--;
-            gbc.gridy++;
-            panel.add(JL2, gbc);//thesi 2,0
-            gbc.gridx++;
-            panel.add(TF, gbc);//thesi 2,1
-            int player_num = 0;
-            int pawns = 0;
-            int players = 0;
-            boolean checkbox_value = false;
-            String name = null;
-            boolean check = false;
-            try {check = SI.getGmFlag();}
-            catch(java.lang.NullPointerException e){System.out.println("Couldn't get game settings..");}
-            if (check) 
-            {
-                String[]numberOfPlayers={"1","2","3","4"};
-                JCheckBox checkbox = new JCheckBox();
-                JComboBox comboBox2 = new JComboBox(numberOfPlayers);
-                JComboBox comboBox3 = new JComboBox(numberOfPlayers);
-                JLabel JL3 = new JLabel("Number of players:  ");
-                JLabel JL4 = new JLabel("Number of pawns:  ");
-                JLabel JL5 = new JLabel("Rejoinable:  ");
-                JPanel space3 = new JPanel();
-                JPanel space4 = new JPanel();
-                space3.setPreferredSize(new Dimension(0, 10));
-                space4.setPreferredSize(new Dimension(0, 10));
-                comboBox3.setSelectedIndex(3);
-                checkbox.setEnabled(false);
-                checkbox.setSelected(false);
-                
-                gbc.gridx--;
-                gbc.gridy++;
-                panel.add(space2, gbc);//thesi 3,0
-                gbc.gridy++;
-                panel.add(JL3, gbc);//thesi 4,0
-                gbc.gridx++;
-                panel.add(comboBox2, gbc);//thesi 4,1
-                gbc.gridx--;
-                gbc.gridy++;
-                panel.add(space3, gbc);//thesi 5,0
-                gbc.gridy++;
-                panel.add(JL4, gbc);//thesi 6,0
-                gbc.gridx++;
-                panel.add(comboBox3, gbc);//thesi 6,1
-                gbc.gridx--;
-                gbc.gridy++;
-                panel.add(space4, gbc);//thesi 7,0
-                gbc.gridy++;
-                panel.add(JL5, gbc);//thesi 8,0
-                gbc.gridx++;
-                panel.add(checkbox, gbc);//thesi 8,1
-                System.out.print("Waiting.. ");
-                OP.showMessageDialog(p, panel, "Set game settings", JOptionPane.PLAIN_MESSAGE);
-                name = TF.getText();
-                player_num = comboBox.getSelectedIndex();
-                me = new Player(name,player_num);
-                players = comboBox2.getSelectedIndex()+1;
-                pawns = comboBox3.getSelectedIndex()+1;
-                checkbox_value = checkbox.isSelected();
-                
-                gms = new GameSettings(players, checkbox_value, pawns);
-                try {SI.init(me, gms);} 
-                catch (IOException ex) {Logger.getLogger(Parathiro.class.getName()).log(Level.SEVERE, null, ex);}
-            }
-	    else{              
-                OP.showMessageDialog(p, panel, "Choose a nickname", JOptionPane.PLAIN_MESSAGE);
-                name = TF.getText();
-                player_num = comboBox.getSelectedIndex();
-                me = new Player(name,player_num);
-                try {
+	    space1.setPreferredSize(new Dimension(0, 10));
+	    space2.setPreferredSize(new Dimension(0, 10));
+	    TF.setPreferredSize(new Dimension(100, 25));
+	    TF.setText("Fouf");
+	    comboBox.setRenderer(new ColorCellRenderer());
+	    GridBagConstraints gbc = new GridBagConstraints();
+	    gbc.gridx = 0;
+	    gbc.gridy = 0;
+	    gbc.fill = GridBagConstraints.HORIZONTAL;
+	    gbc.anchor = GridBagConstraints.CENTER;
+
+	    panel.add(JL, gbc);
+	    gbc.gridx++;
+	    panel.add(comboBox, gbc);//thesi 0,1
+	    gbc.gridy++;
+	    panel.add(space1, gbc);//thesi 1,1
+	    gbc.gridx--;
+	    gbc.gridy++;
+	    panel.add(JL2, gbc);//thesi 2,0
+	    gbc.gridx++;
+	    panel.add(TF, gbc);//thesi 2,1
+	    int player_num = 0;
+	    int pawns = 0;
+	    int players = 0;
+	    boolean checkbox_value = false;
+	    String name = null;
+	    boolean check = false;
+	    try {
+		check = SI.getGmFlag();
+	    } catch (java.lang.NullPointerException e) {
+		System.out.println("Couldn't get game settings..");
+	    }
+	    if (check) {
+		String[] numberOfPlayers = {"1", "2", "3", "4"};
+		JCheckBox checkbox = new JCheckBox();
+		JComboBox comboBox2 = new JComboBox(numberOfPlayers);
+		JComboBox comboBox3 = new JComboBox(numberOfPlayers);
+		JLabel JL3 = new JLabel("Number of players:  ");
+		JLabel JL4 = new JLabel("Number of pawns:  ");
+		JLabel JL5 = new JLabel("Rejoinable:  ");
+		JPanel space3 = new JPanel();
+		JPanel space4 = new JPanel();
+		space3.setPreferredSize(new Dimension(0, 10));
+		space4.setPreferredSize(new Dimension(0, 10));
+		comboBox3.setSelectedIndex(3);
+		checkbox.setEnabled(false);
+		checkbox.setSelected(false);
+
+		gbc.gridx--;
+		gbc.gridy++;
+		panel.add(space2, gbc);//thesi 3,0
+		gbc.gridy++;
+		panel.add(JL3, gbc);//thesi 4,0
+		gbc.gridx++;
+		panel.add(comboBox2, gbc);//thesi 4,1
+		gbc.gridx--;
+		gbc.gridy++;
+		panel.add(space3, gbc);//thesi 5,0
+		gbc.gridy++;
+		panel.add(JL4, gbc);//thesi 6,0
+		gbc.gridx++;
+		panel.add(comboBox3, gbc);//thesi 6,1
+		gbc.gridx--;
+		gbc.gridy++;
+		panel.add(space4, gbc);//thesi 7,0
+		gbc.gridy++;
+		panel.add(JL5, gbc);//thesi 8,0
+		gbc.gridx++;
+		panel.add(checkbox, gbc);//thesi 8,1
+		System.out.print("Waiting.. ");
+		OP.showMessageDialog(p, panel, "Set game settings", JOptionPane.PLAIN_MESSAGE);
+		name = TF.getText();
+		player_num = comboBox.getSelectedIndex();
+		me = new Player(name, player_num);
+		players = comboBox2.getSelectedIndex() + 1;
+		pawns = comboBox3.getSelectedIndex() + 1;
+		checkbox_value = checkbox.isSelected();
+
+		gms = new GameSettings(players, checkbox_value, pawns);
+		try {
+		    SI.init(me, gms);
+		} catch (IOException ex) {
+		    Logger.getLogger(Parathiro.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	    } else {
+		OP.showMessageDialog(p, panel, "Choose a nickname", JOptionPane.PLAIN_MESSAGE);
+		name = TF.getText();
+		player_num = comboBox.getSelectedIndex();
+		me = new Player(name, player_num);
+		try {
 		    SI.init(me);
-		}catch (IOException | java.lang.NullPointerException ex) {
+		} catch (IOException | java.lang.NullPointerException ex) {
 		    System.out.println("Something went wrong in the server comunication");
 		}
-            }
-            jMenuItem2.setEnabled(true);
-            jMenuItem1.setEnabled(false);
-            try {
+	    }
+	    jMenuItem2.setEnabled(true);
+	    jMenuItem1.setEnabled(false);
+	    try {
 		SI.sync();
-	    }catch (IOException | ClassNotFoundException ex) {
+	    } catch (IOException | ClassNotFoundException ex) {
 		System.out.println("Something went wrong in the server comunication");
 	    }
 	    PrintPlayers();
-            Start();
-        }
+	    //Init GameKeeper™
+	    gk = new GameKeeper(me, SI.getPlayers(), gms);
+	    Start();
+	}
     }//GEN-LAST:event_JoinGame_Action
 
     private void StopGame_Action(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StopGame_Action
-        try{
-            SI.endGame();
-            jMenuItem2.setEnabled(false);
-            jMenuItem1.setEnabled(true);
-        }catch (IOException ex) {
+	try {
+	    SI.endGame();
+	    jMenuItem2.setEnabled(false);
+	    jMenuItem1.setEnabled(true);
+	} catch (IOException ex) {
 	    System.out.println("Disconnected!");
-	}catch (java.lang.NullPointerException e) {
+	} catch (java.lang.NullPointerException e) {
 	    System.out.println("You were not connected anyway..");
-	}catch (ClassNotFoundException ex) {
+	} catch (ClassNotFoundException ex) {
 	    System.out.println("Error in comunication with the server");
 	}
     }//GEN-LAST:event_StopGame_Action
 
     private void ExitGame_Action(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitGame_Action
-        StopGame_Action(evt);
+	StopGame_Action(evt);
 	this.dispose();
     }//GEN-LAST:event_ExitGame_Action
 
     private void Help_Action(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Help_Action
-        final JOptionPane OP = new JOptionPane();
-        final JPanel panel = new JPanel();
-        panel.setPreferredSize(new Dimension(600, 180));
-        JTextArea textArea = new JTextArea(
-                "Two, three, or four may play. At the beginning of the game, each player's tokens are out of play and staged in one of the large corner areas of the board in the player's color (called the player's yard  ). When able to, the players will enter their tokens one per time on their respective starting squares, and proceed to race them clockwise around the board along the game track (the path of squares not part of any player's home column). When reaching the square below the home column, a player continues by racing tokens up the column to the finish square. The rolls of a cube die control the swiftness of the tokens, and entry to the finish square requires a precise roll from the player. The first to bring all their tokens to the finish wins the game. The others often continue play to determine second-, third-, and fourth-place finishers.", 
-                6, 
-                20);
-        textArea.setPreferredSize(new Dimension(600, 180));
-        textArea.setFont(new Font("Dialog", Font.PLAIN, 14));
-        textArea.setLineWrap(true);
-        textArea.setWrapStyleWord(true);
-        textArea.setOpaque(false);
-        textArea.setEditable(false);
-        
-        panel.add(textArea);
-        OP.showOptionDialog(p, panel, "How to play", JOptionPane.YES_OPTION, JOptionPane.PLAIN_MESSAGE, null, new Object[] { "Thanks!" }, null);
+	final JOptionPane OP = new JOptionPane();
+	final JPanel panel = new JPanel();
+	panel.setPreferredSize(new Dimension(600, 180));
+	JTextArea textArea = new JTextArea(
+		"Two, three, or four may play. At the beginning of the game, each player's tokens are out of play and staged in one of the large corner areas of the board in the player's color (called the player's yard  ). When able to, the players will enter their tokens one per time on their respective starting squares, and proceed to race them clockwise around the board along the game track (the path of squares not part of any player's home column). When reaching the square below the home column, a player continues by racing tokens up the column to the finish square. The rolls of a cube die control the swiftness of the tokens, and entry to the finish square requires a precise roll from the player. The first to bring all their tokens to the finish wins the game. The others often continue play to determine second-, third-, and fourth-place finishers.",
+		6,
+		20);
+	textArea.setPreferredSize(new Dimension(600, 180));
+	textArea.setFont(new Font("Dialog", Font.PLAIN, 14));
+	textArea.setLineWrap(true);
+	textArea.setWrapStyleWord(true);
+	textArea.setOpaque(false);
+	textArea.setEditable(false);
+
+	panel.add(textArea);
+	OP.showOptionDialog(p, panel, "How to play", JOptionPane.YES_OPTION, JOptionPane.PLAIN_MESSAGE, null, new Object[]{"Thanks!"}, null);
     }//GEN-LAST:event_Help_Action
 
     private void About_Action(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_About_Action
-        JOptionPane OP = new JOptionPane();
-        JPanel panel = new JPanel(new BorderLayout());
-        panel.setPreferredSize(new Dimension(300, 0));
-        JTextArea textArea = new JTextArea("Karamolegkos Eleftherios"+"      2024200900083\n\n"+"Andronopoulos Nikolas"+"          2024200900026", 6, 20);
-        textArea.setPreferredSize(new Dimension(300, 0));
-        textArea.setFont(new Font("Dialog", Font.PLAIN, 14));
-        textArea.setLineWrap(true);
-        textArea.setWrapStyleWord(true);
-        textArea.setOpaque(false);
-        textArea.setEditable(false);
-        
-        panel.add(textArea, BorderLayout.CENTER);
-        OP.showOptionDialog(p, panel, "About", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, new Object[] {}, null);
-        
+	JOptionPane OP = new JOptionPane();
+	JPanel panel = new JPanel(new BorderLayout());
+	panel.setPreferredSize(new Dimension(300, 0));
+	JTextArea textArea = new JTextArea("Karamolegkos Eleftherios" + "      2024200900083\n\n" + "Andronopoulos Nikolas" + "          2024200900026", 6, 20);
+	textArea.setPreferredSize(new Dimension(300, 0));
+	textArea.setFont(new Font("Dialog", Font.PLAIN, 14));
+	textArea.setLineWrap(true);
+	textArea.setWrapStyleWord(true);
+	textArea.setOpaque(false);
+	textArea.setEditable(false);
+
+	panel.add(textArea, BorderLayout.CENTER);
+	OP.showOptionDialog(p, panel, "About", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, new Object[]{}, null);
+
     }//GEN-LAST:event_About_Action
 
-    public void PrintPlayers(){
+    public void PrintPlayers() {
 	System.out.println("Player Connected in game: ");
-	for (Player p : SI.getPlayers()){
-	    System.out.print("\t"+p.getName()+" : ");
-	    switch(p.getColor()){
+	for (Player p : SI.getPlayers()) {
+	    System.out.print("\t" + p.getName() + " : ");
+	    switch (p.getColor()) {
 		case 0:
 		    System.out.println("red");
 		    break;
@@ -2816,124 +2800,85 @@ public class Parathiro extends javax.swing.JFrame {
 	    }
 	}
     }
-    
-    public void Start(){
+
+    public void Start() {
 	gameStartedFlag = true;
-	try{
+	try {
 	    int resp = 0;
-	    while(resp != 1){
+	    while (resp != 1 && resp ==1) {
 		resp = SI.waitForTurn();
-		if(resp==0){
-		    System.out.println(SI.getDice()+"\n"+SI.getPawn());
+		if (resp == 0) {
+		    System.out.println(SI.getDice() + "\n" + SI.getPawn());
 		    updateBoard(SI.getPawn());
-		}else if(resp==1){
+		} else if (resp == 1) {
 		    myTurn = true;
 		    playingFlag = true;
 		    System.out.println("=> THIS YOUR TURN! <=");
-		    diceRolled = new Dice((int)Math.random()*6+1);
-		    System.out.println("You rolled a: "+diceRolled.getDie1());
+		    diceRolled = new Dice((int) (Math.random() * 6 + 1));
+		    System.out.println("You rolled a: " + diceRolled.getDie1());
 		    //Waits for listener
-		    while(playingFlag){ }
-		    SI.updatePawn(diceRolled, pawnMoved);
-		    myTurn = false;
-		}else if(resp ==-1)
+		} else if (resp == -1) {
 		    System.out.println("Game Ended");
+		    gameStartedFlag = false;
+		}
 	    }
 	} catch (IOException | ClassNotFoundException ex) {
 	    System.out.println("Something went worng... Game ended!");
+	    gameStartedFlag = false;
 	}
-	gameStartedFlag = false;
     }
 
     private void updateBoard(Pawn pawn) {
-	System.out.println("Player "+
-		pawn.getPlayerName()+
-		" moved a pawn from"+
-		pawn.getPrevPosition()+
-		" to  "+
-		pawn.getPosition());
+	System.out.println("Player "
+		+ pawn.getPlayerName()
+		+ " moved a pawn from"
+		+ pawn.getPrevPosition()
+		+ " to  "
+		+ pawn.getPosition());
+	gk.playMove(pawn, diceRolled);
 	//Edo kaneis ta dika sou gia na kanei update to board me to kainourgio move
 	//somehow...
     }
-  class ColorCellRenderer implements ListCellRenderer 
-  {
-    private DefaultListCellRenderer defaultRenderer = new DefaultListCellRenderer();
-    private Dimension preferredSize = new Dimension(100, 20);
 
-    @Override
-    public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) 
-    {
-        JLabel renderer = (JLabel) defaultRenderer.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-        if (value.equals("Red Player")) 
-        {
-            renderer.setBackground(Color.RED);
-            renderer.setForeground(Color.RED);
-        }
-        else if(value.equals("Blue Player"))
-        {
-            renderer.setBackground(Color.BLUE);
-            renderer.setForeground(Color.BLUE);
-        }
-        else if(value.equals("Yellow Player"))
-        {
-            renderer.setBackground(Color.YELLOW);
-            renderer.setForeground(Color.YELLOW);
-        }
-        else if(value.equals("Green Player"))
-        {
-            renderer.setBackground(Color.GREEN);
-            renderer.setForeground(Color.GREEN);
-        }
-        
-        if (cellHasFocus || isSelected) {renderer.setBorder(new LineBorder(Color.BLACK));}
-        else {renderer.setBorder(null);}
-        
-        if(index<0) {renderer.setBorder(null);}
-        renderer.setPreferredSize(preferredSize);
-        return renderer;
-    }
-}
-    public static void main(String args[]) 
-    {
-        /* Set the Nimbus look and feel */
+    public static void main(String args[]) {
+	/* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Parathiro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Parathiro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Parathiro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Parathiro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+	 * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+	 */
+	try {
+	    for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+		if ("Nimbus".equals(info.getName())) {
+		    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+		    break;
+		}
+	    }
+	} catch (ClassNotFoundException ex) {
+	    java.util.logging.Logger.getLogger(Parathiro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+	} catch (InstantiationException ex) {
+	    java.util.logging.Logger.getLogger(Parathiro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+	} catch (IllegalAccessException ex) {
+	    java.util.logging.Logger.getLogger(Parathiro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+	} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+	    java.util.logging.Logger.getLogger(Parathiro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+	}
         //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() 
-        {
-            @Override
-            public void run() 
-            {
-                p = new Parathiro();
-                p.pack();
-                p.setLocationRelativeTo(null);
-                p.setVisible(true);
-            }
-        });
+	/* Create and display the form */
+	java.awt.EventQueue.invokeLater(new Runnable() {
+	    @Override
+	    public void run() {
+		p = new Parathiro();
+		p.pack();
+		p.setLocationRelativeTo(null);
+		p.setVisible(true);
+	    }
+	});
     }
 //    private String name;
-    private ArrayList<JPanel> AL = new ArrayList<JPanel>();;
+    private ArrayList<JPanel> AL = new ArrayList<JPanel>();
     private ServerInterface SI = null;
+    private GameKeeper gk;
     private boolean playingFlag;
     private boolean gameStartedFlag;
     private boolean myTurn;
@@ -3078,4 +3023,40 @@ public class Parathiro extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
+}
+
+class ColorCellRenderer implements ListCellRenderer {
+
+    private DefaultListCellRenderer defaultRenderer = new DefaultListCellRenderer();
+    private Dimension preferredSize = new Dimension(100, 20);
+
+    @Override
+    public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+	JLabel renderer = (JLabel) defaultRenderer.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+	if (value.equals("Red Player")) {
+	    renderer.setBackground(Color.RED);
+	    renderer.setForeground(Color.RED);
+	} else if (value.equals("Blue Player")) {
+	    renderer.setBackground(Color.BLUE);
+	    renderer.setForeground(Color.BLUE);
+	} else if (value.equals("Yellow Player")) {
+	    renderer.setBackground(Color.YELLOW);
+	    renderer.setForeground(Color.YELLOW);
+	} else if (value.equals("Green Player")) {
+	    renderer.setBackground(Color.GREEN);
+	    renderer.setForeground(Color.GREEN);
+	}
+
+	if (cellHasFocus || isSelected) {
+	    renderer.setBorder(new LineBorder(Color.BLACK));
+	} else {
+	    renderer.setBorder(null);
+	}
+
+	if (index < 0) {
+	    renderer.setBorder(null);
+	}
+	renderer.setPreferredSize(preferredSize);
+	return renderer;
+    }
 }
