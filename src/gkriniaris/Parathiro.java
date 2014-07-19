@@ -18,6 +18,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 import java.util.logging.Level;
@@ -46,10 +47,13 @@ public class Parathiro extends javax.swing.JFrame {
     /**
      * Creates new form Window
      */
-    public Parathiro() {
+    public Parathiro() 
+    {
+        
         initComponents();
         initComplex();
 	placePawns();
+        initList();
         addListeners();
         System.out.println("TODO: gameLogic(start sinartisi dld) + remove pawns/players if not exist (also add an xriastoun?rejoinable?) \nStatus: Fixed parathiro bug, einai koble me 2 paixtes.\nNikola: <AMA> boreis koitakse ligo na min borei na valei o xristis to idio xroma, xoris na vgainei ksana apo tin arxi to parathiro, alla apla na min iparxei to sigkekrimeno xroma pou epelekse kapios allos xristis..ara tha prepei na pairnei tin lista available xromaton apo ton server k oxi locally..");
     }
@@ -603,13 +607,101 @@ public class Parathiro extends javax.swing.JFrame {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) 
             {
-                System.out.println("lala");
-                jPanel61.add(p);
+//                System.out.println("lala");
+                AL.get(50).add(p);
                 repaint();
+                revalidate();
             }
         });
     }
     
+    private void initList()
+    {
+        //ARXI prasinou
+        AL.add(jPanel59);
+        AL.add(jPanel60);
+        AL.add(jPanel62);
+        AL.add(jPanel63);
+        AL.add(jPanel64);
+        AL.add(jPanel23);
+        AL.add(jPanel19);
+        AL.add(jPanel16);
+        AL.add(jPanel13);
+        AL.add(jPanel10);
+        AL.add(jPanel7);
+        AL.add(jPanel8);//TELOS kokinou
+        AL.add(jPanel9);
+        //ARXI kokinou
+        AL.add(jPanel12);
+        AL.add(jPanel15);
+        AL.add(jPanel18);
+        AL.add(jPanel21);
+        AL.add(jPanel25);
+        AL.add(jPanel77);
+        AL.add(jPanel75);
+        AL.add(jPanel78);
+        AL.add(jPanel79);
+        AL.add(jPanel80);
+        AL.add(jPanel82);
+        AL.add(jPanel81);//TELOS ble
+        AL.add(jPanel94);
+        //ARXI ble
+        AL.add(jPanel93);
+        AL.add(jPanel92);
+        AL.add(jPanel91);
+        AL.add(jPanel89);
+        AL.add(jPanel43);
+        AL.add(jPanel29);
+        AL.add(jPanel32);
+        AL.add(jPanel35);
+        AL.add(jPanel50);
+        AL.add(jPanel53);
+        AL.add(jPanel56);
+        AL.add(jPanel55);//TELOS kitrinou
+        AL.add(jPanel54);
+        //ARXI kitrinou
+        AL.add(jPanel51);
+        AL.add(jPanel36);
+        AL.add(jPanel33);
+        AL.add(jPanel30);
+        AL.add(jPanel27);
+        AL.add(jPanel72);
+        AL.add(jPanel71);
+        AL.add(jPanel70);
+        AL.add(jPanel69);
+        AL.add(jPanel68);
+        AL.add(jPanel37);
+        AL.add(jPanel67);//TELOS prasinou
+        AL.add(jPanel61);
+        
+        //Bike prasina
+        AL.add(jPanel38);
+        AL.add(jPanel39);
+        AL.add(jPanel40);
+        AL.add(jPanel41);
+        AL.add(jPanel42);
+        
+        //Bike kokina
+        AL.add(jPanel11);
+        AL.add(jPanel14);
+        AL.add(jPanel17);
+        AL.add(jPanel20);
+        AL.add(jPanel24);
+        
+        //Bike ble
+        AL.add(jPanel87);
+        AL.add(jPanel86);
+        AL.add(jPanel85);
+        AL.add(jPanel83);
+        AL.add(jPanel88);
+        
+        //Bike kitrina
+        AL.add(jPanel52);
+        AL.add(jPanel44);
+        AL.add(jPanel34);
+        AL.add(jPanel31);
+        AL.add(jPanel28);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -2840,6 +2932,7 @@ public class Parathiro extends javax.swing.JFrame {
         });
     }
 //    private String name;
+    private ArrayList<JPanel> AL = new ArrayList<JPanel>();;
     private ServerInterface SI = null;
     private boolean playingFlag;
     private boolean gameStartedFlag;
