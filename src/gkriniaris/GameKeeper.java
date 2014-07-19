@@ -17,6 +17,7 @@ public class GameKeeper {
     private ArrayList<Player> ppl;
     private Player me;
     private Pawn pwn;
+    private Pawn movedPawn;
     private HashMap<Integer,PriorityQueue<Pawn>> squares;
     
     public GameKeeper(Player me, ArrayList<Player> ppl,GameSettings gms){
@@ -36,6 +37,7 @@ public class GameKeeper {
     }
     
     public void movePawn(Pawn p){
+	this.movedPawn = p;
 	squares.get(p.getPrevPosition()).remove();
 	squares.get(p.getPosition()).add(p);
     }
@@ -69,6 +71,9 @@ public class GameKeeper {
 	}
   
     }
-    
+
+    public Pawn getMovedPawn() {
+	return movedPawn;
+    }
 }
 

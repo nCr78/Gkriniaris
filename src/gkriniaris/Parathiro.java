@@ -1,6 +1,5 @@
 package gkriniaris;
-//4
-
+//u suck
 import clientInterface.ServerInterface;
 import commonEntities.Dice;
 import commonEntities.GameSettings;
@@ -55,7 +54,7 @@ public class Parathiro extends javax.swing.JFrame {
 	placePawns();
 	initList();
 	addListeners();
-	System.out.println("TODO: gameLogic(start sinartisi dld) + remove pawns/players if not exist (also add an xriastoun?rejoinable?) \nStatus: Fixed parathiro bug, einai koble me 2 paixtes.\nNikola: <AMA> boreis koitakse ligo na min borei na valei o xristis to idio xroma, xoris na vgainei ksana apo tin arxi to parathiro, alla apla na min iparxei to sigkekrimeno xroma pou epelekse kapios allos xristis..ara tha prepei na pairnei tin lista available xromaton apo ton server k oxi locally..");
+	System.out.println("Hello!");
     }
 
     private void initComplex() {
@@ -586,9 +585,22 @@ public class Parathiro extends javax.swing.JFrame {
 	    @Override
 	    public void mouseClicked(java.awt.event.MouseEvent evt) {
 //                System.out.println("lala");
-		AL.get(50).add(p);
-		repaint();
-		revalidate();
+//		AL.get(50).add(p);
+//		repaint();
+//		revalidate();
+		if(myTurn && gameStartedFlag){
+		    if(gk.playMove(p, diceRolled)){
+			try {
+			    SI.updatePawn(diceRolled, gk.getMovedPawn());
+			    System.out.println("Ok! Move sent to players.");
+			    myTurn = false;
+			    Start();
+			} catch (IOException ex) {
+			    System.out.println("Something when wrong.");
+			}
+		    }
+		}else
+		    System.out.println("Not your turn yet!");
 	    }
 	});
     }
