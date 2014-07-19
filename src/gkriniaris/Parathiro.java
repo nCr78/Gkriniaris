@@ -1,5 +1,5 @@
 package gkriniaris;
-
+//4
 import clientInterface.ServerInterface;
 import commonEntities.Dice;
 import commonEntities.GameSettings;
@@ -49,8 +49,8 @@ public class Parathiro extends javax.swing.JFrame {
     public Parathiro() {
         initComponents();
         initComplex();
-//	placePawns();
-//      addListeners();
+	placePawns();
+        addListeners();
         System.out.println("TODO: gameLogic(start sinartisi dld) + remove pawns/players if not exist (also add an xriastoun?rejoinable?) \nStatus: Fixed parathiro bug, einai koble me 2 paixtes.\nNikola: <AMA> boreis koitakse ligo na min borei na valei o xristis to idio xroma, xoris na vgainei ksana apo tin arxi to parathiro, alla apla na min iparxei to sigkekrimeno xroma pou epelekse kapios allos xristis..ara tha prepei na pairnei tin lista available xromaton apo ton server k oxi locally..");
     }
     private void initComplex()
