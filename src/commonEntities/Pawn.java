@@ -1,5 +1,12 @@
 package commonEntities;
 
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.Shape;
+import java.awt.geom.Ellipse2D;
 import java.io.Serializable;
 import javax.swing.JPanel;
 
@@ -98,4 +105,25 @@ public class Pawn extends JPanel implements Serializable {
     public void setPosition(int position) {
 	this.position = position;
     }
+    
+    @Override
+    public void paintComponent(Graphics g) 
+    {
+        Color C = new Color(0,0,0);
+        if(color==0){C = new Color(0,204,51);}
+        else if(color==1){C = Color.red;}
+        else if(color==2){C = new Color(51,51,255);}
+        else if(color==3){C = new Color(255,255,51);}
+        Graphics2D g2d = (Graphics2D)g;
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+        g2d.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_PURE);
+        Shape theCircle = new Ellipse2D.Double(11, 11, 1.0 * 16, 1.0 * 16);
+        g2d.setColor(Color.black);
+        g2d.setStroke(new BasicStroke(2));
+        g2d.draw(theCircle);
+        g2d.setColor(C);
+        g2d.fill(theCircle);
+    }
+    
 }

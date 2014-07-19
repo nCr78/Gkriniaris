@@ -2506,7 +2506,7 @@ public class Parathiro extends javax.swing.JFrame {
         if(connected)
         {
             System.out.println("Connected");
-            String[]comboBoxContents={"Red Player","Blue Player","Yellow Player", "Green Player"};
+            String[]comboBoxContents={"Green Player","Red Player","Blue Player", "Yellow Player"};
             JComboBox comboBox = new JComboBox(comboBoxContents);
             JPanel panel = new JPanel(new GridBagLayout());
             JTextField TF = new JTextField();
