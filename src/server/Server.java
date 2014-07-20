@@ -107,7 +107,7 @@ public class Server {
 		    System.out.println("=> "
 			    + pname
 			    + " rolled a "
-			    + dc.toString());
+			    + dc.getDie1());
 		    updateDice(s, dc);
 		    pwn = (Pawn) readData(s);
 		    System.out.println("=> "

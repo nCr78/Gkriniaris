@@ -585,16 +585,22 @@ public class Parathiro extends javax.swing.JFrame
 	    @Override
 	    public void mouseClicked(java.awt.event.MouseEvent evt) 
             {
-                diceRolled = new Dice((int) (Math.random() * 6 + 1));
-                if(p.getColor()==0)
-                {
-                    System.out.println("prasino");
-                    GameLogic(p, diceRolled, Prasini_Lista);
-                }
-                if(p.getColor()==1){GameLogic(p, diceRolled, Kokini_Lista);}
-                if(p.getColor()==2){GameLogic(p, diceRolled, Ble_Lista);}
-                if(p.getColor()==3){GameLogic(p, diceRolled, Kitrini_Lista);}
-                
+		if(myTurn && gameStartedFlag)
+		{
+		    //diceRolled = new Dice((int) (Math.random() * 6 + 1));
+		    if(p.getColor()==0)
+		    {
+			System.out.println("prasino");
+			GameLogic(p, diceRolled, Prasini_Lista);
+		    }
+		    if(p.getColor()==1){GameLogic(p, diceRolled, Kokini_Lista);}
+		    if(p.getColor()==2){GameLogic(p, diceRolled, Ble_Lista);}
+		    if(p.getColor()==3){GameLogic(p, diceRolled, Kitrini_Lista);}
+		    //My thing here....
+		    try	{ SI.updatePawn(diceRolled, p); }
+		    catch (IOException ex) {System.out.println("Failed to update server...");}
+		    Start();
+		}
             }
 	});
     }
@@ -2920,6 +2926,7 @@ public class Parathiro extends javax.swing.JFrame
 	    }
 	    gms = SI.getGms();
 	    PrintPlayers();
+	    gameStartedFlag = true;
 	    Start();
 	}
     }//GEN-LAST:event_JoinGame_Action
@@ -3007,11 +3014,11 @@ public class Parathiro extends javax.swing.JFrame
     }
 
     public void Start() {
-	gameStartedFlag = true;
+	myTurn = false;
 	try 
         {
 	    int resp = 0;
-	    while (resp != 1 && resp ==1) 
+	    while (resp != 1 && resp !=1) 
             {
 		resp = SI.waitForTurn();
 		if (resp == 0) 
