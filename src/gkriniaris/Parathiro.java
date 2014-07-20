@@ -3117,65 +3117,68 @@ public class Parathiro extends javax.swing.JFrame
         int remove_points = 0;
         if(pawn.getColor()==0)
         {
-                if(pawn.getStart() == 0 && pawn_prasino.getStart()>=0){pawn.setPawn(pawn_prasino);}
-                else if(pawn.getStart() == 0 && pawn_prasino2.getStart()>=0){pawn.setPawn(pawn_prasino2);}
-                else if(pawn.getStart() == 0 && pawn_prasino3.getStart()>=0){pawn.setPawn(pawn_prasino3);}
-                else if(pawn.getStart() == 0 && pawn_prasino4.getStart()>=0){pawn.setPawn(pawn_prasino4);}
-//            if(!Started_Pawns.contains(pawn)&&SI.getDice().getDie1()==1)
-//            {
-//                remove_points = SI.getDice().getDie1();
-//                Started_Pawns.add(pawn);
-//                Start_Prasina.get(pawn.getStart()).removeAll();
-//            }
-//            GameLogic(pawn, new Dice(SI.getDice().getDie1()-remove_points), Prasini_Lista);    
-            GameLogic(pawn, SI.getDice(), Prasini_Lista);
+//                if(pawn.getStart() == 0 && pawn_prasino.getStart()>=0){pawn.setPawn(pawn_prasino);}
+//                else if(pawn.getStart() == 0 && pawn_prasino2.getStart()>=0){pawn.setPawn(pawn_prasino2);}
+//                else if(pawn.getStart() == 0 && pawn_prasino3.getStart()>=0){pawn.setPawn(pawn_prasino3);}
+//                else if(pawn.getStart() == 0 && pawn_prasino4.getStart()>=0){pawn.setPawn(pawn_prasino4);}
+//                GameLogic(pawn, SI.getDice(), Prasini_Lista);
+            if(!Started_Pawns.contains(pawn)&&SI.getDice().getDie1()==1)
+            {
+                remove_points = SI.getDice().getDie1();
+                Started_Pawns.add(pawn);
+                Start_Prasina.get(pawn.getStart()).removeAll();
+            }
+            GameLogic(pawn, new Dice(SI.getDice().getDie1()-remove_points), Prasini_Lista);    
+
         }
         else if(pawn.getColor()==1)
         {
-            if(pawn.getStart() == 0 && pawn_kokino.getStart()>=0){pawn.setPawn(pawn_kokino);}
-                else if(pawn.getStart() == 0 && pawn_kokino2.getStart()>=0){pawn.setPawn(pawn_kokino2);}
-                else if(pawn.getStart() == 0 && pawn_kokino3.getStart()>=0){pawn.setPawn(pawn_kokino3);}
-                else if(pawn.getStart() == 0 && pawn_kokino4.getStart()>=0){pawn.setPawn(pawn_kokino4);}
-//            if(!Started_Pawns.contains(pawn)&&SI.getDice().getDie1()==1)
-//            {
-//                remove_points = SI.getDice().getDie1();
-//                Started_Pawns.add(pawn);
-//                Start_Kokina.get(pawn.getStart()).removeAll();
-//            }
-//            GameLogic(pawn, new Dice(SI.getDice().getDie1()-remove_points), Kokini_Lista);
-            GameLogic(pawn,SI.getDice(), Kokini_Lista);
+//            if(pawn.getStart() == 0 && pawn_kokino.getStart()>=0){pawn.setPawn(pawn_kokino);}
+//                else if(pawn.getStart() == 0 && pawn_kokino2.getStart()>=0){pawn.setPawn(pawn_kokino2);}
+//                else if(pawn.getStart() == 0 && pawn_kokino3.getStart()>=0){pawn.setPawn(pawn_kokino3);}
+//                else if(pawn.getStart() == 0 && pawn_kokino4.getStart()>=0){pawn.setPawn(pawn_kokino4);}
+//            GameLogic(pawn,SI.getDice(), Kokini_Lista);
+            if(!Started_Pawns.contains(pawn)&&SI.getDice().getDie1()==1)
+            {
+                remove_points = SI.getDice().getDie1();
+                Started_Pawns.add(pawn);
+                Start_Kokina.get(pawn.getStart()).removeAll();
+            }
+            GameLogic(pawn, new Dice(SI.getDice().getDie1()-remove_points), Kokini_Lista);
+            
         }
         else if(pawn.getColor()==2)
         {
-            if(pawn.getStart() == 0 && pawn_ble.getStart()>=0){pawn.setPawn(pawn_ble);}
-                else if(pawn.getStart() == 0 && pawn_ble2.getStart()>=0){pawn.setPawn(pawn_ble2);}
-                else if(pawn.getStart() == 0 && pawn_ble3.getStart()>=0){pawn.setPawn(pawn_ble3);}
-                else if(pawn.getStart() == 0 && pawn_ble4.getStart()>=0){pawn.setPawn(pawn_ble4);}
-//            if(!Started_Pawns.contains(pawn)&&SI.getDice().getDie1()==1)
-//            {
-//                remove_points = SI.getDice().getDie1();
-//                Started_Pawns.add(pawn);
-//                Start_Ble.get(pawn.getStart()).removeAll();
-//            }
-//            GameLogic(pawn, new Dice(SI.getDice().getDie1()-remove_points), Ble_Lista);
-            GameLogic(pawn, SI.getDice(), Ble_Lista);
+//            if(pawn.getStart() == 0 && pawn_ble.getStart()>=0){pawn.setPawn(pawn_ble);}
+//                else if(pawn.getStart() == 0 && pawn_ble2.getStart()>=0){pawn.setPawn(pawn_ble2);}
+//                else if(pawn.getStart() == 0 && pawn_ble3.getStart()>=0){pawn.setPawn(pawn_ble3);}
+//                else if(pawn.getStart() == 0 && pawn_ble4.getStart()>=0){pawn.setPawn(pawn_ble4);}
+//            GameLogic(pawn, SI.getDice(), Ble_Lista);
+            if(!Started_Pawns.contains(pawn)&&SI.getDice().getDie1()==1)
+            {
+                remove_points = SI.getDice().getDie1();
+                Started_Pawns.add(pawn);
+                Start_Ble.get(pawn.getStart()).removeAll();
+            }
+            GameLogic(pawn, new Dice(SI.getDice().getDie1()-remove_points), Ble_Lista);
+            
         }
         else if(pawn.getColor()==3)
         {
             
-            if(pawn.getStart() == 0 && pawn_kitrino.getStart()>=0){pawn.setPawn(pawn_kitrino);}
-            else if(pawn.getStart() == 0 && pawn_kitrino2.getStart()>=0){pawn.setPawn(pawn_kitrino2);}
-            else if(pawn.getStart() == 0 && pawn_kitrino3.getStart()>=0){pawn.setPawn(pawn_kitrino3);}
-            else if(pawn.getStart() == 0 && pawn_kitrino4.getStart()>=0){pawn.setPawn(pawn_kitrino4);}
+//            if(pawn.getStart() == 0 && pawn_kitrino.getStart()>=0){pawn.setPawn(pawn_kitrino);}
+//            else if(pawn.getStart() == 0 && pawn_kitrino2.getStart()>=0){pawn.setPawn(pawn_kitrino2);}
+//            else if(pawn.getStart() == 0 && pawn_kitrino3.getStart()>=0){pawn.setPawn(pawn_kitrino3);}
+//            else if(pawn.getStart() == 0 && pawn_kitrino4.getStart()>=0){pawn.setPawn(pawn_kitrino4);}
+//            GameLogic(pawn, SI.getDice(), Kitrini_Lista);
+            if(!Started_Pawns.contains(pawn)&&SI.getDice().getDie1()==1)
+            {
+                remove_points = SI.getDice().getDie1();
+                Started_Pawns.add(pawn);
+                Start_Kitrina.get(pawn.getStart()).removeAll();
+            }
+            GameLogic(pawn, new Dice(SI.getDice().getDie1()-remove_points), Kitrini_Lista);
             
-//            if(!Started_Pawns.contains(pawn)&&SI.getDice().getDie1()==1)
-//            {
-//                remove_points = SI.getDice().getDie1();
-//                Started_Pawns.add(pawn);
-//                Start_Kitrina.get(pawn.getStart()).removeAll();
-//            }
-//            GameLogic(pawn, new Dice(SI.getDice().getDie1()-remove_points), Kitrini_Lista);
-            GameLogic(pawn, SI.getDice(), Kitrini_Lista);
         }
         
 //Edo kaneis ta dika sou gia na kanei update to board me to kainourgio move
