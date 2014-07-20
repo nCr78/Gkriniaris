@@ -8,65 +8,65 @@ import java.io.Serializable;
  */
 public class Player implements Serializable {
 
-/**
- *
- */
-public String name;
+    /**
+     *
+     */
+    public String name;
 
-/**
- *
- */
-public int color;
+    /**
+     *
+     */
+    public int color;
 
-/**
- *
- * @param name
- * @param color
- */
-public Player(String name, int color) {
-    this.name = name;
-    this.color = color;
-}
+    /**
+     *
+     * @param name
+     * @param color
+     */
+    public Player(String name, int color) {
+	this.name = name;
+	this.color = color;
+    }
 
-/**
- *
- * @return
- */
-public String getName() {
-    return name;
-}
+    /**
+     *
+     * @return
+     */
+    public String getName() {
+	return name;
+    }
 
-/**
- *
- * @param name
- */
-public void setName(String name) {
-    this.name = name;
-}
+    /**
+     *
+     * @param name
+     */
+    public void setName(String name) {
+	this.name = name;
+    }
 
-/**
- *
- * @return
- */
-public int getColor() {
-    return color;
-}
+    /**
+     *
+     * @return
+     */
+    public int getColor() {
+	return color;
+    }
 
-/**
- *
- * @param color
- */
-public void setColor(int color) {
-    this.color = color;
-}
+    /**
+     *
+     * @param color
+     */
+    public void setColor(int color) {
+	this.color = color;
+    }
 
-/**
- *
- * @return
- */
-@Override
-public String toString() {
-    return name + ':' + color;
-}
+    /**
+     *
+     * @return
+     */
+    @Override
+    public String toString() {
+	return name + ':' + color;
+    }
 
 }

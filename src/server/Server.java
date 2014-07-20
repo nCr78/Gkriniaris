@@ -71,7 +71,7 @@ public class Server {
 	    sendData(sock, "EXISTS");
 	    //Read players info
 	    currentPlayer = (Player) readData(sock);
-	    System.out.println("Game Master Connected: "
+	    System.out.println("Player connected "
 		    + currentPlayer.getName()
 		    + " with color: "
 		    + currentPlayer.getColor());
@@ -112,8 +112,8 @@ public class Server {
 		    pwn = (Pawn) readData(s);
 		    System.out.println("=> "
 			    + pname
-			    + " moved a pawn to "
-			    + pwn.getPosition());
+			    + " moved "
+			    + pwn);
 		    updatePawn(s, pwn);
 		} else {
 		    System.out.println("=> "

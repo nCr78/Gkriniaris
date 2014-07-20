@@ -3023,6 +3023,13 @@ public class Parathiro extends javax.swing.JFrame
 		resp = SI.waitForTurn();
 		if (resp == 0) 
                 {
+		    System.out.println("Waiting for other player to play...");
+		    System.out.print("Player: "+
+			    SI.getPawn().getName()+
+			    " rolled a "+
+			    SI.getDice().getDie1()+
+			    " and moved "+
+			    SI.getPawn());
 		    System.out.println(SI.getDice() + "\n" + SI.getPawn());
 		    updateBoard(SI.getPawn());
 		} 
