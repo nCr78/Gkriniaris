@@ -61,6 +61,7 @@ public class Server {
 	gms = (GameSettings) readData(sock);
 	System.out.println("Game settings: " + gms.toString());
 	//Adding new players
+	System.out.println(gms.getPlayers() +" , "+ playerList.size() );
 	while (gms.getPlayers() != playerList.size()) {
 	    System.out.println("Waiting for other players...");
 	    sock = ssock.accept();

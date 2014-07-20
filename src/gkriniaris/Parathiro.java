@@ -599,6 +599,7 @@ public class Parathiro extends javax.swing.JFrame
 		    //My thing here....
 		    try	{ SI.updatePawn(diceRolled, p); }
 		    catch (IOException ex) {System.out.println("Failed to update server...");}
+		    System.out.println("\t=> Your Turn ended. <=");
 		    Start();
 		}
             }
@@ -2927,6 +2928,7 @@ public class Parathiro extends javax.swing.JFrame
 	    gms = SI.getGms();
 	    PrintPlayers();
 	    gameStartedFlag = true;
+	    myTurn = false;
 	    Start();
 	}
     }//GEN-LAST:event_JoinGame_Action
@@ -2946,7 +2948,9 @@ public class Parathiro extends javax.swing.JFrame
     }//GEN-LAST:event_StopGame_Action
 
     private void ExitGame_Action(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitGame_Action
-	StopGame_Action(evt);
+	try {
+	    SI.terminate();
+	} catch (IOException ex) { }
 	this.dispose();
     }//GEN-LAST:event_ExitGame_Action
 
@@ -3046,11 +3050,15 @@ public class Parathiro extends javax.swing.JFrame
                 {
 		    System.out.println("Game Ended");
 		    gameStartedFlag = false;
+		    jMenuItem2.setEnabled(false);
+		    jMenuItem1.setEnabled(true);
 		}
 	    }
 	} catch (IOException | ClassNotFoundException ex) {
 	    System.out.println("Something went worng... Game ended!");
 	    gameStartedFlag = false;
+	    jMenuItem2.setEnabled(false);
+	    jMenuItem1.setEnabled(true);
 	}
     }
 
