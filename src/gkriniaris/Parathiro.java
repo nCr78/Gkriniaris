@@ -66,7 +66,7 @@ public class Parathiro extends javax.swing.JFrame {
 	System.setOut(printStream);
 	System.setErr(printStream);
 
-	Circle kiklos_prasino = new Circle();
+	kiklos_prasino = new Circle();
 	jPanel70.add(kiklos_prasino);
 	jPanel70.setPreferredSize(new Dimension(40, 40));
 
@@ -83,7 +83,7 @@ public class Parathiro extends javax.swing.JFrame {
 			.addGap(0, 0, 0))
 	);
 
-	Circle kiklos_kokino = new Circle();
+	kiklos_kokino = new Circle();
 	jPanel16.add(kiklos_kokino);
 	jPanel16.setPreferredSize(new Dimension(40, 40));
 
@@ -100,7 +100,7 @@ public class Parathiro extends javax.swing.JFrame {
 			.addGap(0, 0, 0))
 	);
 
-	Circle kiklos_ble = new Circle();
+	kiklos_ble = new Circle();
 	jPanel78.add(kiklos_ble);
 	jPanel78.setPreferredSize(new Dimension(40, 40));
 
@@ -117,7 +117,7 @@ public class Parathiro extends javax.swing.JFrame {
 			.addGap(0, 0, 0))
 	);
 
-	Circle kiklos_kitrino = new Circle();
+	kiklos_kitrino = new Circle();
 	jPanel35.add(kiklos_kitrino);
 	jPanel35.setPreferredSize(new Dimension(40, 40));
 
@@ -134,7 +134,7 @@ public class Parathiro extends javax.swing.JFrame {
 			.addGap(0, 0, 0))
 	);
 
-	Star star_prasino = new Star();
+	star_prasino = new Star();
 	jPanel63.add(star_prasino);
 	jPanel63.setPreferredSize(new Dimension(40, 40));
 
@@ -151,7 +151,7 @@ public class Parathiro extends javax.swing.JFrame {
 			.addGap(0, 0, 0))
 	);
 
-	Star star_kokino = new Star();
+	star_kokino = new Star();
 	jPanel21.add(star_kokino);
 	jPanel21.setPreferredSize(new Dimension(40, 40));
 
@@ -168,7 +168,7 @@ public class Parathiro extends javax.swing.JFrame {
 			.addGap(0, 0, 0))
 	);
 
-	Star star_ble = new Star();
+	star_ble = new Star();
 	jPanel89.add(star_ble);
 	jPanel89.setPreferredSize(new Dimension(40, 40));
 
@@ -185,7 +185,7 @@ public class Parathiro extends javax.swing.JFrame {
 			.addGap(0, 0, 0))
 	);
 
-	Star star_kitrino = new Star();
+	star_kitrino = new Star();
 	jPanel30.add(star_kitrino);
 	jPanel30.setPreferredSize(new Dimension(40, 40));
 
@@ -583,33 +583,41 @@ public class Parathiro extends javax.swing.JFrame {
     private void addClickListener(final Pawn p) {
 	p.addMouseListener(new java.awt.event.MouseAdapter() {
 	    @Override
-	    public void mouseClicked(java.awt.event.MouseEvent evt) {
-//                 System.out.println("lala");
+	    public void mouseClicked(java.awt.event.MouseEvent evt) 
+            {
+                StartGame(p);
+	    }
+	});
+    }
+
+    private void StartGame(Pawn p)
+    {
                 Star temp = null;
                 Circle temp2 = null;
                 boolean removed_s = false;
                 boolean removed_c = false;
                 boolean moved = true;
+                int extra_moves = 0;
                 diceRolled = new Dice((int) (Math.random() * 1 + 1));
                 int compCount = Tablo.get(p.getPosition()+diceRolled.getDie1()).getComponentCount();
                 System.out.println("Dice: "+diceRolled.getDie1());
-                for(int y=0; y<compCount;y++)
-                {
-                    if(Tablo.get(p.getPosition()+diceRolled.getDie1()).getComponent(y) instanceof Star)
-                        {
-                            temp = (Star) Tablo.get(p.getPosition()+diceRolled.getDie1()).getComponent(y);
-                            Tablo.get(p.getPosition()+diceRolled.getDie1()).remove(y);
-                            removed_s = true;
-                            compCount--;
-                        }
-                    else if(Tablo.get(p.getPosition()+diceRolled.getDie1()).getComponent(y) instanceof Circle)
-                        {
-                            temp2 = (Circle) Tablo.get(p.getPosition()+diceRolled.getDie1()).getComponent(y);
-                            Tablo.get(p.getPosition()+diceRolled.getDie1()).remove(y);
-                            removed_c = true;
-                            compCount--;
-                        }
-                }
+//                for(int y=0; y<compCount;y++)
+//                {
+//                    if(Tablo.get(p.getPosition()+diceRolled.getDie1()).getComponent(y) instanceof Star)
+//                        {
+//                            temp = (Star) Tablo.get(p.getPosition()+diceRolled.getDie1()).getComponent(y);
+//                            Tablo.get(p.getPosition()+diceRolled.getDie1()).remove(y);
+//                            removed_s = true;
+//                            compCount--;
+//                        }
+//                    else if(Tablo.get(p.getPosition()+diceRolled.getDie1()).getComponent(y) instanceof Circle)
+//                        {
+//                            temp2 = (Circle) Tablo.get(p.getPosition()+diceRolled.getDie1()).getComponent(y);
+//                            Tablo.get(p.getPosition()+diceRolled.getDie1()).remove(y);
+//                            removed_c = true;
+//                            compCount--;
+//                        }
+//                }
                 if((!Started_Pawns.contains(p))&&diceRolled.getDie1()==1)
                 {
                     if(p.getColor()==0)
@@ -650,9 +658,9 @@ public class Parathiro extends javax.swing.JFrame {
                     Pawn p4 = null;
                     for(int i=p.getPosition()+1; i<newPosition; i++)
                     {
-                        System.out.println("Posi: "+i);
+//                        System.out.println("Posi: "+i);
                         compCount2 = Tablo.get(i).getComponentCount();
-                        System.out.println(compCount2);
+//                        System.out.println(compCount2);
                         if(compCount2>0)
                         {
                             countPawns=0;
@@ -669,7 +677,7 @@ public class Parathiro extends javax.swing.JFrame {
                             }
                         }
                     }
-                    System.out.println("Pawns: "+countPawns);
+//                    System.out.println("Pawns: "+countPawns);
                     if(pass)
                     {
                         Tablo.get(newPosition).add(p);
@@ -691,6 +699,7 @@ public class Parathiro extends javax.swing.JFrame {
                 {
                     Pawn p2 = null;
                     boolean same_color = true;
+                    boolean special = false;
                     for(int i=0; i<compCount; i++)
                     {
                         
@@ -702,8 +711,17 @@ public class Parathiro extends javax.swing.JFrame {
                                 same_color = false;
                             }
                         }
+                        else if(Tablo.get(p.getPosition()+diceRolled.getDie1()).getComponent(i) instanceof Star)
+                        {
+                            extra_moves=13;
+                        }
+                        else if(Tablo.get(p.getPosition()+diceRolled.getDie1()).getComponent(i) instanceof Circle)
+                        {
+                            special = true;
+                        }
                     }
-                    if(!same_color)
+                    
+                    if(!special&&!same_color)
                     {
                         if(p2.getColor()==0)
                         {
@@ -727,37 +745,50 @@ public class Parathiro extends javax.swing.JFrame {
                         }
                         Started_Pawns.remove(p2);
                     }
-                    Tablo.get(p.getPosition()+diceRolled.getDie1()).add(p);
-                    p.setPosition(p.getPosition()+diceRolled.getDie1());
+                    Tablo.get(p.getPosition()+diceRolled.getDie1()+extra_moves).add(p);
+                    p.setPosition(p.getPosition()+diceRolled.getDie1()+extra_moves);
                 }
                 else if (Started_Pawns.contains(p)&&compCount>1)
                 {
                     Pawn p4 = null;
-                    
                     boolean same_color = true;
+                    boolean special = false;
                     int compCount2 = 0;
                     for(int i=0; i<compCount; i++)
                     {
                         if(Tablo.get(p.getPosition()+diceRolled.getDie1()).getComponent(i) instanceof Pawn)
+                        {
+                            p4 = (Pawn) Tablo.get(p.getPosition()+diceRolled.getDie1()).getComponent(i);
+                            if(p4.getColor()!=p.getColor())
                             {
-                                p4 = (Pawn) Tablo.get(p.getPosition()+diceRolled.getDie1()).getComponent(i);
-                                if(p4.getColor()!=p.getColor())
-                                {
-                                    same_color = false;
-                                }
-                                compCount2++;
+                                same_color = false;
                             }
+                            compCount2++;
+                        }
+                        else if(Tablo.get(p.getPosition()+diceRolled.getDie1()).getComponent(i) instanceof Star)
+                        {
+                            extra_moves = 13;
+                        }
+                        else if(Tablo.get(p.getPosition()+diceRolled.getDie1()).getComponent(i) instanceof Circle)
+                        {
+                            special = true;
+                        }
+                        
+                        
                     }
                     
-                    if(same_color)
+                    
+                    if(same_color||special)
                     {
-                        Tablo.get(p.getPosition()+diceRolled.getDie1()).add(p);
-                        p.setPosition(p.getPosition()+diceRolled.getDie1());
+                        System.out.println("worked");
+                        Tablo.get(p.getPosition()+diceRolled.getDie1()+extra_moves).add(p);
+                        p.setPosition(p.getPosition()+diceRolled.getDie1()+extra_moves);
                     }
                     else if(compCount2==1)
                     {
-                        Tablo.get(p.getPosition()+diceRolled.getDie1()).add(p);
-                        p.setPosition(p.getPosition()+diceRolled.getDie1());
+                        System.out.println("nope");
+                        Tablo.get(p.getPosition()+diceRolled.getDie1()+extra_moves).add(p);
+                        p.setPosition(p.getPosition()+diceRolled.getDie1()+extra_moves);
                         if(p4.getColor()==0)
                         {
                             Start_End_Prasina.get(p4.getStart()).add(p4);
@@ -783,26 +814,43 @@ public class Parathiro extends javax.swing.JFrame {
                         System.out.println("You can't go there!");
                     }
                 }
-                if(removed_s)
-                {
-                    if(moved)
-                    {Tablo.get(p.getPosition()+diceRolled.getDie1()-1).add(temp);}
-                    else
-                    {Tablo.get(p.getPosition()+diceRolled.getDie1()).add(temp);}
-                }
-                else if(removed_c)
-                {
-                    if(moved)
-                    {Tablo.get(p.getPosition()+diceRolled.getDie1()-1).add(temp2);}
-                    else
-                    {Tablo.get(p.getPosition()+diceRolled.getDie1()).add(temp2);}
-                }
+//                if(removed_s)
+//                {
+//                    if(moved)
+//                    {Tablo.get(p.getPosition()+diceRolled.getDie1()-1-extra_moves).add(temp);}
+//                    else
+//                    {Tablo.get(p.getPosition()+diceRolled.getDie1()).add(temp);}
+//                }
+//                else if(removed_c)
+//                {
+//                    if(moved)
+//                    {Tablo.get(p.getPosition()+diceRolled.getDie1()-1).add(temp2);}
+//                    else
+//                    {Tablo.get(p.getPosition()+diceRolled.getDie1()).add(temp2);}
+//                }
+                resetObj();
                 repaint();
                 revalidate();
-	    }
-	});
     }
-
+    private void resetObj()
+    {
+        jPanel63.remove(star_prasino);
+        jPanel70.remove(kiklos_prasino);
+        jPanel21.remove(star_kokino);
+        jPanel16.remove(kiklos_kokino);
+        jPanel89.remove(star_ble); 
+        jPanel78.remove(kiklos_ble); 
+        jPanel30.remove(star_kitrino);
+        jPanel35.remove(kiklos_kitrino);
+        jPanel63.add(star_prasino);
+        jPanel70.add(kiklos_prasino);
+        jPanel21.add(star_kokino);
+        jPanel16.add(kiklos_kokino);
+        jPanel89.add(star_ble); 
+        jPanel78.add(kiklos_ble); 
+        jPanel30.add(star_kitrino);
+        jPanel35.add(kiklos_kitrino);
+    }
     private void initList() {
 	//ARXI prasinou
 	Tablo.add(jPanel59);
@@ -908,6 +956,12 @@ public class Parathiro extends javax.swing.JFrame {
 	Start_End_Kitrina.add(jPanel34);
 	Start_End_Kitrina.add(jPanel31);
 	Start_End_Kitrina.add(jPanel28);
+        
+        //STAR JUMPS
+        Stars.add(jPanel63);
+        Stars.add(jPanel21);
+        Stars.add(jPanel89);
+        Stars.add(jPanel30);
     }
 
     /**
@@ -3087,22 +3141,21 @@ public class Parathiro extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
 	 * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
 	 */
-	try {
-	    for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-		if ("Nimbus".equals(info.getName())) {
+	try 
+        {
+	    for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) 
+            {
+		if ("Nimbus".equals(info.getName())) 
+                {
 		    javax.swing.UIManager.setLookAndFeel(info.getClassName());
 		    break;
 		}
 	    }
-	} catch (ClassNotFoundException ex) {
-	    java.util.logging.Logger.getLogger(Parathiro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-	} catch (InstantiationException ex) {
-	    java.util.logging.Logger.getLogger(Parathiro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-	} catch (IllegalAccessException ex) {
-	    java.util.logging.Logger.getLogger(Parathiro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-	} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-	    java.util.logging.Logger.getLogger(Parathiro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 	}
+        catch (ClassNotFoundException ex) {} 
+        catch (InstantiationException ex) {} 
+        catch (IllegalAccessException ex) {}
+        catch (javax.swing.UnsupportedLookAndFeelException ex) {}
         //</editor-fold>
 
 	/* Create and display the form */
@@ -3122,6 +3175,7 @@ public class Parathiro extends javax.swing.JFrame {
     private ArrayList<JPanel> Start_End_Kokina = new ArrayList<JPanel>();
     private ArrayList<JPanel> Start_End_Ble = new ArrayList<JPanel>();
     private ArrayList<JPanel> Start_End_Kitrina = new ArrayList<JPanel>();
+    private ArrayList<JPanel> Stars = new ArrayList<JPanel>();
     private ArrayList<Pawn> Started_Pawns = new ArrayList<Pawn>();
     private ServerInterface SI = null;
     private GameKeeper gk;
@@ -3149,6 +3203,14 @@ public class Parathiro extends javax.swing.JFrame {
     private Pawn pawn_kitrino2;
     private Pawn pawn_kitrino3;
     private Pawn pawn_kitrino4;
+    private Star star_prasino;
+    private Star star_kokino;
+    private Star star_ble;
+    private Star star_kitrino;
+    private Circle kiklos_prasino;
+    private Circle kiklos_kokino;
+    private Circle kiklos_ble;
+    private Circle kiklos_kitrino;
     private RotatePanel kentrikoRGBY;
     private RotatePanel fouf;
     private RotatePanel fouf2;
