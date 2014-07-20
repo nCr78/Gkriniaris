@@ -121,6 +121,10 @@ public class Pawn extends JPanel implements Serializable {
 	this.position = position;
     }
     
+    public String toString(){
+	return prevPosition+" => "+position+" : "+color+" - "+getPlayerName();
+    }
+    
     @Override
     public void paintComponent(Graphics g) 
     {
