@@ -3129,6 +3129,7 @@ public class Parathiro extends javax.swing.JFrame
 //                Started_Pawns.add(pawn);
 //                Start_Prasina.get(pawn.getStart()).removeAll();
 //            }
+//            GameLogic(pawn, new Dice(SI.getDice().getDie1()-remove_points), Prasini_Lista);    
             GameLogic(pawn, SI.getDice(), Prasini_Lista);
         }
         else if(pawn.getColor()==1)
@@ -3143,6 +3144,7 @@ public class Parathiro extends javax.swing.JFrame
 //                Started_Pawns.add(pawn);
 //                Start_Kokina.get(pawn.getStart()).removeAll();
 //            }
+//            GameLogic(pawn, new Dice(SI.getDice().getDie1()-remove_points), Kokini_Lista);
             GameLogic(pawn,SI.getDice(), Kokini_Lista);
         }
         else if(pawn.getColor()==2)
@@ -3157,6 +3159,7 @@ public class Parathiro extends javax.swing.JFrame
 //                Started_Pawns.add(pawn);
 //                Start_Ble.get(pawn.getStart()).removeAll();
 //            }
+//            GameLogic(pawn, new Dice(SI.getDice().getDie1()-remove_points), Ble_Lista);
             GameLogic(pawn, SI.getDice(), Ble_Lista);
         }
         else if(pawn.getColor()==3)
@@ -3173,6 +3176,7 @@ public class Parathiro extends javax.swing.JFrame
 //                Started_Pawns.add(pawn);
 //                Start_Kitrina.get(pawn.getStart()).removeAll();
 //            }
+//            GameLogic(pawn, new Dice(SI.getDice().getDie1()-remove_points), Kitrini_Lista);
             GameLogic(pawn, SI.getDice(), Kitrini_Lista);
         }
         
