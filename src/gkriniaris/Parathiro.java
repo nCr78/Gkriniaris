@@ -55,7 +55,7 @@ public class Parathiro extends javax.swing.JFrame
 	placePawns();
 	initList();
 	addListeners();
-	System.out.println("Hello!");
+	System.out.println("Greetings!");
     }
 
     private void initComplex() {
@@ -599,7 +599,7 @@ public class Parathiro extends javax.swing.JFrame
             }
 	});
     }
-
+    //DO NOT FUCKING FORMAT <ANYTHING>, I SWEAR ILL RELEASE 100 HUNGRY MICE TO EAT YOU SLOWLY! JUST FIX THE GODDAMN SERVER, YOU HAVE ONE JOB MAN, ONE!
     private void GameLogic(Pawn p, Dice diceRolled, ArrayList<JPanel> Tablo)
     {
                 int extra_moves = 0;
@@ -608,13 +608,14 @@ public class Parathiro extends javax.swing.JFrame
                 int compCount = Tablo.get(p.getPosition()+diceRolled.getDie1()).getComponentCount();
                 System.out.println("Dice: "+diceRolled.getDie1());
                 
-                if((!Started_Pawns.contains(p))&&diceRolled.getDie1()==1)
+                if((!Started_Pawns.contains(p))&&diceRolled.getDie1()==1)//STARTING AREA
                 {
                     p.setPosition(0);
                     Tablo.get(0).add(p);
                     Started_Pawns.add(p);
                 }
-                else if(Started_Pawns.contains(p)&&compCount<1)
+                //DO NOT FUCKING FORMAT <ANYTHING>, I SWEAR ILL RELEASE 100 HUNGRY MICE TO EAT YOU SLOWLY! JUST FIX THE GODDAMN SERVER, YOU HAVE ONE JOB MAN, ONE!
+                else if(Started_Pawns.contains(p)&&compCount<1)//An einai keno to panel pou thelei na paei
                 {
                     int compCount2 = 0;
                     int countPawns = 0;
@@ -644,7 +645,8 @@ public class Parathiro extends javax.swing.JFrame
                     else
                     {System.out.println("You can't cross that!");}
                 }
-                else if(Started_Pawns.contains(p)&&compCount==1)
+                //DO NOT FUCKING FORMAT <ANYTHING>, I SWEAR ILL RELEASE 100 HUNGRY MICE TO EAT YOU SLOWLY! JUST FIX THE GODDAMN SERVER, YOU HAVE ONE JOB MAN, ONE!
+                else if(Started_Pawns.contains(p)&&compCount==1)//An to panel pou thelei na paei exei 1 component
                 {
                     Pawn p2 = null;
                     boolean same_color = true;
@@ -672,7 +674,8 @@ public class Parathiro extends javax.swing.JFrame
                     Tablo.get(p.getPosition()+diceRolled.getDie1()+extra_moves).add(p);
                     p.setPosition(p.getPosition()+diceRolled.getDie1()+extra_moves);
                 }
-                else if (Started_Pawns.contains(p)&&compCount>1)
+                //DO NOT FUCKING FORMAT <ANYTHING>, I SWEAR ILL RELEASE 100 HUNGRY MICE TO EAT YOU SLOWLY! JUST FIX THE GODDAMN SERVER, YOU HAVE ONE JOB MAN, ONE!
+                else if (Started_Pawns.contains(p)&&compCount>1)//An to panel pou thelei na paei exei perissotera apo 1 components
                 {
                     Pawn p4 = null;
                     boolean same_color = true;
@@ -709,21 +712,22 @@ public class Parathiro extends javax.swing.JFrame
                     }
                     else{System.out.println("You can't go there!");}
                 }
-                
-                resetObj();
+                //DO NOT FUCKING FORMAT <ANYTHING>, I SWEAR ILL RELEASE 100 HUNGRY MICE TO EAT YOU SLOWLY! JUST FIX THE GODDAMN SERVER, YOU HAVE ONE JOB MAN, ONE!
+                resetObj();//vgazo kai ksanavazo asteria/kiklous gia na paei on-top to pioni
                 repaint();
                 revalidate();
                 }
                 catch (java.lang.IndexOutOfBoundsException e)
                 {
+                    //Dont look at this, dont delete yet
                     //sto asteri paei 0 + 13..
-                    int newPosition = 51 - p.getPosition();
-                    if(extra_moves>0)
-                    {
-                        extra_moves = 7;
-                    }
-                    p.setPosition(newPosition-1-extra_moves);
-                    Tablo.get(newPosition).add(p);
+//                    int newPosition = 51 - p.getPosition();
+//                    if(extra_moves>0)
+//                    {
+//                        extra_moves = 7;
+//                    }
+//                    p.setPosition(newPosition-1-extra_moves);
+//                    Tablo.get(newPosition).add(p);
 //                    GameLogic(p, diceRolled);
                 }
     }
@@ -982,6 +986,7 @@ public class Parathiro extends javax.swing.JFrame
         jMenuItem5 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Gkriniaris");
         setMinimumSize(new java.awt.Dimension(609, 740));
         setPreferredSize(new java.awt.Dimension(590, 740));
         setResizable(false);
