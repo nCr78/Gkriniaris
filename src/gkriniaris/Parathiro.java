@@ -1,5 +1,5 @@
 package gkriniaris;
-// 1
+// 3
 //TODO: gamelocic-> fere sosti zaria gia na beis sta telika koutakia + theseis gia ta pionia sto telos + endgame
 import clientInterface.ServerInterface;
 import commonEntities.Dice;
