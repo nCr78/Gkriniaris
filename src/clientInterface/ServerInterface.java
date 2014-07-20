@@ -43,7 +43,13 @@ public class ServerInterface {
 	this.gmFlag = this.input.readObject().equals("NEW");
 	this.ppl = new ArrayList<>();
     }
-
+    /**
+     * 
+     * @return The the GameSettings, which we got from the server.
+     */
+    public GameSettings getGms() {
+	return gms;
+    }
     /**
      * This function tells the server the players name.
      *
@@ -63,6 +69,7 @@ public class ServerInterface {
      * @throws IOException
      */
     public void init(Player p, GameSettings gm) throws IOException {
+	this.gms = gm;
 	sendToServer(p);
 	sendToServer(gm);
     }

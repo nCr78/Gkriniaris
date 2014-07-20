@@ -1,16 +1,27 @@
 package server;
 
-/**
- *
- * @author tazgr
- */
-public class Main {
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
- * @param args
+ * @author Nikolas
  */
-public static void main(String[] args) {
-    new Server(80);
-}
+public class Main {
+
+    /**
+     * Starts the server.
+     *
+     * @param args No arguments used.
+     */
+    public static void main(String[] args) {
+	try {
+	    new Server(80);
+	} catch (IOException ex) {
+	    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+	} catch (ClassNotFoundException ex) {
+	    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+	}
+    }
 }

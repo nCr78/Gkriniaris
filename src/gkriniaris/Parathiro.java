@@ -21,8 +21,6 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.PriorityQueue;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JCheckBox;
@@ -2894,7 +2892,7 @@ public class Parathiro extends javax.swing.JFrame
 		try {
 		    SI.init(me, gms);
 		} catch (IOException ex) {
-		    Logger.getLogger(Parathiro.class.getName()).log(Level.SEVERE, null, ex);
+		    System.out.println("Error in initialization!");
 		}
 	    } 
             else 
@@ -2906,22 +2904,22 @@ public class Parathiro extends javax.swing.JFrame
 		try 
                 {
 		    SI.init(me);
-                    SI.sync();
-                    SI.waitForTurn();
 		}
                 catch (IOException | java.lang.NullPointerException ex) 
                 {
-		    System.out.println("Something went wrong in the server comunication");
+		    System.out.println("Error in initialization!");
 		} 
-                catch (ClassNotFoundException ex) {}
 	    }
 	    jMenuItem2.setEnabled(true);
 	    jMenuItem1.setEnabled(false);
-	    
+	    try {
+		SI.sync();
+	    } catch (IOException | ClassNotFoundException ex) {
+		System.out.println("Error in sync!");
+	    }
+	    gms = SI.getGms();
 	    PrintPlayers();
-	    //Init GameKeeper™
-//	    gk = new GameKeeper(me, SI.getPlayers(), gms);
-//	    Start();
+	    Start();
 	}
     }//GEN-LAST:event_JoinGame_Action
 
@@ -2981,6 +2979,10 @@ public class Parathiro extends javax.swing.JFrame
     }//GEN-LAST:event_About_Action
 
     public void PrintPlayers() {
+	System.out.print("The game settings are: ");
+	System.out.println(gms.getPlayers()+
+		" Player game with "+gms.getNumberPawns()+
+		" pawns.");
 	System.out.println("Player Connected in game: ");
 	for (Player p : SI.getPlayers()) {
 	    System.out.print("\t" + p.getName() + " : ");
@@ -3044,7 +3046,6 @@ public class Parathiro extends javax.swing.JFrame
 		+ pawn.getPrevPosition()
 		+ " to  "
 		+ pawn.getPosition());
-	gk.playMove(pawn, diceRolled);
 	//Edo kaneis ta dika sou gia na kanei update to board me to kainourgio move
 	//somehow...
     }
@@ -3095,7 +3096,6 @@ public class Parathiro extends javax.swing.JFrame
     private ArrayList<JPanel> Stars = new ArrayList<JPanel>();
     private ArrayList<Pawn> Started_Pawns = new ArrayList<Pawn>();
     private ServerInterface SI = null;
-    private GameKeeper gk;
     private boolean playingFlag;
     private boolean gameStartedFlag;
     private boolean myTurn;
