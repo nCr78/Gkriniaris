@@ -783,8 +783,20 @@ public class Parathiro extends javax.swing.JFrame {
                         System.out.println("You can't go there!");
                     }
                 }
-                if(moved&&removed_s){Tablo.get(p.getPosition()+diceRolled.getDie1()-1).add(temp);}
-                else if(moved&&removed_c){Tablo.get(p.getPosition()+diceRolled.getDie1()-1).add(temp2);}
+                if(removed_s)
+                {
+                    if(moved)
+                    {Tablo.get(p.getPosition()+diceRolled.getDie1()-1).add(temp);}
+                    else
+                    {Tablo.get(p.getPosition()+diceRolled.getDie1()).add(temp);}
+                }
+                else if(removed_c)
+                {
+                    if(moved)
+                    {Tablo.get(p.getPosition()+diceRolled.getDie1()-1).add(temp2);}
+                    else
+                    {Tablo.get(p.getPosition()+diceRolled.getDie1()).add(temp2);}
+                }
                 repaint();
                 revalidate();
 	    }
