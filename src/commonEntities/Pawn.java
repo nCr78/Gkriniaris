@@ -55,20 +55,6 @@ public class Pawn extends JPanel implements Serializable {
 	this.prevPosition = prevPosition;
     }
 
-    public void setPawn(Pawn pawn)
-    {
-        this.Start = pawn.getStart();
-        this.color = pawn.getColor();
-        this.position = pawn.getPosition();
-        this.playerName = pawn.getPlayerName();
-        this.prevPosition = pawn.getPrevPosition();
-    }
-    
-    public Pawn getPawn()
-    {
-        return this;
-    }
-    
     public int getPrevPosition() {
 	return prevPosition;
     }
