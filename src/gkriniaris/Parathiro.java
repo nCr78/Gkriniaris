@@ -22,6 +22,8 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.PriorityQueue;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JCheckBox;
@@ -620,13 +622,19 @@ public class Parathiro extends javax.swing.JFrame
 		    if(p.getColor()==1){GameLogic(p, diceRolled, Kokini_Lista);}
 		    if(p.getColor()==2){GameLogic(p, diceRolled, Ble_Lista);}
 		    if(p.getColor()==3){GameLogic(p, diceRolled, Kitrini_Lista);}
+                    repaint(1L);
+//                    try {
+//                        thread.wait();
+//                    } catch (InterruptedException ex) {}
+                    
 		    //My thing here....
 		    try	{ SI.updatePawn(diceRolled, p); }
 		    catch (IOException ex) {System.out.println("Failed to update server...");}
 		    System.out.println("\t=> Your Turn ended. <=");
-		    Start();
-                    repaint();
+//		    notifyAll();
                     revalidate();
+                    Start();
+                    
 		}
             }
 	});
@@ -746,7 +754,7 @@ public class Parathiro extends javax.swing.JFrame
                 }
                 //DO NOT FUCKING FORMAT <ANYTHING>, I SWEAR ILL RELEASE 100 HUNGRY MICE TO EAT YOU SLOWLY! JUST FIX THE GODDAMN SERVER, YOU HAVE ONE JOB MAN, ONE!
                 resetObj();//vgazo kai ksanavazo asteria/kiklous gia na paei on-top to pioni
-                repaint();
+                repaint(1L);
                 revalidate();
                 }
                 catch (java.lang.IndexOutOfBoundsException e)
@@ -2957,16 +2965,16 @@ public class Parathiro extends javax.swing.JFrame
 	    gameStartedFlag = true;
 	    myTurn = false;
             
-	    Start();
             placePawns(player_num);
             addListeners(player_num);
             for(int i=0; i<SI.getPlayers().size();i++)
             {
                 if(SI.getPlayers().get(i).getColor()!=player_num){placePawns(SI.getPlayers().get(i).getColor());}
             }
-            
-            repaint();
+            repaint(1L);
             revalidate();
+	    Start();
+            
 	}
     }//GEN-LAST:event_JoinGame_Action
 
@@ -3209,7 +3217,7 @@ public class Parathiro extends javax.swing.JFrame
         //</editor-fold>
 
 	/* Create and display the form */
-	java.awt.EventQueue.invokeLater(new Runnable() {
+	thread = new Thread(new Runnable() {
 	    @Override
 	    public void run() {
 		p = new Parathiro();
@@ -3218,8 +3226,11 @@ public class Parathiro extends javax.swing.JFrame
 		p.setVisible(true);
 	    }
 	});
+    thread.start();
     }
+    
 //    private String name;
+    private static Thread thread;
     private ArrayList<JPanel> Prasini_Lista = new ArrayList<JPanel>();
     private ArrayList<JPanel> Kokini_Lista = new ArrayList<JPanel>();
     private ArrayList<JPanel> Ble_Lista = new ArrayList<JPanel>();
