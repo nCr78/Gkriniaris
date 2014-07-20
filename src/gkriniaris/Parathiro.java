@@ -51,9 +51,9 @@ public class Parathiro extends javax.swing.JFrame
 
 	initComponents();
 	initComplex();
-	placePawns();
+	
 	initList();
-	addListeners();
+        
 	System.out.println("Greetings!");
     }
 
@@ -438,10 +438,12 @@ public class Parathiro extends javax.swing.JFrame
 	);
     }
 
-    private void placePawns() {
+    private void placePawns(int color) {
         //final Pawn Focused = new Pawn(Color.darkGray, "focus", 0);
 
 	//allos tropos: layered pane se kathe panel pou exo...same lines of code or what?...-_-
+        if(color==0)
+        {
 	pawn_prasino = new Pawn(0, 0, "Prasinos");
 	pawn_prasino2 = new Pawn(0, 1, "Prasinos2");
         pawn_prasino3 = new Pawn(0, 2, "Prasinos3");
@@ -458,7 +460,10 @@ public class Parathiro extends javax.swing.JFrame
 	katoPrasino.add(pawn_prasino2, BorderLayout.CENTER);
 	deksiaPrasino.add(pawn_prasino3, BorderLayout.CENTER);
 	aristeraPrasino.add(pawn_prasino4, BorderLayout.CENTER);
-
+        }
+        
+        if(color==1)
+        {
 	pawn_kokino = new Pawn(1, 0, "Kokinos");
 	pawn_kokino2 = new Pawn(1, 1, "Kokinos2");
 	pawn_kokino3 = new Pawn(1, 2, "Kokinos3");
@@ -475,7 +480,10 @@ public class Parathiro extends javax.swing.JFrame
 	katoKokino.add(pawn_kokino2, BorderLayout.CENTER);
 	deksiaKokino.add(pawn_kokino3, BorderLayout.CENTER);
 	aristeraKokino.add(pawn_kokino4, BorderLayout.CENTER);
-
+        }
+        
+        if(color==2)
+        {
 	pawn_ble = new Pawn(2, 0, "Ble");
 	pawn_ble2 = new Pawn(2, 1, "Ble2");
 	pawn_ble3 = new Pawn(2, 2, "Ble3");
@@ -492,7 +500,10 @@ public class Parathiro extends javax.swing.JFrame
 	katoBle.add(pawn_ble2, BorderLayout.CENTER);
 	deksiaBle.add(pawn_ble3, BorderLayout.CENTER);
 	aristeraBle.add(pawn_ble4, BorderLayout.CENTER);
-
+        }
+        
+        if(color==3)
+        {
 	pawn_kitrino = new Pawn(3, 0, "Kitrino");
 	pawn_kitrino2 = new Pawn(3, 1, "Kitrino2");
 	pawn_kitrino3 = new Pawn(3, 2, "Kitrino3");
@@ -509,9 +520,12 @@ public class Parathiro extends javax.swing.JFrame
 	katoKitrino.add(pawn_kitrino2, BorderLayout.CENTER);
 	deksiaKitrino.add(pawn_kitrino3, BorderLayout.CENTER);
 	aristeraKitrino.add(pawn_kitrino4, BorderLayout.CENTER);
+        }
     }
 
-    private void addListeners() {
+    private void addListeners(int color) {
+        if(color==0)
+        {
 	addMouseListener(pawn_prasino);
 	addMouseListener(pawn_prasino2);
 	addMouseListener(pawn_prasino3);
@@ -520,7 +534,10 @@ public class Parathiro extends javax.swing.JFrame
 	addClickListener(pawn_prasino2);
 	addClickListener(pawn_prasino3);
 	addClickListener(pawn_prasino4);
-
+        }
+        
+        if(color==1)
+        {
 	addMouseListener(pawn_kokino);
 	addMouseListener(pawn_kokino2);
 	addMouseListener(pawn_kokino3);
@@ -529,7 +546,10 @@ public class Parathiro extends javax.swing.JFrame
 	addClickListener(pawn_kokino2);
 	addClickListener(pawn_kokino3);
 	addClickListener(pawn_kokino4);
-
+        }
+        
+        if(color==2)
+        {
 	addMouseListener(pawn_ble);
 	addMouseListener(pawn_ble2);
 	addMouseListener(pawn_ble3);
@@ -538,7 +558,10 @@ public class Parathiro extends javax.swing.JFrame
 	addClickListener(pawn_ble2);
 	addClickListener(pawn_ble3);
 	addClickListener(pawn_ble4);
-
+        }
+        
+        if(color==3)
+        {
 	addMouseListener(pawn_kitrino);
 	addMouseListener(pawn_kitrino2);
 	addMouseListener(pawn_kitrino3);
@@ -547,6 +570,7 @@ public class Parathiro extends javax.swing.JFrame
 	addClickListener(pawn_kitrino2);
 	addClickListener(pawn_kitrino3);
 	addClickListener(pawn_kitrino4);
+        }
     }
 
     public void paint(HashMap<Integer, PriorityQueue<Pawn>> kati) {
@@ -601,6 +625,8 @@ public class Parathiro extends javax.swing.JFrame
 		    catch (IOException ex) {System.out.println("Failed to update server...");}
 		    System.out.println("\t=> Your Turn ended. <=");
 		    Start();
+                    repaint();
+                    revalidate();
 		}
             }
 	});
@@ -670,10 +696,10 @@ public class Parathiro extends javax.swing.JFrame
                     
                     if(!special&&!same_color)
                     {
-                        if(p2.getColor()==0){Start_End_Prasina.get(p2.getStart()).add(p2);}
-                        else if(p2.getColor()==1){Start_End_Kokina.get(p2.getStart()).add(p2);}
-                        else if(p2.getColor()==2){Start_End_Ble.get(p2.getStart()).add(p2);}
-                        else if(p2.getColor()==3){Start_End_Kitrina.get(p2.getStart()).add(p2);}
+                        if(p2.getColor()==0){Start_Prasina.get(p2.getStart()).add(p2);}
+                        else if(p2.getColor()==1){Start_Kokina.get(p2.getStart()).add(p2);}
+                        else if(p2.getColor()==2){Start_Ble.get(p2.getStart()).add(p2);}
+                        else if(p2.getColor()==3){Start_Kitrina.get(p2.getStart()).add(p2);}
                         p2.setPosition(p2.getStart());
                         Started_Pawns.remove(p2);
                     }
@@ -709,10 +735,10 @@ public class Parathiro extends javax.swing.JFrame
                         System.out.println("nope");
                         Tablo.get(p.getPosition()+diceRolled.getDie1()+extra_moves).add(p);
                         p.setPosition(p.getPosition()+diceRolled.getDie1()+extra_moves);
-                        if(p4.getColor()==0){Start_End_Prasina.get(p4.getStart()).add(p4);}
-                        else if(p4.getColor()==1){Start_End_Kokina.get(p4.getStart()).add(p4);}
-                        else if(p4.getColor()==2){Start_End_Ble.get(p4.getStart()).add(p4);}
-                        else if(p4.getColor()==3){Start_End_Kitrina.get(p4.getStart()).add(p4);}
+                        if(p4.getColor()==0){Start_Prasina.get(p4.getStart()).add(p4);}
+                        else if(p4.getColor()==1){Start_Kokina.get(p4.getStart()).add(p4);}
+                        else if(p4.getColor()==2){Start_Ble.get(p4.getStart()).add(p4);}
+                        else if(p4.getColor()==3){Start_Kitrina.get(p4.getStart()).add(p4);}
                         p4.setPosition(p4.getStart());
                         Started_Pawns.remove(p4);
                     }
@@ -851,29 +877,29 @@ public class Parathiro extends javax.swing.JFrame
         
         
 	//Start prasina
-        Start_End_Prasina.add(panoPrasino);
-        Start_End_Prasina.add(katoPrasino);
-        Start_End_Prasina.add(deksiaPrasino);
-        Start_End_Prasina.add(aristeraPrasino);
+        Start_Prasina.add(panoPrasino);
+        Start_Prasina.add(katoPrasino);
+        Start_Prasina.add(deksiaPrasino);
+        Start_Prasina.add(aristeraPrasino);
 
 	//Start kokina
-        Start_End_Kokina.add(panoKokino);
-        Start_End_Kokina.add(katoKokino);
-        Start_End_Kokina.add(deksiaKokino);
-        Start_End_Kokina.add(aristeraKokino);
+        Start_Kokina.add(panoKokino);
+        Start_Kokina.add(katoKokino);
+        Start_Kokina.add(deksiaKokino);
+        Start_Kokina.add(aristeraKokino);
 
 	//Start ble
-        Start_End_Ble.add(panoBle);
-        Start_End_Ble.add(katoBle);
-        Start_End_Ble.add(deksiaBle);
-        Start_End_Ble.add(aristeraBle);
+        Start_Ble.add(panoBle);
+        Start_Ble.add(katoBle);
+        Start_Ble.add(deksiaBle);
+        Start_Ble.add(aristeraBle);
         
 
 	//Start kitrina
-        Start_End_Kitrina.add(panoKitrino);
-        Start_End_Kitrina.add(katoKitrino);
-        Start_End_Kitrina.add(deksiaKitrino);
-        Start_End_Kitrina.add(aristeraKitrino);
+        Start_Kitrina.add(panoKitrino);
+        Start_Kitrina.add(katoKitrino);
+        Start_Kitrina.add(deksiaKitrino);
+        Start_Kitrina.add(aristeraKitrino);
         
         
         //STAR JUMPS
@@ -2918,6 +2944,7 @@ public class Parathiro extends javax.swing.JFrame
 		    System.out.println("Error in initialization!");
 		} 
 	    }
+            
 	    jMenuItem2.setEnabled(true);
 	    jMenuItem1.setEnabled(false);
 	    try {
@@ -2929,7 +2956,17 @@ public class Parathiro extends javax.swing.JFrame
 	    PrintPlayers();
 	    gameStartedFlag = true;
 	    myTurn = false;
+            
 	    Start();
+            placePawns(player_num);
+            addListeners(player_num);
+            for(int i=0; i<SI.getPlayers().size();i++)
+            {
+                if(SI.getPlayers().get(i).getColor()!=player_num){placePawns(SI.getPlayers().get(i).getColor());}
+            }
+            
+            repaint();
+            revalidate();
 	}
     }//GEN-LAST:event_JoinGame_Action
 
@@ -3042,7 +3079,7 @@ public class Parathiro extends javax.swing.JFrame
 		    myTurn = true;
 		    playingFlag = true;
 		    System.out.println("=> THIS YOUR TURN! <=");
-		    diceRolled = new Dice((int) (Math.random() * 6 + 1));
+		    diceRolled = new Dice((int) (Math.random() * 1 + 1));
 		    System.out.println("You rolled a: " + diceRolled.getDie1());
 		    //Waits for listener
 		} 
@@ -3062,14 +3099,84 @@ public class Parathiro extends javax.swing.JFrame
 	}
     }
 
-    private void updateBoard(Pawn pawn) {
-	System.out.println("Player "
-		+ pawn.getPlayerName()
-		+ " moved a pawn from"
-		+ pawn.getPrevPosition()
-		+ " to  "
-		+ pawn.getPosition());
-	//Edo kaneis ta dika sou gia na kanei update to board me to kainourgio move
+    private void updateBoard(Pawn pawn) 
+    {
+//	System.out.println("Player "
+//		+ pawn.getPlayerName()
+//		+ " moved a pawn from"
+//		+ pawn.getPrevPosition()
+//		+ " to  "
+//		+ pawn.getPosition());
+        //to pawn einai afto pou erxetai apo ton server
+        
+        //get color kai get start ksero pio pioni einai stin diki mou lista, ara to antikathisto
+        
+        //prepei na vrei to pawn, pio pawn einai sto diko mou map!
+//        System.out.println("Name: "+pawn.getName());
+        //girnaei null
+//        if(Prasini_Lista.contains(new Pawn(pawn.getColor(), pawn.getStart(), pawn.getName())))
+//            System.out.println("aaaaaaaa");
+        int remove_points = 0;
+        if(pawn.getColor()==0)
+        {
+                if(pawn.getStart() == 0 && pawn_prasino.getStart()>=0){pawn = pawn_prasino;}
+                else if(pawn.getStart() == 0 && pawn_prasino2.getStart()>=0){pawn = pawn_prasino2;}
+                else if(pawn.getStart() == 0 && pawn_prasino3.getStart()>=0){pawn = pawn_prasino3;}
+                else if(pawn.getStart() == 0 && pawn_prasino4.getStart()>=0){pawn = pawn_prasino4;}
+//            if(!Started_Pawns.contains(pawn)&&SI.getDice().getDie1()==1)
+//            {
+//                remove_points = SI.getDice().getDie1();
+//                Started_Pawns.add(pawn);
+//                Start_Prasina.get(pawn.getStart()).removeAll();
+//            }
+            GameLogic(pawn, SI.getDice(), Prasini_Lista);
+        }
+        else if(pawn.getColor()==1)
+        {
+            if(pawn.getStart() == 0 && pawn_kokino.getStart()>=0){pawn = pawn_kokino;}
+                else if(pawn.getStart() == 0 && pawn_kokino2.getStart()>=0){pawn = pawn_kokino2;}
+                else if(pawn.getStart() == 0 && pawn_kokino3.getStart()>=0){pawn = pawn_kokino3;}
+                else if(pawn.getStart() == 0 && pawn_kokino4.getStart()>=0){pawn = pawn_kokino4;}
+//            if(!Started_Pawns.contains(pawn)&&SI.getDice().getDie1()==1)
+//            {
+//                remove_points = SI.getDice().getDie1();
+//                Started_Pawns.add(pawn);
+//                Start_Kokina.get(pawn.getStart()).removeAll();
+//            }
+            GameLogic(pawn,SI.getDice(), Kokini_Lista);
+        }
+        else if(pawn.getColor()==2)
+        {
+            if(pawn.getStart() == 0 && pawn_ble.getStart()>=0){pawn = pawn_ble;}
+                else if(pawn.getStart() == 0 && pawn_ble2.getStart()>=0){pawn = pawn_ble2;}
+                else if(pawn.getStart() == 0 && pawn_ble3.getStart()>=0){pawn = pawn_ble3;}
+                else if(pawn.getStart() == 0 && pawn_ble4.getStart()>=0){pawn = pawn_ble4;}
+//            if(!Started_Pawns.contains(pawn)&&SI.getDice().getDie1()==1)
+//            {
+//                remove_points = SI.getDice().getDie1();
+//                Started_Pawns.add(pawn);
+//                Start_Ble.get(pawn.getStart()).removeAll();
+//            }
+            GameLogic(pawn, SI.getDice(), Ble_Lista);
+        }
+        else if(pawn.getColor()==3)
+        {
+            
+            if(pawn.getStart() == 0 && pawn_kitrino.getStart()>=0){pawn = pawn_kitrino;}
+            else if(pawn.getStart() == 0 && pawn_kitrino2.getStart()>=0){pawn = pawn_kitrino2;}
+            else if(pawn.getStart() == 0 && pawn_kitrino3.getStart()>=0){pawn = pawn_kitrino3;}
+            else if(pawn.getStart() == 0 && pawn_kitrino4.getStart()>=0){pawn = pawn_kitrino4;}
+            
+//            if(!Started_Pawns.contains(pawn)&&SI.getDice().getDie1()==1)
+//            {
+//                remove_points = SI.getDice().getDie1();
+//                Started_Pawns.add(pawn);
+//                Start_Kitrina.get(pawn.getStart()).removeAll();
+//            }
+            GameLogic(pawn, SI.getDice(), Kitrini_Lista);
+        }
+        
+//Edo kaneis ta dika sou gia na kanei update to board me to kainourgio move
 	//somehow...
     }
 
@@ -3112,10 +3219,10 @@ public class Parathiro extends javax.swing.JFrame
     private ArrayList<JPanel> Kokini_Lista = new ArrayList<JPanel>();
     private ArrayList<JPanel> Ble_Lista = new ArrayList<JPanel>();
     private ArrayList<JPanel> Kitrini_Lista = new ArrayList<JPanel>();
-    private ArrayList<JPanel> Start_End_Prasina = new ArrayList<JPanel>();
-    private ArrayList<JPanel> Start_End_Kokina = new ArrayList<JPanel>();
-    private ArrayList<JPanel> Start_End_Ble = new ArrayList<JPanel>();
-    private ArrayList<JPanel> Start_End_Kitrina = new ArrayList<JPanel>();
+    private ArrayList<JPanel> Start_Prasina = new ArrayList<JPanel>();
+    private ArrayList<JPanel> Start_Kokina = new ArrayList<JPanel>();
+    private ArrayList<JPanel> Start_Ble = new ArrayList<JPanel>();
+    private ArrayList<JPanel> Start_Kitrina = new ArrayList<JPanel>();
     private ArrayList<JPanel> Stars = new ArrayList<JPanel>();
     private ArrayList<Pawn> Started_Pawns = new ArrayList<Pawn>();
     private ServerInterface SI = null;
