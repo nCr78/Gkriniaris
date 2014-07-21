@@ -3137,7 +3137,6 @@ public class Parathiro extends javax.swing.JFrame
 		    gameStartedFlag = false;
 		    jMenuItem2.setEnabled(false);
 		    jMenuItem1.setEnabled(true);
-		    StopGame_Action(null);
 		}
 	    }
 	} catch (IOException | ClassNotFoundException ex) {
