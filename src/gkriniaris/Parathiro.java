@@ -20,6 +20,8 @@ import java.awt.event.MouseMotionListener;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JCheckBox;
@@ -677,6 +679,41 @@ public class Parathiro extends javax.swing.JFrame
     }
     
     /**
+     * Finds if there are specific colored pawns in the board to end game or not.
+     * @param p is the pawn you want to find.
+     * @param Tablo is the specific colored list of the pawn.
+     * @param list is the starting list - area of the pawn.
+     */
+    private void findPawn(Pawn p, ArrayList<JPanel> Tablo, ArrayList<JPanel> list)
+    {
+        Pawn test = null;
+        int count = 0;
+        for(int i=0; i<56; i++)
+        {
+            for(int x = 0; x<Tablo.get(i).getComponentCount();x++)
+            {
+                if(Tablo.get(i).getComponent(x) instanceof Pawn){test = (Pawn) Tablo.get(i).getComponent(x);}
+                if(test.getColor()==p.getColor()){count++;}
+            }
+        }
+
+        for(int i=0; i<4; i++)
+        {
+            for(int x = 0; x<list.get(i).getComponentCount();x++)
+            {
+                if(list.get(i).getComponent(x) instanceof Pawn){test = (Pawn) list.get(i).getComponent(x);}
+                if(test.getColor()==p.getColor()){count++;}
+            }
+        }
+        if(count==0)
+        {
+            try {SI.endGame();} 
+            catch (IOException ex) {} 
+            catch (ClassNotFoundException ex) {}
+        }
+    }
+    
+    /**
      * This function is the game's logic: where can pawns go and not.
      * @param p is the pawn you want to move.
      * @param diceRolled is the move you want to play.
@@ -723,17 +760,19 @@ public class Parathiro extends javax.swing.JFrame
 //                    System.out.println("Pawns: "+countPawns);
                     if(pass)
                     {
-                        if((p.getPosition()+diceRolled.getDie1())<57)
+                        if((p.getPosition()+diceRolled.getDie1())<56)
                         {
                             Tablo.get(newPosition).add(p);
                             p.setPosition(newPosition);
                             return_value = 2;
                         }
-                        else if((p.getPosition()+diceRolled.getDie1())==57)
+                        else if((p.getPosition()+diceRolled.getDie1())==56)
                         {
-                            removeMouseListener(p);
-                            removeClickListener(p);
-                            return_value = 2;
+                            Tablo.get(p.getPosition()+diceRolled.getDie1()+extra_moves).remove(p);
+                            if(p.getColor() == 0){findPawn(p, Tablo, Start_Prasina);}
+                            else if(p.getColor() == 1){findPawn(p, Tablo, Start_Kokina);}
+                            else if(p.getColor() == 2){findPawn(p, Tablo, Start_Ble);}
+                            else if(p.getColor() == 3){findPawn(p, Tablo, Start_Kitrina);}
                         }
                     }
                     else
@@ -806,15 +845,18 @@ public class Parathiro extends javax.swing.JFrame
                     }
                     else
                     {
-                        if(!star&&(p.getPosition()+diceRolled.getDie1())<57)
+                        if(!star&&(p.getPosition()+diceRolled.getDie1())<56)
                         {
                             Tablo.get(p.getPosition()+diceRolled.getDie1()+extra_moves).add(p);
                             p.setPosition(p.getPosition()+diceRolled.getDie1()+extra_moves);
                         }
-                        else if(!star&&(p.getPosition()+diceRolled.getDie1())==57)
+                        else if(!star&&(p.getPosition()+diceRolled.getDie1())==56)
                         {
-                            removeMouseListener(p);
-                            removeClickListener(p);
+                            Tablo.get(p.getPosition()+diceRolled.getDie1()+extra_moves).remove(p);
+                            if(p.getColor() == 0){findPawn(p, Tablo, Start_Prasina);}
+                            else if(p.getColor() == 1){findPawn(p, Tablo, Start_Kokina);}
+                            else if(p.getColor() == 2){findPawn(p, Tablo, Start_Ble);}
+                            else if(p.getColor() == 3){findPawn(p, Tablo, Start_Kitrina);}
                         }
                     }
                 }
@@ -863,15 +905,18 @@ public class Parathiro extends javax.swing.JFrame
                     if(same_color||circle)
                     {
 //                        System.out.println("worked>1");
-                        if((p.getPosition()+diceRolled.getDie1())<57)
+                        if((p.getPosition()+diceRolled.getDie1())<56)
                         {
                             Tablo.get(p.getPosition()+diceRolled.getDie1()+extra_moves).add(p);
                             p.setPosition(p.getPosition()+diceRolled.getDie1()+extra_moves);
                         }
-                        else if((p.getPosition()+diceRolled.getDie1())==57)
+                        else if((p.getPosition()+diceRolled.getDie1())==56)
                         {
-                            removeMouseListener(p);
-                            removeClickListener(p);
+                            Tablo.get(p.getPosition()+diceRolled.getDie1()+extra_moves).remove(p);
+                            if(p.getColor() == 0){findPawn(p, Tablo, Start_Prasina);}
+                            else if(p.getColor() == 1){findPawn(p, Tablo, Start_Kokina);}
+                            else if(p.getColor() == 2){findPawn(p, Tablo, Start_Ble);}
+                            else if(p.getColor() == 3){findPawn(p, Tablo, Start_Kitrina);}
                         }
                         return_value = 2;
                     }
