@@ -8,10 +8,12 @@ import java.awt.RenderingHints;
 import javax.swing.JPanel;
 
 /**
- *
- * @author nCr78
- */
-
+* Creates a JPanel that has a shape of a star (It overrides JPanel's 
+* paintComponent to do that). It takes specific points and draws a line
+* from one point to the other. Then it fills that shape with a specific 
+* color. I'm using rendering hints so the shape looks better. 
+* @author nCr78
+*/
 public class Star extends JPanel
 {
     public static final double halfPI = Math.PI / 2; 

@@ -10,10 +10,12 @@ import java.awt.geom.Ellipse2D;
 import javax.swing.JPanel;
 
 /**
- *
- * @author nCr78
- */
-
+* Creates a JPanel that has a shape of a circle (It overrides JPanel's 
+* paintComponent to do that). It takes a specific point and draws a 2D ellipse
+* around it. Then it fills that ellipse with a specific color.
+* I'm using rendering hints so the shape looks better.
+* @author nCr78
+*/
 public class Circle extends JPanel
 {
     public static final double halfPI = Math.PI / 2; 

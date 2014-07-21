@@ -10,11 +10,18 @@ import java.awt.RenderingHints;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
-/** @see http://stackoverflow.com/questions/6333464 */
+/**
+* Creates rotated JPanels based on what is needed in the game. It can have
+* specific colors and different rotation. It overrides JPanel's paintComponent
+* function to do so.
+*/
 public class RotatePanel extends JPanel {
     Color color;
     int Dieresi;
 
+    /**
+     * Creates a rotated JPanel with another panel inside it.
+     */
     public RotatePanel() 
     {
         Dieresi=4;
@@ -41,6 +48,11 @@ public class RotatePanel extends JPanel {
         this.add(l);
     }
     
+    /**
+     * Takes 4 JPanels and rotates them in a way that is displayed in the center
+     * of the game's board.
+     * @param dieresi is the variable of how much you want it rotated.
+     */
     public RotatePanel(int dieresi)
     {
         Dieresi = dieresi;
@@ -85,6 +97,11 @@ void setColor(Color c)
 {
     color = c;
 }
+
+/**
+* Overrides JPanel's paintComponent function to draw a rotated JPanel with a
+* specific color and angle.
+*/
     @Override
     protected void paintComponent(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
@@ -95,39 +112,5 @@ void setColor(Color c)
         g2d.rotate(-Math.PI / Dieresi, w2, h2);
         super.paintComponent(g);
     }
-
-//    public static void main(String[] args)  {
-//        SwingUtilities.invokeLater(new Runnable() {
-//
-//            @Override
-//            public void run() {
-//                debug=false;
-//            }
-//        });
-//    }
 }
 
-//gia kentriko koutaki its fixed:
-/*
-setLayout(null);
-        
-           // this.setPreferredSize(new Dimension(200, 200));
-        JPanel l = new JPanel();
-        l.setBackground(Color.WHITE);
-        l.setMinimumSize(new Dimension(169, 169));
-        l.setMaximumSize(new Dimension(169, 169));
-        l.setPreferredSize(new Dimension(169, 169));
-        l.setBounds(new Rectangle(new Point(200, 300), l.getPreferredSize()));
-        l.setLocation(120, 120);
-        
-        this.setBackground(new Color(0,1,51));
-        
-//        Box box = new Box(BoxLayout.Y_AXIS);
-        //box.setOpaque(true);
-        //box.setPreferredSize(new Dimension(200, 200));
-        //box.setBackground(Color.red);
-        //box.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-//        box.add(l);
-//            box.add(Box.createHorizontalStrut(0));
-        this.add(l, BorderLayout.CENTER);
-*/

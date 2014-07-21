@@ -14,7 +14,7 @@ import javax.swing.JPanel;
  * A Class the represents the a game piece, the pawn. It is Serializable to be
  * able to be sent with an object stream.
  *
- * @author Nikolas
+ * @author Nikolas-nCr78
  */
 public class Pawn extends JPanel implements Serializable {
     
@@ -24,29 +24,13 @@ public class Pawn extends JPanel implements Serializable {
     private int position;
     private int prevPosition;
 
+    
     /**
      * Passes the field of the object.
-     *
      * @param color
+     * @param Start
      * @param playerName
-     * @param position
-     * @param prevPosition
      */
-    public Pawn(int color, String playerName, int position, int prevPosition) {
-	this.color = color;
-	this.playerName = playerName;
-        this.Start = Start;
-	this.position = position;
-	this.prevPosition = prevPosition;
-    }
-    public Pawn(int color, String playerName, int position) {
-	this.color = color;
-	this.playerName = playerName;
-        this.Start = Start;
-	this.position = position;
-	this.prevPosition = prevPosition;
-    }
-    
     public Pawn(int color, int Start, String playerName) {
 	this.color = color;
 	this.playerName = playerName;
@@ -55,14 +39,28 @@ public class Pawn extends JPanel implements Serializable {
 	this.prevPosition = prevPosition;
     }
 
+    /**
+     * Gets the previous position of the pawn.
+     *
+     * @return
+     */
     public int getPrevPosition() {
 	return prevPosition;
     }
     
+    /**
+     * Gets the starting position of a pawn.
+     *
+     * @return
+     */
     public int getStart() {
 	return Start;
     }
 
+    /**
+     * Sets the previous position of a pawn.
+     * @param prevPosition
+     */
     public void setPrevPosition(int prevPosition) {
 	this.prevPosition = prevPosition;
     }
@@ -126,6 +124,11 @@ public class Pawn extends JPanel implements Serializable {
 	return position+"";
     }
     
+    /**
+     * Similarly to the circle: it creates a 2D ellipse around a point then
+     * fills it with a specific color. It extends JPanel and overrides it's
+     * paintComponent function to do so.
+     */
     @Override
     public void paintComponent(Graphics g) 
     {
