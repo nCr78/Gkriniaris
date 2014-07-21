@@ -2981,6 +2981,7 @@ public class Parathiro extends javax.swing.JFrame
     private void StopGame_Action(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StopGame_Action
 	try {
 	    SI.endGame();
+	    gameStartedFlag = false;
 	    jMenuItem2.setEnabled(false);
 	    jMenuItem1.setEnabled(true);
 	} catch (IOException ex) {
@@ -2990,12 +2991,18 @@ public class Parathiro extends javax.swing.JFrame
 	} catch (ClassNotFoundException ex) {
 	    System.out.println("Error in comunication with the server");
 	}
+	System.out.println("Game Ended.");
     }//GEN-LAST:event_StopGame_Action
 
     private void ExitGame_Action(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitGame_Action
 	try {
-	    SI.terminate();
-	} catch (IOException ex) { }
+	    if(gameStartedFlag)
+		SI.endGame();
+	    else
+		SI.terminate();
+	} catch (IOException | ClassNotFoundException ex) {
+	    Logger.getLogger(Parathiro.class.getName()).log(Level.SEVERE, null, ex);
+	}
 	this.dispose();
     }//GEN-LAST:event_ExitGame_Action
 
@@ -3045,16 +3052,16 @@ public class Parathiro extends javax.swing.JFrame
 	    System.out.print("\t" + p.getName() + " : ");
 	    switch (p.getColor()) {
 		case 0:
-		    System.out.println("red");
+		    System.out.println("green");
 		    break;
 		case 1:
-		    System.out.println("blue");
+		    System.out.println("red");
 		    break;
 		case 2:
-		    System.out.println("yellow");
+		    System.out.println("blue");
 		    break;
 		case 3:
-		    System.out.println("green");
+		    System.out.println("yellow");
 		    break;
 		default:
 		    break;
@@ -3063,6 +3070,7 @@ public class Parathiro extends javax.swing.JFrame
     }
 
     public void Start() {
+	System.out.println(myTurn);
 	myTurn = false;
 	try 
         {
@@ -3098,6 +3106,7 @@ public class Parathiro extends javax.swing.JFrame
 		    gameStartedFlag = false;
 		    jMenuItem2.setEnabled(false);
 		    jMenuItem1.setEnabled(true);
+		    StopGame_Action(null);
 		}
 	    }
 	} catch (IOException | ClassNotFoundException ex) {
@@ -3215,18 +3224,21 @@ public class Parathiro extends javax.swing.JFrame
         catch (IllegalAccessException ex) {}
         catch (javax.swing.UnsupportedLookAndFeelException ex) {}
         //</editor-fold>
-
+	p = new Parathiro();
+	p.pack();
+	p.setLocationRelativeTo(null);
+	p.setVisible(true);
 	/* Create and display the form */
-	thread = new Thread(new Runnable() {
-	    @Override
-	    public void run() {
-		p = new Parathiro();
-		p.pack();
-		p.setLocationRelativeTo(null);
-		p.setVisible(true);
-	    }
-	});
-    thread.start();
+//	thread = new Thread(new Runnable() {
+//	    @Override
+//	    public void run() {
+//		p = new Parathiro();
+//		p.pack();
+//		p.setLocationRelativeTo(null);
+//		p.setVisible(true);
+//	    }
+//	});
+//    thread.start();
     }
     
 //    private String name;
@@ -3243,7 +3255,7 @@ public class Parathiro extends javax.swing.JFrame
     private ArrayList<Pawn> Started_Pawns = new ArrayList<Pawn>();
     private ServerInterface SI = null;
     private boolean playingFlag;
-    private boolean gameStartedFlag;
+    private boolean gameStartedFlag = false;
     private boolean myTurn;
     private GameSettings gms;
     private Player me;

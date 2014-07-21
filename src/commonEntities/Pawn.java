@@ -123,7 +123,7 @@ public class Pawn extends JPanel implements Serializable {
     
     @Override
     public String toString(){
-	return prevPosition+" => "+position+" : "+color+" - "+getPlayerName();
+	return position+"";
     }
     
     @Override
