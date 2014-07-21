@@ -1,5 +1,5 @@
 package gkriniaris;
-// v4
+// v5
 //TODO: gamelocic-> fere sosti zaria gia na beis sta telika koutakia + theseis gia ta pionia sto telos + endgame
 import clientInterface.ServerInterface;
 import commonEntities.Dice;
@@ -754,8 +754,6 @@ public class Parathiro extends javax.swing.JFrame
                 }
                 //DO NOT FUCKING FORMAT <ANYTHING>, I SWEAR ILL RELEASE 100 HUNGRY MICE TO EAT YOU SLOWLY! JUST FIX THE GODDAMN SERVER, YOU HAVE ONE JOB MAN, ONE!
                 resetObj();//vgazo kai ksanavazo asteria/kiklous gia na paei on-top to pioni
-                repaint(1L);
-                revalidate();
                 }
                 catch (java.lang.IndexOutOfBoundsException e)
                 {
@@ -770,6 +768,8 @@ public class Parathiro extends javax.swing.JFrame
 //                    Tablo.get(newPosition).add(p);
 //                    GameLogic(p, diceRolled);
                 }
+                repaint(1L);
+                revalidate();
     }
     private void resetObj()
     {
@@ -2821,7 +2821,14 @@ public class Parathiro extends javax.swing.JFrame
 
         setJMenuBar(jMenuBar1);
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Connects with the server and look a the ServerInterface's gmFlag. If
+     * it's true this is a new game and asks the user for GameSettings and 
+     * Player info. If not it send only Player information. Lastly is sync
+     * the player list and GameSettings with the server and runs the Start()
+     * function to start listening for events.
+     * @param evt 
+     */
     private void JoinGame_Action(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JoinGame_Action
 	JOptionPane OP = new JOptionPane();
 	String host = null;
@@ -2977,7 +2984,11 @@ public class Parathiro extends javax.swing.JFrame
             
 	}
     }//GEN-LAST:event_JoinGame_Action
-
+    /**
+     * Informs the server with end command and stop the game, closing all
+     * connections.
+     * @param evt 
+     */
     private void StopGame_Action(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StopGame_Action
 	try {
 	    SI.endGame();
@@ -2993,7 +3004,10 @@ public class Parathiro extends javax.swing.JFrame
 	}
 	System.out.println("Game Ended.");
     }//GEN-LAST:event_StopGame_Action
-
+    /**
+     * Ends the game, if any, and terminates the main window and the program.
+     * @param evt 
+     */
     private void ExitGame_Action(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitGame_Action
 	try {
 	    if(gameStartedFlag)
@@ -3005,7 +3019,10 @@ public class Parathiro extends javax.swing.JFrame
 	}
 	this.dispose();
     }//GEN-LAST:event_ExitGame_Action
-
+    /**
+     * This displays a window with how to play information.
+     * @param evt 
+     */
     private void Help_Action(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Help_Action
 	final JOptionPane OP = new JOptionPane();
 	final JPanel panel = new JPanel();
@@ -3024,7 +3041,10 @@ public class Parathiro extends javax.swing.JFrame
 	panel.add(textArea);
 	OP.showOptionDialog(p, panel, "How to play", JOptionPane.YES_OPTION, JOptionPane.PLAIN_MESSAGE, null, new Object[]{"Thanks!"}, null);
     }//GEN-LAST:event_Help_Action
-
+    /**
+     * This method displays a window with the creators.
+     * @param evt 
+     */
     private void About_Action(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_About_Action
 	JOptionPane OP = new JOptionPane();
 	JPanel panel = new JPanel(new BorderLayout());
@@ -3041,7 +3061,10 @@ public class Parathiro extends javax.swing.JFrame
 	OP.showOptionDialog(p, panel, "About", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, new Object[]{}, null);
 
     }//GEN-LAST:event_About_Action
-
+    /**
+     * This function reads from the interface the GameSettings and Player list
+     * and prints it to the main window.
+     */
     public void PrintPlayers() {
 	System.out.print("The game settings are: ");
 	System.out.println(gms.getPlayers()+
@@ -3068,7 +3091,15 @@ public class Parathiro extends javax.swing.JFrame
 	    }
 	}
     }
-
+    /**
+     * This function runs and waits for the ServerInterface to return a value.
+     * If its -1 the function call the StopGame listener and stops the game.
+     * If its 1 the function updates the board with the new move that it got
+     * for the server.
+     * If its 1 the myTurn flag is risen and enables the click listener to
+     * enable the user to pick a pawn and play. Lastly the clickListernet
+     * lowers the myTurn flag and run this function again.
+     */
     public void Start() {
 	System.out.println(myTurn);
 	myTurn = false;
@@ -3116,7 +3147,11 @@ public class Parathiro extends javax.swing.JFrame
 	    jMenuItem1.setEnabled(true);
 	}
     }
-
+    /**
+     * This function get a pawn object and run the pawn through the GameLogic
+     * and updates the board.
+     * @param pawn 
+     */
     private void updateBoard(Pawn pawn) 
     {
 //	System.out.println("Player "
@@ -3194,14 +3229,13 @@ public class Parathiro extends javax.swing.JFrame
                 Started_Pawns.add(pawn);
                 Start_Kitrina.get(pawn.getStart()).removeAll();
             }
-            GameLogic(pawn, new Dice(SI.getDice().getDie1()-remove_points), Kitrini_Lista);
-            
+            GameLogic(pawn, new Dice(SI.getDice().getDie1()-remove_points), Kitrini_Lista);          
         }
-        
-//Edo kaneis ta dika sou gia na kanei update to board me to kainourgio move
-	//somehow...
     }
-
+    /**
+     * Main function, starts creates and displays the main window.
+     * @param args 
+     */
     public static void main(String args[]) {
 	/* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -3240,8 +3274,7 @@ public class Parathiro extends javax.swing.JFrame
 //	});
 //    thread.start();
     }
-    
-//    private String name;
+
     private static Thread thread;
     private ArrayList<JPanel> Prasini_Lista = new ArrayList<JPanel>();
     private ArrayList<JPanel> Kokini_Lista = new ArrayList<JPanel>();

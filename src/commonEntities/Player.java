@@ -3,23 +3,23 @@ package commonEntities;
 import java.io.Serializable;
 
 /**
- *
+ * This class hold the information about the player.
  * @author Nikolas
  */
 public class Player implements Serializable {
 
     /**
-     *
+     * Players name.
      */
     public String name;
 
     /**
-     *
+     * Players color.
      */
     public int color;
 
     /**
-     *
+     * Creates a new Player with the given values.
      * @param name
      * @param color
      */
@@ -61,7 +61,7 @@ public class Player implements Serializable {
     }
 
     /**
-     *
+     * Returns a string with the color and name of the player.
      * @return
      */
     @Override

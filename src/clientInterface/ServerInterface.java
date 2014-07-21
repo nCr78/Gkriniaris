@@ -12,7 +12,13 @@ import java.util.ArrayList;
 
 /**
  * This is a class the handles the all communication with the server. On
- * creation initializes with the server and finds out if this is a new game.
+ * creation initializes with the server and finds out if this is a new game,
+ * by using the gmFlag. Then the init() function must be call in order to inform
+ * the server (and thus the other players) with the Player's object 
+ * and GameSettings. Then the sync() must be run in order to sync with the
+ * Players list and GamesSttings with the server and the other players.
+ * the using the waitForTurn() you can get update for the server or 
+ * get an indication for when is your turn.
  *
  * @author Nikolas
  */
@@ -191,7 +197,7 @@ public class ServerInterface {
     /**
      * Simplifies communications.
      *
-     * @param Sends an Object to the server.
+     * @param o Sends an Object to the server.
      * @throws IOException
      */
     public void sendToServer(Object o) throws IOException {

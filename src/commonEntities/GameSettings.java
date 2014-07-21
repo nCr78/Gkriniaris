@@ -3,7 +3,7 @@ package commonEntities;
 import java.io.Serializable;
 
 /**
- *
+ * This class holds the GameSettings.
  * @author Nikolas
  */
 public class GameSettings implements Serializable {
@@ -14,9 +14,9 @@ public class GameSettings implements Serializable {
 
     /**
      *
-     * @param players
-     * @param rejoinable
-     * @param numberPawns
+     * @param players The number of players.
+     * @param rejoinable NOT USED
+     * @param numberPawns The number of pawns per player.
      */
     public GameSettings(int players, boolean rejoinable, int numberPawns) {
 	this.numberPawns = numberPawns;

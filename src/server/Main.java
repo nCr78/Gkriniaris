@@ -18,9 +18,7 @@ public class Main {
     public static void main(String[] args) {
 	try {
 	    new Server(80);
-	} catch (IOException ex) {
-	    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-	} catch (ClassNotFoundException ex) {
+	} catch (IOException | ClassNotFoundException ex) {
 	    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
 	}
     }

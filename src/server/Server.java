@@ -34,7 +34,7 @@ public class Server {
     private Player currentPlayer;
 
     /**
-     * Initializes the game.
+     * Initializes the game. Connecting the game master and the other players
      *
      * @param port Server's port to listen to.
      * @throws java.io.IOException
@@ -291,7 +291,7 @@ public class Server {
     }
 
     /**
-     * Holds both in and out ObjectStreams in one object.
+     * Holds both in and out ObjectStreams in one object for simplicity.
      */
     class ObjectStreams {
 
