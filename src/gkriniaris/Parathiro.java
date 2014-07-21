@@ -738,7 +738,7 @@ public class Parathiro extends javax.swing.JFrame
                         Tablo.get(p.getPosition()+diceRolled.getDie1()+extra_moves).add(p);
                         p.setPosition(p.getPosition()+diceRolled.getDie1()+extra_moves);
                     }
-                    else if(compCount2==1)
+                    else if(!same_color||compCount2>0)
                     {
                         System.out.println("nope");
                         Tablo.get(p.getPosition()+diceRolled.getDie1()+extra_moves).add(p);
@@ -3274,6 +3274,7 @@ public class Parathiro extends javax.swing.JFrame
 //    thread.start();
     }
 
+    private Pawn serverPawn;
     private static Thread thread;
     private ArrayList<JPanel> Prasini_Lista = new ArrayList<JPanel>();
     private ArrayList<JPanel> Kokini_Lista = new ArrayList<JPanel>();
