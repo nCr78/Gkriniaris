@@ -55,13 +55,10 @@ public class Server {
 	currentPlayer = (Player) readData(sock);
 	addPlayer(sock, currentPlayer);
 	System.out.println("Game Master Connected: "
-		+ currentPlayer.getName()
-		+ " with color: "
-		+ currentPlayer.getColor());
+		+ currentPlayer.toString());
 	gms = (GameSettings) readData(sock);
 	System.out.println("Game settings: " + gms.toString());
 	//Adding new players
-	System.out.println(gms.getPlayers() +" , "+ playerList.size() );
 	while (gms.getPlayers() != playerList.size()) {
 	    System.out.println("Waiting for other players...");
 	    sock = ssock.accept();
@@ -73,9 +70,7 @@ public class Server {
 	    //Read players info
 	    currentPlayer = (Player) readData(sock);
 	    System.out.println("Player connected "
-		    + currentPlayer.getName()
-		    + " with color: "
-		    + currentPlayer.getColor());
+		    + currentPlayer.toString());
 	    addPlayer(sock, currentPlayer);
 	}
 	playerData = new String[gms.getPlayers()];
@@ -259,7 +254,7 @@ public class Server {
 	for (Socket s : playerList.keySet()) {
 	    s.close();
 	    System.out.println("Player: "
-		    + playerList.get(s).getName()
+		    + playerList.get(s).toString()
 		    + " disconnected.");
 	    socketStreams.get(s).in.close();
 	    socketStreams.get(s).out.close();
@@ -278,7 +273,9 @@ public class Server {
     private void syncGame() throws IOException {
 	int counter = 0;
 	for (Socket s : playerList.keySet()) {
-	    playerData[counter] = playerList.get(s).toString();
+	    playerData[counter] = playerList.get(s).getName()+
+		    ":"+
+		    playerList.get(s).getColor();
 	    counter++;
 	}
 	for (Socket s : playerList.keySet()) {

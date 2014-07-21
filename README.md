@@ -1,4 +1,0 @@
-Gkriniaris
-==========
-
-University exercise

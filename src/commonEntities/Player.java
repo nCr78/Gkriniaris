@@ -66,7 +66,15 @@ public class Player implements Serializable {
      */
     @Override
     public String toString() {
-	return name + ':' + color;
+	if(color == 0)
+	    return name + ": green";
+	else if(color == 1)
+	    return name + ": red";
+	else if(color == 1)
+	    return name + ": blue";
+	else
+	    return name + ": yellow";
+	   
     }
 
 }
